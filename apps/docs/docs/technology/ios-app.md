@@ -34,17 +34,20 @@ Fitr/
     Components.swift          rings, pills, buttons, flow layout, states
   Models/
     Models.swift              all Codable domain models
+    HealthModels.swift        normalized health snapshot and formatting
   Services/
     APIClient.swift           actor-based URLSession client
     AppStore.swift            @MainActor @Observable app state
     AppSettings.swift         UserDefaults-backed settings
+    HealthStore.swift         HealthKit reads, permissions and workout export
     LocalStore.swift          bootstrap cache + bundled catalogue
     FitrDate.swift            calendar, formatting, deltas
   Features/
-    Today/                    week strip, hero, time regions, task rows
+    Today/                    week strip, hero, time regions, task rows, health pulse
     Player/                   exercise logging sheet and timer
     Catalogue/                filters, grid, detail sheet
     Progress/                 summary, chart, calendar, PRs, muscles
+    Health/                   permission flow, rings, metrics, chart, workouts, sources
     Profile/                  settings, connection, program, about
   Animation/
     BodyPose.swift            14-joint skeleton and pose library
@@ -61,6 +64,7 @@ Fitr/
 
 ```swift
 @MainActor @Observable final class AppStore {
+  let health: HealthStore
   private(set) var bootstrap: Bootstrap?
   private(set) var progress: ProgressSummary?
   var selectedDate: Date
@@ -116,6 +120,30 @@ There are two independent layers:
 The cache is replaced only on success. A failed fetch shows an inline banner and keeps the
 cached plan visible.
 
+## HealthKit
+
+`HealthStore` is an `@MainActor @Observable` service owned by `AppStore`. It wraps one
+`HKHealthStore` and exposes a normalized `HealthSnapshot` so views never handle framework
+objects or query results.
+
+- **Permission** — `requestAccess()` asks for read access to activity, sleep, heart, HRV,
+  energy and body mass, plus write access to workouts and active energy. The sheet is only
+  shown when the user taps **Connect Apple Health**.
+- **Reads** — statistics queries sum daily quantities; sample queries read the latest heart
+  and weight values; a collection query builds the seven-day step series; a workout query
+  supplies activity type, duration, energy, distance and source app; a source query lists the
+  apps contributing step samples.
+- **Sleep** — category samples from multiple apps are merged by interval before summing, so
+  overlapping records are never double counted.
+- **Write** — a completed day is saved with `HKWorkoutBuilder` as a single workout, with a
+  conservative active-energy estimate and stable `HKMetadataKeyExternalUUID`. Exported dates
+  are stored in `UserDefaults` to keep the operation idempotent.
+- **Privacy** — samples stay on the device. Only the permissions and exported-date markers are
+  persisted locally; nothing health-related is sent to the Bun API.
+
+The entitlement lives in `Fitr/Fitr.entitlements` and is referenced by `project.yml`. The two
+usage strings are generated into `Info.plist`.
+
 ## Screens
 
 ### Today
@@ -123,9 +151,23 @@ cached plan visible.
 - Greeting, name and streak avatar.
 - Week strip with completion bars and rest-day moons.
 - Hero card: week index, phase, volume lift, completion ring, minutes, streak, weekly totals.
+- Body-today strip with steps, sleep, resting heart rate and active energy when Health is connected.
 - Six time-region sections, each with icon, hint, minutes and completed count.
 - Task rows with animated thumbnails, target, duration and a one-tap status toggle.
 - Pull to refresh; date and week navigation; rest-day callout.
+
+### Health
+
+A dedicated tab for the body side of training:
+
+- connection state, permission explanation and source-app examples;
+- nested move/exercise/stand rings with today's values;
+- metric grid for distance, flights, mindful minutes, weight, HRV and heart rate;
+- seven-day step chart;
+- recent workouts from every Health source, including Fitr exports;
+- contributing source chips;
+- manual or automatic export of a completed Fitr day as a workout;
+- on-device privacy note.
 
 ### Player
 
@@ -182,7 +224,7 @@ For repeatable marketing screenshots, debug builds read environment variables:
 
 | Variable | Effect |
 | --- | --- |
-| `FITR_TAB=today\|catalogue\|progress\|profile` | Selects the initial tab |
+| `FITR_TAB=today\|catalogue\|progress\|health\|profile` | Selects the initial tab |
 | `FITR_PLAYER=1` | Opens the first pending morning task |
 | `FITR_EXERCISE=1` | Opens the barbell back squat detail |
 
@@ -201,6 +243,8 @@ These hooks are wrapped in `#if DEBUG` and have no effect in release builds.
 - date key round-trips and Monday week starts;
 - duration, delta and weight formatting;
 - decoding a bootstrap payload;
+- merging overlapping sleep intervals without double counting;
+- Health session MET mapping by exercise topic;
 - every animation key has at least two poses and actual joint movement.
 
 ```bash

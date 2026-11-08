@@ -128,3 +128,18 @@ then compress them for the web. No fabricated UI.
 
 **Consequences.** The site always reflects the real app. Screenshots must be regenerated when
 the UI changes; the debug hooks are documented and compiled out of release builds.
+
+## ADR-010 — Health data stays on the device
+
+**Status:** accepted (v0.2)
+
+**Context.** Fitr can show activity, sleep, heart and workout data from Apple Health, including
+third-party apps. Health data is highly sensitive and already synced by Apple.
+
+**Decision.** Integrate through HealthKit on the iPhone only. Normalize samples into a local
+snapshot, never upload them to the Fitr API, and keep the server authoritative only for plans,
+tasks and training progress. Write-back is limited to completed sessions as workouts.
+
+**Consequences.** Strong privacy and no new server storage or migration. Cross-device health
+history is not available in Fitr itself, and readiness-based coaching needs the phone to read
+Health first. Clinical records and direct third-party APIs are deliberately out of scope.

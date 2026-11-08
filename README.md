@@ -31,6 +31,9 @@ apps/
   Autoregulation adds 2.5 kg or 2 reps after a completed exercise at average effort ≤ 7.
 - **Tracker** — day, week, month and year views; adherence, minutes, volume, sessions, streak,
   calendar heatmap, muscle balance, e1RM/rep/hold records and period-over-period improvement.
+- **Health** — native HealthKit integration: steps, energy, exercise minutes, sleep, heart rate,
+  HRV, weight, workouts and contributing apps from Apple Health, with optional write-back of
+  completed Fitr sessions as workouts. Health data stays on the device.
 - **Motion** — 41 hand-keyframed skeleton sequences rendered live with SwiftUI Canvas. No video,
   GIF or sprite assets; crisp at any size and tinted by topic.
 - **Self-hosted** — one Bun process, one SQLite file, no account or third-party analytics.
@@ -57,6 +60,11 @@ cd apps/web && python3 -m http.server 8080
 
 The iOS app defaults to `http://localhost:8787`. Change it in **You → Connection** — on a
 physical iPhone use your Mac's LAN IP (`ipconfig getifaddr en0`).
+
+Open **Health** in the tab bar to connect Apple Health. The app reads activity, sleep, heart and
+workout data on-device and can save completed Fitr sessions back as workouts. Add the HealthKit
+capability to your signing profile when running on a physical iPhone; the simulator works with
+the checked-in entitlement.
 
 ## Requirements
 

@@ -6,6 +6,7 @@ import SwiftUI
 @Observable
 final class AppStore {
     let settings: AppSettings
+    let health: HealthStore
 
     private(set) var api: APIClient
     private(set) var bootstrap: Bootstrap?
@@ -30,6 +31,7 @@ final class AppStore {
 
     init(settings: AppSettings = AppSettings()) {
         self.settings = settings
+        self.health = HealthStore(settings: settings)
         let url = settings.serverURL ?? URL(string: AppSettings.defaultServerURL)!
         api = APIClient(baseURL: url)
         catalog = CatalogStore.load()
@@ -150,6 +152,7 @@ final class AppStore {
             )
             await refresh(date: selectedDate, silent: true)
             invalidateProgress()
+            autoExportHealthIfNeeded(for: task)
             showToast("\(task.exercise.name) logged")
             UINotificationFeedbackGenerator().notificationOccurred(.success)
             return true
@@ -279,6 +282,20 @@ final class AppStore {
 
     func dismissError() {
         errorMessage = nil
+    }
+
+    /// When every task on a training day is complete, mirror that session into
+    /// Apple Health once. This is opt-in and never prompts for permission.
+    private func autoExportHealthIfNeeded(for task: TrainingTask) {
+        guard settings.healthAutoExport, health.isConnected else { return }
+        guard let day = plan?.days.first(where: { $0.date == task.date }),
+              day.totalTasks > 0,
+              day.completedTasks == day.totalTasks,
+              !day.isRestDay,
+              !settings.hasExportedHealthSession(day.date) else { return }
+        Task {
+            await health.exportSession(date: day.date, tasks: day.tasks)
+        }
     }
 
     private func showToast(_ message: String) {

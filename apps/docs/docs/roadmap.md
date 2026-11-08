@@ -120,7 +120,20 @@ cd apps/ios && xcodegen generate && xcodebuild … test
 
 **Commit:** `abe6d28` — ci: test server, iOS and docs, then deploy both sites to GitHub Pages
 
-## Phase 9 — Next: production hardening ⏳
+## Phase 9 — Apple Health integration ✅
+
+- [x] HealthKit entitlement, usage strings and XcodeGen configuration.
+- [x] Explicit read/write permission flow with on-device privacy.
+- [x] Today snapshot: steps, energy, exercise, stand, distance, flights, mindful, sleep, heart, HRV and weight.
+- [x] Seven-day step series and recent workouts from every Health source.
+- [x] Source-app discovery so third-party data is visible.
+- [x] Export completed Fitr sessions as idempotent Health workouts.
+- [x] Opt-in automatic export when a training day is complete.
+- [x] Body-today strip on the Today screen.
+
+**Commit:** local — `feat(ios): native Apple Health integration`
+
+## Phase 10 — Next: production hardening ⏳
 
 - [ ] Bearer-token auth with per-user data scoping.
 - [ ] TLS-only configuration and removal of the ATS exception.
@@ -130,26 +143,25 @@ cd apps/ios && xcodegen generate && xcodebuild … test
 - [ ] Rename or version the demo user flow.
 - [ ] Structured logging and an uptime check.
 
-## Phase 10 — Adaptive coaching ⏳
+## Phase 11 — Adaptive coaching ⏳
 
 - [ ] Opt-in deload every 4–8 weeks with a visible recovery week.
-- [ ] Readiness check-in (sleep, soreness, energy) influencing the day.
+- [ ] Readiness check-in using Health sleep, HRV and resting heart rate.
 - [ ] Missed-session redistribution instead of permanent loss.
 - [ ] Exercise substitution when equipment is unavailable.
 - [ ] Per-exercise preferences (favourites, avoid, cues).
 - [ ] Distance/pace targets for cardio, not only duration.
 - [ ] Bodyweight-normalised volume and relative strength.
 
-## Phase 11 — Deeper tracking ⏳
+## Phase 12 — Deeper tracking ⏳
 
 - [ ] Session grouping (“workout” entity) instead of day-level sessions.
 - [ ] Per-set logging with rest timers.
 - [ ] Export to CSV and JSON.
-- [ ] Apple Health write/read integration.
 - [ ] Lock Screen Live Activity for holds.
 - [ ] Shareable progress card (image export).
 
-## Phase 12 — Catalogue and motion ⏳
+## Phase 13 — Catalogue and motion ⏳
 
 - [ ] Body map that highlights primary and auxiliary muscles spatially.
 - [ ] More movement archetypes: Turkish get-up, snatch, muscle-up, clean.
@@ -158,7 +170,7 @@ cd apps/ios && xcodegen generate && xcodebuild … test
 - [ ] Localisation (EN/DE) and unit preferences (kg/lb).
 - [ ] Dynamic Type tokens across all screens.
 
-## Phase 13 — Platform ⏳
+## Phase 14 — Platform ⏳
 
 - [ ] Multi-user accounts and device sync.
 - [ ] Server-side migrations with versioned history.

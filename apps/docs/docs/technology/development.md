@@ -55,6 +55,8 @@ simulator shares the host network, so no changes are needed.
 2. Find the Mac's LAN IP: `ipconfig getifaddr en0`.
 3. In Fitr, open **You → Connection**, set `http://192.168.x.x:8787`, and tap **Reconnect**.
 4. Accept the local-network prompt on first launch.
+5. Open **Health → Connect Apple Health** to grant HealthKit access. The simulator supports
+   HealthKit too, but a physical iPhone is the useful source of Watch and third-party data.
 
 The Info.plist allows cleartext local networking for development. Do not ship that
 configuration to production without TLS.

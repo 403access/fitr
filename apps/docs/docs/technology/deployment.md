@@ -177,7 +177,11 @@ The app is not on the App Store. To install it on a device:
 1. Open `apps/ios/Fitr.xcodeproj`.
 2. Select the **Fitr** target → Signing & Capabilities.
 3. Choose your development team and a unique bundle identifier.
-4. Connect a device and run.
+4. Confirm the **HealthKit** capability is present and both usage descriptions are in the
+   generated Info.plist (`NSHealthShareUsageDescription`, `NSHealthUpdateUsageDescription`).
+5. Connect a device and run.
+6. On first launch, open **Health → Connect Apple Health** and grant the categories you want
+   Fitr to read and write.
 
 For TestFlight, create an App Store Connect record, set the bundle identifier and version to
 match, archive, and upload with Xcode Organizer. Remember to point the connection settings at

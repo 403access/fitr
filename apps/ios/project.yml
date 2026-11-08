@@ -20,6 +20,10 @@ targets:
     platform: iOS
     sources:
       - path: Fitr
+    attributes:
+      SystemCapabilities:
+        com.apple.HealthKit:
+          enabled: 1
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: me.olimo.fitr
@@ -45,8 +49,15 @@ targets:
           NSAllowsLocalNetworking: true
           NSAllowsArbitraryLoads: true
         NSLocalNetworkUsageDescription: Fitr connects to your self-hosted training server on the local network.
+        NSHealthShareUsageDescription: Fitr reads steps, workouts, sleep, heart rate, HRV, energy and body weight from Apple Health so your training and recovery live in one place.
+        NSHealthUpdateUsageDescription: Fitr saves completed training sessions as workouts in Apple Health so your rings and other fitness apps see your work.
         UIApplicationSceneManifest:
           UIApplicationSupportsMultipleScenes: false
+    entitlements:
+      path: Fitr/Fitr.entitlements
+      properties:
+        com.apple.developer.healthkit: true
+
     scheme:
       testTargets:
         - FitrTests

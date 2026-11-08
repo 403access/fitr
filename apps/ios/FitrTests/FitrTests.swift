@@ -77,4 +77,23 @@ final class FitrTests: XCTestCase {
         XCTAssertEqual(FitrDate.delta(12.34), "+12.3%")
         XCTAssertEqual(FitrDate.weight(12.5), "12.5 kg")
     }
+
+    func testOverlappingHealthIntervalsAreNotDoubleCounted() {
+        let base = Date(timeIntervalSince1970: 1_800_000_000)
+        let intervals: [(Date, Date)] = [
+            (base, base.addingTimeInterval(600)),
+            (base.addingTimeInterval(300), base.addingTimeInterval(900)),
+            (base.addingTimeInterval(1_200), base.addingTimeInterval(1_500)),
+        ]
+        XCTAssertEqual(HealthStore.mergedDuration(intervals), 1_200)
+        XCTAssertEqual(HealthStore.mergedDuration([]), 0)
+    }
+
+    func testHealthSessionKindUsesExerciseTopics() {
+        XCTAssertEqual(HealthSessionKind(topicID: "strength").estimatedMET, 5.0)
+        XCTAssertEqual(HealthSessionKind(topicID: "yoga").estimatedMET, 3.0)
+        XCTAssertEqual(HealthSessionKind(topicID: "mobility").estimatedMET, 2.5)
+        XCTAssertEqual(HealthSessionKind(topicID: "recovery").estimatedMET, 2.0)
+        XCTAssertEqual(HealthSessionKind(topicID: nil).estimatedMET, 4.0)
+    }
 }

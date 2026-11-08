@@ -8,6 +8,25 @@ title: Changelog
 All notable changes to Fitr. The format follows [Keep a Changelog](https://keepachangelog.com)
 and the project follows [Semantic Versioning](https://semver.org).
 
+## [Unreleased]
+
+### Added
+
+#### Apple Health
+
+- Native HealthKit integration with the `com.apple.developer.healthkit` entitlement and
+  generated read/write usage descriptions.
+- Explicit permission flow that never prompts on cold launch.
+- Today snapshot for steps, active energy, exercise minutes, stand hours, distance, flights,
+  mindful minutes, sleep, resting heart rate, heart rate, HRV and body weight.
+- Seven-day step chart and recent workouts from Apple Health, including third-party source apps.
+- Source discovery for apps and devices contributing to Health.
+- One-tap and optional automatic export of completed Fitr days as idempotent Health workouts.
+- Body-today strip on the Today screen.
+- New Health tab with rings, metrics, workouts, sources and privacy notes.
+- Unit tests for overlapping sleep intervals and Health session energy mapping.
+- HealthKit setup, privacy and capability documentation.
+
 ## [0.1.0] — 2026-11-08
 
 The first complete vertical slice: a self-hosted training system with a native iOS client,

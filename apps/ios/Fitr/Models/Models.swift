@@ -398,13 +398,14 @@ enum ExperienceOption: String, CaseIterable, Identifiable {
 }
 
 enum AppTab: String, CaseIterable, Identifiable {
-    case today, catalogue, progress, profile
+    case today, catalogue, progress, health, profile
     var id: String { rawValue }
     var title: String {
         switch self {
         case .today: return "Today"
         case .catalogue: return "Explore"
         case .progress: return "Progress"
+        case .health: return "Health"
         case .profile: return "You"
         }
     }
@@ -413,6 +414,7 @@ enum AppTab: String, CaseIterable, Identifiable {
         case .today: return "sun.horizon.fill"
         case .catalogue: return "square.grid.2x2.fill"
         case .progress: return "chart.bar.fill"
+        case .health: return "heart.fill"
         case .profile: return "person.fill"
         }
     }

@@ -24,6 +24,9 @@ struct TodayView: View {
                     loadingState
                 } else if let bootstrap = store.bootstrap {
                     hero(bootstrap)
+                    if let snapshot = store.health.snapshot, store.health.isConnected, snapshot.hasAnyData {
+                        healthPulse(snapshot)
+                    }
                     timeline(bootstrap)
                 } else {
                     offlineState
@@ -46,6 +49,7 @@ struct TodayView: View {
                 .presentationCornerRadius(34)
                 .presentationBackground(Theme.ink)
         }
+        .task { await store.health.refreshIfConnected() }
         .onAppear { openDebugPlayerIfNeeded() }
         .onChange(of: store.bootstrap?.serverTime) { _, _ in openDebugPlayerIfNeeded() }
     }
@@ -337,6 +341,78 @@ struct TodayView: View {
                 .fill(Color.white.opacity(0.045))
                 .overlay(
                     RoundedRectangle(cornerRadius: 13, style: .continuous)
+                        .strokeBorder(Color.white.opacity(0.05), lineWidth: 1)
+                )
+        )
+    }
+
+    // MARK: - Health pulse
+
+    private func healthPulse(_ snapshot: HealthSnapshot) -> some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack(spacing: 8) {
+                Image(systemName: "heart.fill")
+                    .font(.system(size: 11, weight: .semibold))
+                    .foregroundStyle(Theme.coral)
+                Text("Body today")
+                    .font(Theme.font(14, .bold))
+                    .foregroundStyle(Theme.text)
+                Spacer()
+                FitrPill(text: "Apple Health", icon: "heart.text.square.fill", tint: Theme.coral)
+            }
+
+            HStack(spacing: 8) {
+                healthPulseStat(
+                    icon: "figure.walk",
+                    value: HealthFormatting.steps(snapshot.steps),
+                    label: "steps",
+                    tint: Theme.lime
+                )
+                healthPulseStat(
+                    icon: "moon.stars.fill",
+                    value: HealthFormatting.sleep(snapshot.sleepMinutes),
+                    label: "sleep",
+                    tint: Theme.violet
+                )
+                healthPulseStat(
+                    icon: "heart.fill",
+                    value: HealthFormatting.heartRate(snapshot.restingHeartRate),
+                    label: "resting bpm",
+                    tint: Theme.coral
+                )
+                healthPulseStat(
+                    icon: "flame.fill",
+                    value: HealthFormatting.energy(snapshot.activeEnergyKcal),
+                    label: "active kcal",
+                    tint: Theme.sky
+                )
+            }
+        }
+        .fitrCard()
+    }
+
+    private func healthPulseStat(icon: String, value: String, label: String, tint: Color) -> some View {
+        VStack(alignment: .leading, spacing: 7) {
+            Image(systemName: icon)
+                .font(.system(size: 10, weight: .semibold))
+                .foregroundStyle(tint)
+            Text(value)
+                .font(Theme.font(15, .bold))
+                .foregroundStyle(Theme.text)
+                .lineLimit(1)
+                .minimumScaleFactor(0.65)
+            Text(label)
+                .font(Theme.font(8))
+                .foregroundStyle(Theme.textTertiary)
+                .lineLimit(1)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(10)
+        .background(
+            RoundedRectangle(cornerRadius: 14, style: .continuous)
+                .fill(Color.white.opacity(0.04))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 14, style: .continuous)
                         .strokeBorder(Color.white.opacity(0.05), lineWidth: 1)
                 )
         )

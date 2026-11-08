@@ -38,6 +38,7 @@ struct RootView: View {
                 case .today: TodayView()
                 case .catalogue: CatalogueView()
                 case .progress: TrainingProgressView()
+                case .health: HealthView()
                 case .profile: ProfileView()
                 }
             }

@@ -27,6 +27,10 @@
 		<key>NSAllowsLocalNetworking</key>
 		<true/>
 	</dict>
+	<key>NSHealthShareUsageDescription</key>
+	<string>Fitr reads steps, workouts, sleep, heart rate, HRV, energy and body weight from Apple Health so your training and recovery live in one place.</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>Fitr saves completed training sessions as workouts in Apple Health so your rings and other fitness apps see your work.</string>
 	<key>NSLocalNetworkUsageDescription</key>
 	<string>Fitr connects to your self-hosted training server on the local network.</string>
 	<key>UIApplicationSceneManifest</key>

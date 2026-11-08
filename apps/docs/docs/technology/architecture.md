@@ -18,6 +18,7 @@ There is no message bus, no container orchestration and no third-party backend.
 │    ├── APIClient (actor)  ── URLSession ──▶ Bun API                 │
 │    ├── BootstrapCache     ── Application Support JSON               │
 │    ├── CatalogStore       ── bundled catalog.json                   │
+│    ├── HealthStore        ── HealthKit (on-device only)             │
 │    └── Views / Canvas animation engine                              │
 └─────────────────────────────────────────────────────────────────────┘
                                   │
@@ -33,6 +34,12 @@ There is no message bus, no container orchestration and no third-party backend.
 │    └── SQLite (bun:sqlite, WAL)                                     │
 └─────────────────────────────────────────────────────────────────────┘
 
+On-device only:
+┌────────────────┐      ┌──────────────────┐
+│ HealthKit      │◀────▶│ HealthStore      │
+│ Apple Health   │      │ read/write       │
+└────────────────┘      └──────────────────┘
+
 Static delivery:
 ┌───────────────┐      ┌────────────────────┐      ┌──────────────────┐
 │ marketing web │      │ Docusaurus docs    │      │ GitHub Pages     │
@@ -44,10 +51,11 @@ Static delivery:
 
 ### iOS app
 
-- Renders the catalogue, daily rhythm, player and progress views.
+- Renders the catalogue, daily rhythm, player, progress and health views.
 - Owns interaction state, haptics and navigation.
 - Caches the last bootstrap for instant launch and offline reads.
 - Bundles the catalogue snapshot so Explore and animations work without a server.
+- Reads and writes HealthKit data locally; samples never pass through the API.
 - Does **not** compute the plan or authoritative progress. Those live on the server.
 
 ### Bun API
@@ -90,6 +98,7 @@ Player
     → buildTodayState() recomputes the day, plan and streak
   → AppStore refreshes bootstrap (silent)
   → progress cache invalidated and active period refetched
+  → if the day is complete and auto-export is on, HealthStore writes one workout
   → toast + success haptic + sheet dismiss
 ```
 
@@ -119,6 +128,7 @@ GET /api/bootstrap?date=2026-11-05
 | SwiftUI Canvas | Infinite resolution, tintable, no video assets | Hand-authored motion library |
 | Bundled catalogue | Offline-first browsing and instant launch | Regenerate on catalogue changes |
 | Server-authoritative plans | Consistent progression across devices | Requires connectivity to log |
+| HealthKit on-device only | Health data is sensitive and already synced by Apple | No server-side readiness model yet |
 | Single-user header | Fast MVP without auth complexity | Not multi-tenant yet |
 
 ## Data flow boundaries
@@ -131,6 +141,8 @@ GET /api/bootstrap?date=2026-11-05
   computed from tasks at read time. At personal scale (tens of thousands of rows) this is fast.
 - **Exercise identity is stable.** IDs are `ex-<slug>` and slugs are the public contract used by
   the app and docs.
+- **Health data does not cross the API boundary.** The iPhone reads and writes HealthKit
+  locally; only training plans, tasks and progress are server-authoritative.
 
 ## Security and operations
 

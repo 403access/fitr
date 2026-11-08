@@ -123,7 +123,41 @@ Personal bests appear separately with the same period-over-period comparison.
 
 <img className="docs-phone-frame" src={useBaseUrl('/img/screenshots/progress.jpg')} alt="Fitr progress dashboard" />
 
-## 4. Exercise visualization
+## 4. Apple Health integration
+
+Fitr reads the health data already available on the iPhone through HealthKit. This makes Apple
+Watch, Apple Fitness, the Health app and any third-party training app that writes to Health
+(Oura, Whoop, Garmin, Strava, Nike Run Club, and others) part of the same picture.
+
+### Read
+
+- **Today** — steps, active energy, exercise minutes, stand hours, distance, flights, mindful
+  minutes, sleep, resting heart rate, heart rate, HRV and body weight.
+- **Seven-day steps** — a daily chart built with Swift Charts.
+- **Workouts** — the last two weeks from every source, with duration, energy, distance and the
+  originating app.
+- **Sources** — the apps and devices that contributed step samples in the last 30 days.
+
+Data is normalized into a local snapshot. The app does not send Health samples to the Fitr
+server, and the bundle never requests clinical health records.
+
+### Write
+
+Completed Fitr sessions can be saved back to Health as workouts. The export uses the completed
+minutes, maps the dominant exercise topic to a HealthKit activity type, adds a conservative
+active-energy estimate, and writes a single workout with a stable external UUID. It is
+idempotent per calendar day and can run automatically when a training day is complete.
+
+**Acceptance criteria**
+
+- [x] The app declares the HealthKit capability and both read/write usage descriptions.
+- [x] The permission sheet is explicit; the app never prompts on cold launch.
+- [x] Read data includes activity, sleep, heart, HRV, energy and body weight.
+- [x] Third-party workouts and sources appear with their app names.
+- [x] A completed day can be written to Health once, with duplicate protection.
+- [x] Health data stays on-device and is not uploaded to the API.
+
+## 5. Exercise visualization
 
 There are no video files and no sprite sheets. Each exercise is drawn live with SwiftUI
 `Canvas` from keyframed joint positions. The renderer supports:
@@ -137,7 +171,7 @@ There are no video files and no sprite sheets. Each exercise is drawn live with 
 
 See [Animations](/technology/animations) for the engine design and how to add a sequence.
 
-## 5. Player and logging
+## 6. Player and logging
 
 Tapping a task opens the exercise player:
 
@@ -160,7 +194,7 @@ generator to add load or reps in the following week.
 - [x] Skipped tasks are excluded from completed volume but visible in the day.
 - [x] Done tasks can be reopened and updated, or reset to pending.
 
-## 6. Profile, goals and equipment
+## 7. Profile, goals and equipment
 
 The You screen controls the inputs to plan generation:
 
@@ -174,7 +208,7 @@ The You screen controls the inputs to plan generation:
 Settings changes apply to **next week's** plan so the current progression stays honest. The
 profile is validated server-side (days 1–7, session 10–120 minutes, known enum values).
 
-## 7. Offline behaviour and recovery
+## 8. Offline behaviour and recovery
 
 - The catalogue ships inside the app; Explore works without a server.
 - The last successful bootstrap is cached in Application Support and restored on launch.
@@ -182,7 +216,7 @@ profile is validated server-side (days 1–7, session 10–120 minutes, known en
 - The server URL is editable, so a physical device can target the Mac's LAN IP.
 - Task completion requires the server; failed writes surface an error and keep the UI state.
 
-## 8. Developer experience
+## 9. Developer experience
 
 - One command seeds the database, catalogue and demo history.
 - Catalogue changes are exported to the iOS bundle with `bun run export:catalog`.
@@ -197,4 +231,7 @@ profile is validated server-side (days 1–7, session 10–120 minutes, known en
 - Progress sessions are measured by distinct days, not by explicit workout sessions.
 - Bodyweight volume is not normalised by body mass.
 - Deload weeks are not automatic; this is intentional for v0.1 but planned as a setting.
-- App Store distribution, notifications and HealthKit are not implemented.
+- App Store distribution, push notifications and an Apple Watch companion are not implemented.
+- Health treats Apple Health as the source of truth for body data; Fitr only writes completed
+  sessions back as workouts.
+- Clinical health records and direct third-party APIs are not used; everything arrives via HealthKit.
