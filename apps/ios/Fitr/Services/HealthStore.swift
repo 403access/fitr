@@ -16,13 +16,19 @@ final class HealthStore {
     private let calendar: Calendar
 
     private(set) var snapshot: HealthSnapshot?
+    private(set) var analysis: HealthAnalysis?
+    private(set) var analysisRange: HealthRange = .month
     private(set) var isAvailable = HKHealthStore.isHealthDataAvailable()
     private(set) var isLoading = false
+    private(set) var isLoadingAnalysis = false
     private(set) var isExporting = false
     private(set) var lastRefresh: Date?
     private(set) var lastExportDate: String?
 
     var errorMessage: String?
+    var analysisError: String?
+
+    private var analysisCache: [HealthRange: HealthAnalysis] = [:]
 
     init(settings: AppSettings, calendar: Calendar = FitrDate.calendar) {
         self.settings = settings
@@ -91,6 +97,7 @@ final class HealthStore {
 
         let now = Date()
         let startOfDay = calendar.startOfDay(for: now)
+        let weeklyStart = calendar.startOfDay(for: calendar.date(byAdding: .day, value: -6, to: now) ?? now)
         let sleepWindowStart = calendar.date(byAdding: .hour, value: -6, to: startOfDay) ?? startOfDay
         let ninetyDaysAgo = calendar.date(byAdding: .day, value: -90, to: now) ?? now
         let threeDaysAgo = calendar.date(byAdding: .day, value: -3, to: now) ?? now
@@ -108,9 +115,9 @@ final class HealthStore {
         async let hrv = latestQuantity(.heartRateVariabilitySDNN, unit: .secondUnit(with: .milli), from: threeDaysAgo, to: now)
         async let weight = latestQuantity(.bodyMass, unit: .gramUnit(with: .kilo), from: ninetyDaysAgo, to: now)
 
-        async let weeklySteps = dailySeries(.stepCount, unit: .count(), days: 7, endingAt: now)
-        async let weeklyEnergy = dailySeries(.activeEnergyBurned, unit: .kilocalorie(), days: 7, endingAt: now)
-        async let weeklyExercise = dailySeries(.appleExerciseTime, unit: .minute(), days: 7, endingAt: now)
+        async let weeklySteps = dailySeries(.stepCount, unit: .count(), from: weeklyStart, to: now)
+        async let weeklyEnergy = dailySeries(.activeEnergyBurned, unit: .kilocalorie(), from: weeklyStart, to: now)
+        async let weeklyExercise = dailySeries(.appleExerciseTime, unit: .minute(), from: weeklyStart, to: now)
 
         async let workouts = recentWorkouts(endingAt: now)
         async let sources = contributingSources(endingAt: now)
@@ -163,7 +170,119 @@ final class HealthStore {
             sources: sourceList,
             generatedAt: now
         )
+        analysisCache.removeAll()
         lastRefresh = now
+    }
+
+    // MARK: - Analysis
+
+    /// Loads a multi-metric daily series for the selected range. Snapshots power
+    /// the Overview; the analysis powers Trends, Workouts and Sources.
+    func loadAnalysis(range: HealthRange, force: Bool = false) async {
+        guard isConnected else { return }
+        analysisRange = range
+        if !force, let cached = analysisCache[range] {
+            analysis = cached
+            analysisError = nil
+            return
+        }
+
+        analysis = nil
+        isLoadingAnalysis = true
+        defer { isLoadingAnalysis = false }
+
+        let now = Date()
+        let today = calendar.startOfDay(for: now)
+        guard let start = calendar.date(byAdding: .day, value: -(range.days - 1), to: today) else { return }
+
+        async let steps = dailySeries(.stepCount, unit: .count(), from: start, to: now)
+        async let activeEnergy = dailySeries(.activeEnergyBurned, unit: .kilocalorie(), from: start, to: now)
+        async let exercise = dailySeries(.appleExerciseTime, unit: .minute(), from: start, to: now)
+        async let distance = dailySeries(.distanceWalkingRunning, unit: .meter(), from: start, to: now)
+        async let sleep = sleepSeries(from: start, to: now)
+        async let restingHeartRate = dailySeries(
+            .restingHeartRate,
+            unit: heartRateUnit,
+            from: start,
+            to: now,
+            options: .discreteAverage
+        )
+        async let heartRate = dailySeries(
+            .heartRate,
+            unit: heartRateUnit,
+            from: start,
+            to: now,
+            options: .discreteAverage
+        )
+        async let hrv = dailySeries(
+            .heartRateVariabilitySDNN,
+            unit: .secondUnit(with: .milli),
+            from: start,
+            to: now,
+            options: .discreteAverage
+        )
+        async let mindful = mindfulSeries(from: start, to: now)
+        async let weight = dailySeries(
+            .bodyMass,
+            unit: .gramUnit(with: .kilo),
+            from: start,
+            to: now,
+            options: .discreteAverage
+        )
+        async let stand = standSeries(from: start, to: now)
+        async let workoutList = workouts(from: start, to: now)
+        async let sourceList = contributingSources(from: start, to: now)
+
+        let stepsMap = await steps
+        let energyMap = await activeEnergy
+        let exerciseMap = await exercise
+        let distanceMap = await distance
+        let sleepMap = await sleep
+        let restingMap = await restingHeartRate
+        let heartMap = await heartRate
+        let hrvMap = await hrv
+        let mindfulMap = await mindful
+        let weightMap = await weight
+        let standMap = await stand
+        let workouts = await workoutList
+        var sources = await sourceList
+        for workout in workouts where !sources.contains(where: { $0.name == workout.sourceName }) {
+            sources.append(HealthSource(name: workout.sourceName, bundleIdentifier: nil))
+        }
+        sources.sort { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending }
+
+        var series: [HealthSeriesPoint] = []
+        series.reserveCapacity(range.days)
+        for offset in 0..<range.days {
+            guard let day = calendar.date(byAdding: .day, value: offset, to: start) else { continue }
+            series.append(
+                HealthSeriesPoint(
+                    date: day,
+                    steps: stepsMap[day],
+                    activeEnergyKcal: energyMap[day],
+                    exerciseMinutes: exerciseMap[day],
+                    distanceMeters: distanceMap[day],
+                    sleepMinutes: sleepMap[day],
+                    restingHeartRate: restingMap[day],
+                    heartRate: heartMap[day],
+                    heartRateVariability: hrvMap[day],
+                    mindfulMinutes: mindfulMap[day],
+                    weightKg: weightMap[day],
+                    standHours: standMap[day]
+                )
+            )
+        }
+
+        let result = HealthAnalysis(
+            range: range,
+            series: series,
+            workouts: workouts,
+            sources: sources,
+            generatedAt: now
+        )
+        analysis = result
+        analysisCache[range] = result
+        analysisError = nil
     }
 
     // MARK: - Export
@@ -232,7 +351,9 @@ final class HealthStore {
             settings.markHealthSessionExported(date)
             lastExportDate = date
             errorMessage = nil
+            analysisCache.removeAll()
             await refresh()
+            await loadAnalysis(range: analysisRange, force: true)
             return true
         } catch {
             errorMessage = friendly(error)
@@ -330,19 +451,18 @@ final class HealthStore {
     private func dailySeries(
         _ identifier: HKQuantityTypeIdentifier,
         unit: HKUnit,
-        days: Int,
-        endingAt end: Date
+        from start: Date,
+        to end: Date,
+        options: HKStatisticsOptions = .cumulativeSum
     ) async -> [Date: Double] {
         guard let type = HKObjectType.quantityType(forIdentifier: identifier) else { return [:] }
-        let endOfToday = calendar.startOfDay(for: end)
-        guard let start = calendar.date(byAdding: .day, value: -(days - 1), to: endOfToday) else { return [:] }
         let predicate = HKQuery.predicateForSamples(withStart: start, end: end, options: .strictStartDate)
 
         return await withCheckedContinuation { (continuation: CheckedContinuation<[Date: Double], Never>) in
             let query = HKStatisticsCollectionQuery(
                 quantityType: type,
                 quantitySamplePredicate: predicate,
-                options: .cumulativeSum,
+                options: options,
                 anchorDate: start,
                 intervalComponents: DateComponents(day: 1)
             )
@@ -350,7 +470,13 @@ final class HealthStore {
                 var values: [Date: Double] = [:]
                 collection?.enumerateStatistics(from: start, to: end) { statistics, _ in
                     let key = calendar.startOfDay(for: statistics.startDate)
-                    if let value = statistics.sumQuantity()?.doubleValue(for: unit) {
+                    let quantity: HKQuantity?
+                    if options.contains(.discreteAverage) {
+                        quantity = statistics.averageQuantity()
+                    } else {
+                        quantity = statistics.sumQuantity()
+                    }
+                    if let value = quantity?.doubleValue(for: unit) {
                         values[key] = value
                     }
                 }
@@ -360,43 +486,98 @@ final class HealthStore {
         }
     }
 
-    private func standHours(from start: Date, to end: Date) async -> Double? {
-        guard let type = HKObjectType.categoryType(forIdentifier: .appleStandHour) else { return nil }
+    private func categorySamples(
+        type: HKCategoryType,
+        values: Set<Int>?,
+        from start: Date,
+        to end: Date
+    ) async -> [HKCategorySample] {
         let predicate = HKQuery.predicateForSamples(withStart: start, end: end, options: .strictStartDate)
-        return await withCheckedContinuation { (continuation: CheckedContinuation<Double?, Never>) in
+        return await withCheckedContinuation { (continuation: CheckedContinuation<[HKCategorySample], Never>) in
             let query = HKSampleQuery(
                 sampleType: type,
                 predicate: predicate,
                 limit: HKObjectQueryNoLimit,
-                sortDescriptors: nil
+                sortDescriptors: [NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)]
             ) { _, samples, _ in
-                guard let categorySamples = samples as? [HKCategorySample], !categorySamples.isEmpty else {
-                    continuation.resume(returning: nil)
-                    return
-                }
-                let stood = categorySamples.filter {
-                    $0.value == HKCategoryValueAppleStandHour.stood.rawValue
-                }.count
-                continuation.resume(returning: Double(stood))
+                let categorySamples = (samples as? [HKCategorySample]) ?? []
+                continuation.resume(returning: categorySamples.filter {
+                    values == nil || values?.contains($0.value) == true
+                })
             }
             healthStore.execute(query)
         }
     }
 
+    private func standHours(from start: Date, to end: Date) async -> Double? {
+        guard let type = HKObjectType.categoryType(forIdentifier: .appleStandHour) else { return nil }
+        let samples = await categorySamples(type: type, values: nil, from: start, to: end)
+        guard !samples.isEmpty else { return nil }
+        let stood = samples.filter { $0.value == HKCategoryValueAppleStandHour.stood.rawValue }.count
+        return Double(stood)
+    }
+
+    private func standSeries(from start: Date, to end: Date) async -> [Date: Double] {
+        guard let type = HKObjectType.categoryType(forIdentifier: .appleStandHour) else { return [:] }
+        let samples = await categorySamples(type: type, values: nil, from: start, to: end)
+        var values: [Date: Double] = [:]
+        for sample in samples where sample.value == HKCategoryValueAppleStandHour.stood.rawValue {
+            let day = calendar.startOfDay(for: sample.startDate)
+            values[day, default: 0] += 1
+        }
+        return values
+    }
+
     private func sleepDuration(from start: Date, to end: Date) async -> Double? {
         guard let type = HKObjectType.categoryType(forIdentifier: .sleepAnalysis) else { return nil }
-        let values: Set<Int> = [
+        let samples = await categorySamples(type: type, values: sleepValues, from: start, to: end)
+        guard !samples.isEmpty else { return nil }
+        let seconds = HealthStore.mergedDuration(samples.map { ($0.startDate, $0.endDate) })
+        return seconds > 0 ? seconds / 60 : 0
+    }
+
+    private func sleepSeries(from start: Date, to end: Date) async -> [Date: Double] {
+        guard let type = HKObjectType.categoryType(forIdentifier: .sleepAnalysis) else { return [:] }
+        let samples = await categorySamples(type: type, values: sleepValues, from: start, to: end)
+        var intervalsByDay: [Date: [(Date, Date)]] = [:]
+        for sample in samples {
+            // Attribute a night's sleep to the morning the user woke up.
+            let day = calendar.startOfDay(for: sample.endDate)
+            intervalsByDay[day, default: []].append((sample.startDate, sample.endDate))
+        }
+        return intervalsByDay.mapValues { intervals in
+            HealthStore.mergedDuration(intervals) / 60
+        }
+    }
+
+    private func mindfulDuration(from start: Date, to end: Date) async -> Double? {
+        guard let type = HKObjectType.categoryType(forIdentifier: .mindfulSession) else { return nil }
+        let samples = await categorySamples(type: type, values: nil, from: start, to: end)
+        guard !samples.isEmpty else { return nil }
+        let seconds = HealthStore.mergedDuration(samples.map { ($0.startDate, $0.endDate) })
+        return seconds > 0 ? seconds / 60 : 0
+    }
+
+    private func mindfulSeries(from start: Date, to end: Date) async -> [Date: Double] {
+        guard let type = HKObjectType.categoryType(forIdentifier: .mindfulSession) else { return [:] }
+        let samples = await categorySamples(type: type, values: nil, from: start, to: end)
+        var intervalsByDay: [Date: [(Date, Date)]] = [:]
+        for sample in samples {
+            let day = calendar.startOfDay(for: sample.startDate)
+            intervalsByDay[day, default: []].append((sample.startDate, sample.endDate))
+        }
+        return intervalsByDay.mapValues { intervals in
+            HealthStore.mergedDuration(intervals) / 60
+        }
+    }
+
+    private var sleepValues: Set<Int> {
+        [
             HKCategoryValueSleepAnalysis.asleepUnspecified.rawValue,
             HKCategoryValueSleepAnalysis.asleepCore.rawValue,
             HKCategoryValueSleepAnalysis.asleepDeep.rawValue,
             HKCategoryValueSleepAnalysis.asleepREM.rawValue,
         ]
-        return await categoryDuration(type: type, values: values, from: start, to: end)
-    }
-
-    private func mindfulDuration(from start: Date, to end: Date) async -> Double? {
-        guard let type = HKObjectType.categoryType(forIdentifier: .mindfulSession) else { return nil }
-        return await categoryDuration(type: type, values: nil, from: start, to: end)
     }
 
     /// Sums category intervals after merging overlaps. Multiple apps can record
@@ -407,26 +588,10 @@ final class HealthStore {
         from start: Date,
         to end: Date
     ) async -> Double? {
-        let predicate = HKQuery.predicateForSamples(withStart: start, end: end, options: .strictStartDate)
-        return await withCheckedContinuation { (continuation: CheckedContinuation<Double?, Never>) in
-            let query = HKSampleQuery(
-                sampleType: type,
-                predicate: predicate,
-                limit: HKObjectQueryNoLimit,
-                sortDescriptors: [NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)]
-            ) { _, samples, _ in
-                guard let categorySamples = samples as? [HKCategorySample], !categorySamples.isEmpty else {
-                    continuation.resume(returning: nil)
-                    return
-                }
-                let intervals = categorySamples
-                    .filter { values == nil || values?.contains($0.value) == true }
-                    .map { ($0.startDate, $0.endDate) }
-                let seconds = HealthStore.mergedDuration(intervals)
-                continuation.resume(returning: seconds > 0 ? seconds / 60 : 0)
-            }
-            healthStore.execute(query)
-        }
+        let samples = await categorySamples(type: type, values: values, from: start, to: end)
+        guard !samples.isEmpty else { return nil }
+        let seconds = HealthStore.mergedDuration(samples.map { ($0.startDate, $0.endDate) })
+        return seconds > 0 ? seconds / 60 : 0
     }
 
     nonisolated static func mergedDuration(_ intervals: [(Date, Date)]) -> TimeInterval {
@@ -449,14 +614,17 @@ final class HealthStore {
         return total
     }
 
-    private func recentWorkouts(endingAt end: Date) async -> [HealthWorkout] {
-        guard let start = calendar.date(byAdding: .day, value: -14, to: end) else { return [] }
+    private func workouts(
+        from start: Date,
+        to end: Date,
+        limit: Int = HKObjectQueryNoLimit
+    ) async -> [HealthWorkout] {
         let predicate = HKQuery.predicateForSamples(withStart: start, end: end, options: .strictStartDate)
         return await withCheckedContinuation { (continuation: CheckedContinuation<[HealthWorkout], Never>) in
             let query = HKSampleQuery(
                 sampleType: HKObjectType.workoutType(),
                 predicate: predicate,
-                limit: 12,
+                limit: limit,
                 sortDescriptors: [NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)]
             ) { _, samples, _ in
                 let workouts = (samples as? [HKWorkout])?.map { workout -> HealthWorkout in
@@ -476,6 +644,7 @@ final class HealthStore {
                         id: workout.uuid,
                         activityName: descriptor.name,
                         icon: descriptor.icon,
+                        category: descriptor.category,
                         start: workout.startDate,
                         durationMinutes: workout.endDate.timeIntervalSince(workout.startDate) / 60,
                         energyKcal: energy,
@@ -490,9 +659,13 @@ final class HealthStore {
         }
     }
 
-    private func contributingSources(endingAt end: Date) async -> [HealthSource] {
-        guard let stepsType = HKObjectType.quantityType(forIdentifier: .stepCount),
-              let start = calendar.date(byAdding: .day, value: -30, to: end) else { return [] }
+    private func recentWorkouts(endingAt end: Date) async -> [HealthWorkout] {
+        guard let start = calendar.date(byAdding: .day, value: -14, to: end) else { return [] }
+        return await workouts(from: start, to: end, limit: 12)
+    }
+
+    private func contributingSources(from start: Date, to end: Date) async -> [HealthSource] {
+        guard let stepsType = HKObjectType.quantityType(forIdentifier: .stepCount) else { return [] }
         let predicate = HKQuery.predicateForSamples(withStart: start, end: end, options: .strictStartDate)
         return await withCheckedContinuation { (continuation: CheckedContinuation<[HealthSource], Never>) in
             let query = HKSourceQuery(sampleType: stepsType, samplePredicate: predicate) { _, sources, _ in
@@ -503,6 +676,11 @@ final class HealthStore {
             }
             healthStore.execute(query)
         }
+    }
+
+    private func contributingSources(endingAt end: Date) async -> [HealthSource] {
+        guard let start = calendar.date(byAdding: .day, value: -30, to: end) else { return [] }
+        return await contributingSources(from: start, to: end)
     }
 
     // MARK: - Workout builder
@@ -602,32 +780,34 @@ final class HealthStore {
         return plain.date(from: value)
     }
 
-    nonisolated private static func activityDescriptor(for type: HKWorkoutActivityType) -> (name: String, icon: String) {
+    nonisolated private static func activityDescriptor(
+        for type: HKWorkoutActivityType
+    ) -> (name: String, icon: String, category: HealthWorkoutCategory) {
         switch type {
-        case .running: return ("Run", "figure.run")
-        case .walking: return ("Walk", "figure.walk")
-        case .cycling: return ("Cycle", "bicycle")
-        case .swimming: return ("Swim", "figure.pool.swim")
-        case .traditionalStrengthTraining: return ("Strength", "dumbbell.fill")
-        case .functionalStrengthTraining: return ("Functional", "figure.strengthtraining.functional")
-        case .highIntensityIntervalTraining: return ("HIIT", "bolt.heart.fill")
-        case .mixedCardio: return ("Cardio", "heart.circle.fill")
-        case .yoga: return ("Yoga", "figure.yoga")
-        case .flexibility: return ("Mobility", "figure.flexibility")
-        case .mindAndBody: return ("Recovery", "figure.mind.and.body")
-        case .hiking: return ("Hike", "figure.hiking")
-        case .rowing: return ("Row", "figure.rower")
-        case .elliptical: return ("Elliptical", "figure.elliptical")
-        case .stairClimbing: return ("Stairs", "figure.stairs")
-        case .jumpRope: return ("Jump rope", "figure.jumprope")
-        case .coreTraining: return ("Core", "figure.core.training")
-        case .pilates: return ("Pilates", "figure.pilates")
-        case .dance: return ("Dance", "figure.dance")
-        case .boxing: return ("Boxing", "figure.boxing")
-        case .tennis: return ("Tennis", "figure.tennis")
-        case .soccer: return ("Football", "figure.soccer")
-        case .basketball: return ("Basketball", "figure.basketball")
-        default: return ("Workout", "figure.mixed.cardio")
+        case .running: return ("Run", "figure.run", .cardio)
+        case .walking: return ("Walk", "figure.walk", .cardio)
+        case .cycling: return ("Cycle", "bicycle", .cardio)
+        case .swimming: return ("Swim", "figure.pool.swim", .cardio)
+        case .traditionalStrengthTraining: return ("Strength", "dumbbell.fill", .strength)
+        case .functionalStrengthTraining: return ("Functional", "figure.strengthtraining.functional", .strength)
+        case .highIntensityIntervalTraining: return ("HIIT", "bolt.heart.fill", .cardio)
+        case .mixedCardio: return ("Cardio", "heart.circle.fill", .cardio)
+        case .yoga: return ("Yoga", "figure.yoga", .yoga)
+        case .flexibility: return ("Mobility", "figure.flexibility", .mobility)
+        case .mindAndBody: return ("Recovery", "figure.mind.and.body", .recovery)
+        case .hiking: return ("Hike", "figure.hiking", .cardio)
+        case .rowing: return ("Row", "figure.rower", .cardio)
+        case .elliptical: return ("Elliptical", "figure.elliptical", .cardio)
+        case .stairClimbing: return ("Stairs", "figure.stairs", .cardio)
+        case .jumpRope: return ("Jump rope", "figure.jumprope", .cardio)
+        case .coreTraining: return ("Core", "figure.core.training", .strength)
+        case .pilates: return ("Pilates", "figure.pilates", .mobility)
+        case .dance: return ("Dance", "figure.dance", .cardio)
+        case .boxing: return ("Boxing", "figure.boxing", .cardio)
+        case .tennis: return ("Tennis", "figure.tennis", .cardio)
+        case .soccer: return ("Football", "figure.soccer", .cardio)
+        case .basketball: return ("Basketball", "figure.basketball", .cardio)
+        default: return ("Workout", "figure.mixed.cardio", .other)
         }
     }
 

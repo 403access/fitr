@@ -96,4 +96,63 @@ final class FitrTests: XCTestCase {
         XCTAssertEqual(HealthSessionKind(topicID: "recovery").estimatedMET, 2.0)
         XCTAssertEqual(HealthSessionKind(topicID: nil).estimatedMET, 4.0)
     }
+
+    func testHealthAnalysisSummariesAndFilters() {
+        let start = FitrDate.date("2026-11-02")
+        let series = (0..<7).map { offset in
+            HealthSeriesPoint(
+                date: FitrDate.addDays(offset, to: start),
+                steps: Double((offset + 1) * 1_000),
+                activeEnergyKcal: Double(100 + offset * 10),
+                exerciseMinutes: 20,
+                distanceMeters: 1_000,
+                sleepMinutes: 420,
+                restingHeartRate: 52,
+                heartRate: 60,
+                heartRateVariability: 40,
+                mindfulMinutes: 5,
+                weightKg: 80,
+                standHours: 10
+            )
+        }
+        let strength = HealthWorkout(
+            id: UUID(),
+            activityName: "Strength",
+            icon: "dumbbell.fill",
+            category: .strength,
+            start: start,
+            durationMinutes: 30,
+            energyKcal: 120,
+            distanceMeters: nil,
+            sourceName: "Fitr",
+            isFromFitr: true
+        )
+        let run = HealthWorkout(
+            id: UUID(),
+            activityName: "Run",
+            icon: "figure.run",
+            category: .cardio,
+            start: FitrDate.addDays(1, to: start),
+            durationMinutes: 20,
+            energyKcal: 180,
+            distanceMeters: 3_000,
+            sourceName: "Apple Watch",
+            isFromFitr: false
+        )
+        let analysis = HealthAnalysis(
+            range: .week,
+            series: series,
+            workouts: [strength, run],
+            sources: [HealthSource(name: "Fitr", bundleIdentifier: nil)],
+            generatedAt: Date()
+        )
+
+        let steps = analysis.summary(for: .steps)
+        XCTAssertEqual(steps.total, 28_000)
+        XCTAssertEqual(steps.best, 7_000)
+        XCTAssertEqual(steps.count, 7)
+        XCTAssertEqual(analysis.fitrWorkoutCount, 1)
+        XCTAssertEqual(analysis.workouts(category: .cardio).count, 1)
+        XCTAssertEqual(analysis.workouts(source: "Fitr").count, 1)
+    }
 }

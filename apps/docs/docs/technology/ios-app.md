@@ -129,15 +129,20 @@ objects or query results.
 - **Permission** — `requestAccess()` asks for read access to activity, sleep, heart, HRV,
   energy and body mass, plus write access to workouts and active energy. The sheet is only
   shown when the user taps **Connect Apple Health**.
-- **Reads** — statistics queries sum daily quantities; sample queries read the latest heart
-  and weight values; a collection query builds the seven-day step series; a workout query
-  supplies activity type, duration, energy, distance and source app; a source query lists the
-  apps contributing step samples.
+- **Reads** — statistics queries sum daily quantities and average discrete values; sample
+  queries read the latest heart and weight values; collection queries build daily series for
+  trends; a workout query supplies activity type, duration, energy, distance and source app;
+  a source query lists the apps contributing step samples.
+- **Analysis** — `loadAnalysis(range:)` builds a multi-metric daily series for 7D/30D/90D/1Y,
+  caches each range, and powers the Trends, Workouts and Sources views without re-querying on
+  every tab switch.
 - **Sleep** — category samples from multiple apps are merged by interval before summing, so
-  overlapping records are never double counted.
+  overlapping records are never double counted. Sleep is attributed to the wake-up day.
 - **Write** — a completed day is saved with `HKWorkoutBuilder` as a single workout, with a
   conservative active-energy estimate and stable `HKMetadataKeyExternalUUID`. Exported dates
   are stored in `UserDefaults` to keep the operation idempotent.
+- **Audit** — the Sources view reports Fitr-authored workouts in the selected range. Reading
+  Health never writes; only the explicit export path does.
 - **Privacy** — samples stay on the device. Only the permissions and exported-date markers are
   persisted locally; nothing health-related is sent to the Bun API.
 
@@ -158,16 +163,19 @@ usage strings are generated into `Info.plist`.
 
 ### Health
 
-A dedicated tab for the body side of training:
+A dedicated tab with four views:
 
-- connection state, permission explanation and source-app examples;
-- nested move/exercise/stand rings with today's values;
-- metric grid for distance, flights, mindful minutes, weight, HRV and heart rate;
-- seven-day step chart;
-- recent workouts from every Health source, including Fitr exports;
-- contributing source chips;
-- manual or automatic export of a completed Fitr day as a workout;
-- on-device privacy note.
+- **Overview** — connection state, nested move/exercise/stand rings, today's metric grid,
+  seven-day steps, recent workouts, source chips and export card.
+- **Trends** — range picker (7D/30D/90D/1Y), metric picker across eleven metrics, summary card
+  with total/average, best and latest, daily line or bar chart, average rule and workout mix
+  donut.
+- **Workouts** — range, activity-type and source filters; count/minutes/energy summary;
+  workout-minutes chart; session list.
+- **Sources** — source rows with workout counts, a "What Fitr reads" grid and a Fitr-authored
+  data audit.
+- **Export** — manual or automatic write-back of a completed Fitr day as one workout.
+- **Privacy** — all views carry the on-device privacy note.
 
 ### Player
 
@@ -225,6 +233,7 @@ For repeatable marketing screenshots, debug builds read environment variables:
 | Variable | Effect |
 | --- | --- |
 | `FITR_TAB=today\|catalogue\|progress\|health\|profile` | Selects the initial tab |
+| `FITR_HEALTH_SECTION=overview\|trends\|workouts\|sources` | Selects the initial Health section |
 | `FITR_PLAYER=1` | Opens the first pending morning task |
 | `FITR_EXERCISE=1` | Opens the barbell back squat detail |
 
@@ -245,6 +254,7 @@ These hooks are wrapped in `#if DEBUG` and have no effect in release builds.
 - decoding a bootstrap payload;
 - merging overlapping sleep intervals without double counting;
 - Health session MET mapping by exercise topic;
+- Health trend summaries and workout/category/source filters;
 - every animation key has at least two poses and actual joint movement.
 
 ```bash

@@ -127,6 +127,9 @@ cd apps/ios && xcodegen generate && xcodebuild … test
 - [x] Today snapshot: steps, energy, exercise, stand, distance, flights, mindful, sleep, heart, HRV and weight.
 - [x] Seven-day step series and recent workouts from every Health source.
 - [x] Source-app discovery so third-party data is visible.
+- [x] Overview, Trends, Workouts and Sources views.
+- [x] Range filters (7D/30D/90D/1Y), metric filters and workout type/source filters.
+- [x] Trend charts, summaries, workout mix and Fitr-authored audit.
 - [x] Export completed Fitr sessions as idempotent Health workouts.
 - [x] Opt-in automatic export when a training day is complete.
 - [x] Body-today strip on the Today screen.

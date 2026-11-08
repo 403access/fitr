@@ -131,12 +131,18 @@ Watch, Apple Fitness, the Health app and any third-party training app that write
 
 ### Read
 
-- **Today** — steps, active energy, exercise minutes, stand hours, distance, flights, mindful
-  minutes, sleep, resting heart rate, heart rate, HRV and body weight.
-- **Seven-day steps** — a daily chart built with Swift Charts.
-- **Workouts** — the last two weeks from every source, with duration, energy, distance and the
-  originating app.
-- **Sources** — the apps and devices that contributed step samples in the last 30 days.
+- **Overview** — today's move/exercise/stand rings, steps, sleep, resting heart rate, active
+  energy and the rest of today's metrics.
+- **Trends** — a 7-day, 30-day, 90-day or 1-year range with a metric picker covering steps,
+  energy, exercise, distance, sleep, resting heart rate, heart rate, HRV, mindful minutes,
+  weight and stand hours. Each metric has a daily chart, average line, total/average, best day,
+  latest value and a period-over-period change.
+- **Workouts** — the last range of workouts from every source, filtered by activity type
+  (strength, cardio, yoga, mobility, recovery, other) and source app. Includes workout count,
+  minutes, energy, a workout-minutes chart and session rows.
+- **Sources** — the apps and devices contributing data, what Fitr reads, and an explicit
+  **Fitr-authored data** audit showing whether Fitr has ever written a workout into Health.
+- **Today** — the same data is summarized in the Body-today strip on the Today screen.
 
 Data is normalized into a local snapshot. The app does not send Health samples to the Fitr
 server, and the bundle never requests clinical health records.
@@ -154,6 +160,9 @@ idempotent per calendar day and can run automatically when a training day is com
 - [x] The permission sheet is explicit; the app never prompts on cold launch.
 - [x] Read data includes activity, sleep, heart, HRV, energy and body weight.
 - [x] Third-party workouts and sources appear with their app names.
+- [x] Trends can be filtered by 7D/30D/90D/1Y and by any supported metric.
+- [x] Workouts can be filtered by activity type and source app.
+- [x] Sources exposes the Fitr-authored audit so write-back is verifiable.
 - [x] A completed day can be written to Health once, with duplicate protection.
 - [x] Health data stays on-device and is not uploaded to the API.
 
