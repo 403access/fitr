@@ -1,0 +1,67 @@
+name: Fitr
+options:
+  bundleIdPrefix: me.olimo
+  deploymentTarget:
+    iOS: "18.0"
+  createIntermediateGroups: true
+  groupSortPosition: top
+  generateEmptyDirectories: true
+
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    IPHONEOS_DEPLOYMENT_TARGET: "18.0"
+    ENABLE_USER_SCRIPT_SANDBOXING: YES
+    SWIFT_EMIT_LOC_STRINGS: YES
+
+targets:
+  Fitr:
+    type: application
+    platform: iOS
+    sources:
+      - path: Fitr
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: me.olimo.fitr
+        PRODUCT_NAME: Fitr
+        MARKETING_VERSION: "0.1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        TARGETED_DEVICE_FAMILY: "1,2"
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone: UIInterfaceOrientationPortrait
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad: "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
+    info:
+      path: Fitr/Info.plist
+      properties:
+        CFBundleDisplayName: Fitr
+        CFBundleShortVersionString: "0.1.0"
+        CFBundleVersion: "1"
+        UILaunchScreen:
+          UIColorName: LaunchBackground
+        UIUserInterfaceStyle: Dark
+        NSAppTransportSecurity:
+          NSAllowsLocalNetworking: true
+          NSAllowsArbitraryLoads: true
+        NSLocalNetworkUsageDescription: Fitr connects to your self-hosted training server on the local network.
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+    scheme:
+      testTargets:
+        - FitrTests
+      gatherCoverageData: true
+
+  FitrTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: FitrTests
+    dependencies:
+      - target: Fitr
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: me.olimo.fitr.tests
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/Fitr.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Fitr"
+        BUNDLE_LOADER: "$(TEST_HOST)"

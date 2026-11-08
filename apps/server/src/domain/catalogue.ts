@@ -164,7 +164,7 @@ export function listExercises(db: Database, filters: ExerciseFilters = {}): Exer
   const where = clauses.length ? ` WHERE ${clauses.join(' AND ')}` : '';
   const rows = db
     .query<JoinedExerciseRow, (string | number)[]>(
-      `${EXERCISE_SELECT}${where} ORDER BY t.name, e.name`,
+      `${EXERCISE_SELECT}${where} ORDER BY t.rowid, e.name`,
     )
     .all(...params);
   return rows.map((row) => serializeExercise(db, row));
@@ -186,13 +186,13 @@ export function getFacets(db: Database) {
   const topics = db
     .query<{ id: string; name: string; description: string; accent: string; icon: string; count: number }, []>(
       `SELECT t.*, COUNT(e.id) AS count FROM topics t
-       LEFT JOIN exercises e ON e.topic_id = t.id GROUP BY t.id ORDER BY t.name`,
+       LEFT JOIN exercises e ON e.topic_id = t.id GROUP BY t.id ORDER BY t.rowid`,
     )
     .all();
   const types = db
     .query<{ id: string; name: string; description: string; count: number }, []>(
       `SELECT ty.*, COUNT(e.id) AS count FROM exercise_types ty
-       LEFT JOIN exercises e ON e.type_id = ty.id GROUP BY ty.id ORDER BY ty.name`,
+       LEFT JOIN exercises e ON e.type_id = ty.id GROUP BY ty.id ORDER BY ty.rowid`,
     )
     .all();
   const regionList = db

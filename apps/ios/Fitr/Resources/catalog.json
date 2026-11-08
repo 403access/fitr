@@ -1,7 +1,31 @@
 {
-  "generatedAt": "2026-11-08T10:35:25.317Z",
+  "generatedAt": "2026-11-08T10:56:06.199Z",
   "facets": {
     "topics": [
+      {
+        "id": "strength",
+        "name": "Strength",
+        "description": "Progressive resistance for muscle and raw strength.",
+        "accent": "#C8FF4D",
+        "icon": "dumbbell.fill",
+        "count": 16
+      },
+      {
+        "id": "yoga",
+        "name": "Yoga",
+        "description": "Mobility, balance and breath through flowing practice.",
+        "accent": "#B69CFF",
+        "icon": "figure.yoga",
+        "count": 10
+      },
+      {
+        "id": "mobility",
+        "name": "Mobility",
+        "description": "Open joints and own fuller ranges of motion.",
+        "accent": "#6FE7DD",
+        "icon": "figure.flexibility",
+        "count": 11
+      },
       {
         "id": "calisthenics",
         "name": "Calisthenics",
@@ -19,75 +43,15 @@
         "count": 6
       },
       {
-        "id": "mobility",
-        "name": "Mobility",
-        "description": "Open joints and own fuller ranges of motion.",
-        "accent": "#6FE7DD",
-        "icon": "figure.flexibility",
-        "count": 11
-      },
-      {
         "id": "recovery",
         "name": "Recovery",
         "description": "Downshift the nervous system and restore.",
         "accent": "#8FB8FF",
         "icon": "moon.stars.fill",
         "count": 5
-      },
-      {
-        "id": "strength",
-        "name": "Strength",
-        "description": "Progressive resistance for muscle and raw strength.",
-        "accent": "#C8FF4D",
-        "icon": "dumbbell.fill",
-        "count": 16
-      },
-      {
-        "id": "yoga",
-        "name": "Yoga",
-        "description": "Mobility, balance and breath through flowing practice.",
-        "accent": "#B69CFF",
-        "icon": "figure.yoga",
-        "count": 10
       }
     ],
     "types": [
-      {
-        "id": "balance",
-        "name": "Balance",
-        "description": "Stability and proprioception.",
-        "count": 2
-      },
-      {
-        "id": "breathwork",
-        "name": "Breathwork",
-        "description": "Nervous-system regulation.",
-        "count": 4
-      },
-      {
-        "id": "cardio",
-        "name": "Cardio",
-        "description": "Steady or interval conditioning.",
-        "count": 6
-      },
-      {
-        "id": "isometric",
-        "name": "Isometric",
-        "description": "Static tension under control.",
-        "count": 3
-      },
-      {
-        "id": "mobility",
-        "name": "Mobility",
-        "description": "Active, controlled range of motion.",
-        "count": 9
-      },
-      {
-        "id": "plyometric",
-        "name": "Plyometric",
-        "description": "Fast, elastic power.",
-        "count": 3
-      },
       {
         "id": "strength",
         "name": "Strength",
@@ -99,6 +63,42 @@
         "name": "Stretch",
         "description": "Lengthen tissue and improve range.",
         "count": 10
+      },
+      {
+        "id": "mobility",
+        "name": "Mobility",
+        "description": "Active, controlled range of motion.",
+        "count": 9
+      },
+      {
+        "id": "balance",
+        "name": "Balance",
+        "description": "Stability and proprioception.",
+        "count": 2
+      },
+      {
+        "id": "cardio",
+        "name": "Cardio",
+        "description": "Steady or interval conditioning.",
+        "count": 6
+      },
+      {
+        "id": "breathwork",
+        "name": "Breathwork",
+        "description": "Nervous-system regulation.",
+        "count": 4
+      },
+      {
+        "id": "plyometric",
+        "name": "Plyometric",
+        "description": "Fast, elastic power.",
+        "count": 3
+      },
+      {
+        "id": "isometric",
+        "name": "Isometric",
+        "description": "Static tension under control.",
+        "count": 3
       }
     ],
     "regions": [
@@ -394,2749 +394,6 @@
     ]
   },
   "exercises": [
-    {
-      "id": "ex-burpee",
-      "slug": "burpee",
-      "name": "Burpee",
-      "summary": "A full-body, no-equipment conditioner with a squat, push and jump.",
-      "topic": {
-        "id": "calisthenics",
-        "name": "Calisthenics",
-        "accent": "#FF9A6C",
-        "icon": "figure.strengthtraining.functional"
-      },
-      "type": {
-        "id": "cardio",
-        "name": "Cardio"
-      },
-      "difficulty": 3,
-      "durationSeconds": 45,
-      "animation": "burpee",
-      "equipment": [],
-      "instructions": [
-        "From standing, crouch and place your hands on the floor.",
-        "Jump or step back to a plank, complete a push-up if you like, then jump the feet in.",
-        "Stand and finish with a small jump, landing softly."
-      ],
-      "cues": [
-        "Pace yourself",
-        "Soft landings",
-        "Scale the push-up"
-      ],
-      "benefits": [
-        "Conditioning",
-        "Full-body coordination",
-        "Work capacity"
-      ],
-      "breathing": "Exhale on the jump, inhale on the descent.",
-      "regions": [
-        {
-          "id": "full-body",
-          "name": "Full body"
-        },
-        {
-          "id": "core",
-          "name": "Core"
-        },
-        {
-          "id": "legs",
-          "name": "Legs"
-        }
-      ],
-      "primaryMuscles": [
-        {
-          "id": "quads",
-          "name": "Quadriceps"
-        },
-        {
-          "id": "chest",
-          "name": "Pectorals"
-        },
-        {
-          "id": "abs",
-          "name": "Abdominals"
-        }
-      ],
-      "secondaryMuscles": [
-        {
-          "id": "hamstrings",
-          "name": "Hamstrings"
-        },
-        {
-          "id": "glutes",
-          "name": "Glutes"
-        },
-        {
-          "id": "front-delts",
-          "name": "Front delts"
-        },
-        {
-          "id": "triceps",
-          "name": "Triceps"
-        }
-      ],
-      "prescription": {
-        "sets": 3,
-        "reps": 10,
-        "holdSeconds": null,
-        "loadKg": null,
-        "restSeconds": 60
-      }
-    },
-    {
-      "id": "ex-forearm-plank",
-      "slug": "forearm-plank",
-      "name": "Forearm plank",
-      "summary": "A foundational anti-extension hold for the whole trunk.",
-      "topic": {
-        "id": "calisthenics",
-        "name": "Calisthenics",
-        "accent": "#FF9A6C",
-        "icon": "figure.strengthtraining.functional"
-      },
-      "type": {
-        "id": "isometric",
-        "name": "Isometric"
-      },
-      "difficulty": 1,
-      "durationSeconds": 40,
-      "animation": "plank",
-      "equipment": [],
-      "instructions": [
-        "Set elbows under shoulders and forearms on the floor.",
-        "Extend your legs and tuck your pelvis so your body forms a line.",
-        "Spread your shoulder blades and hold while breathing evenly."
-      ],
-      "cues": [
-        "Tuck the pelvis",
-        "Push the floor away",
-        "No sagging hips"
-      ],
-      "benefits": [
-        "Core stability",
-        "Shoulder endurance",
-        "Posture"
-      ],
-      "breathing": "Slow, steady nasal breathing.",
-      "regions": [
-        {
-          "id": "full-body",
-          "name": "Full body"
-        },
-        {
-          "id": "core",
-          "name": "Core"
-        },
-        {
-          "id": "shoulders",
-          "name": "Shoulders"
-        }
-      ],
-      "primaryMuscles": [
-        {
-          "id": "abs",
-          "name": "Abdominals"
-        },
-        {
-          "id": "obliques",
-          "name": "Obliques"
-        }
-      ],
-      "secondaryMuscles": [
-        {
-          "id": "quads",
-          "name": "Quadriceps"
-        },
-        {
-          "id": "glutes",
-          "name": "Glutes"
-        },
-        {
-          "id": "front-delts",
-          "name": "Front delts"
-        },
-        {
-          "id": "serratus",
-          "name": "Serratus"
-        }
-      ],
-      "prescription": {
-        "sets": 3,
-        "reps": null,
-        "holdSeconds": 40,
-        "loadKg": null,
-        "restSeconds": 45
-      }
-    },
-    {
-      "id": "ex-glute-bridge",
-      "slug": "glute-bridge",
-      "name": "Glute bridge",
-      "summary": "A gentle but effective glute activator and hip-extension drill.",
-      "topic": {
-        "id": "calisthenics",
-        "name": "Calisthenics",
-        "accent": "#FF9A6C",
-        "icon": "figure.strengthtraining.functional"
-      },
-      "type": {
-        "id": "strength",
-        "name": "Strength"
-      },
-      "difficulty": 1,
-      "durationSeconds": 35,
-      "animation": "bridge",
-      "equipment": [],
-      "instructions": [
-        "Lie on your back with knees bent and feet flat, heels near your glutes.",
-        "Drive through your heels to lift your hips into a bridge.",
-        "Pause and squeeze, then lower slowly."
-      ],
-      "cues": [
-        "Ribs down",
-        "Knees in line with feet",
-        "Glutes, not lower back"
-      ],
-      "benefits": [
-        "Glute activation",
-        "Hip mobility",
-        "Low-back relief"
-      ],
-      "breathing": "Exhale up, inhale down.",
-      "regions": [
-        {
-          "id": "lower-body",
-          "name": "Lower body"
-        },
-        {
-          "id": "hips",
-          "name": "Hips"
-        },
-        {
-          "id": "glutes",
-          "name": "Glutes"
-        }
-      ],
-      "primaryMuscles": [
-        {
-          "id": "glutes",
-          "name": "Glutes"
-        }
-      ],
-      "secondaryMuscles": [
-        {
-          "id": "hamstrings",
-          "name": "Hamstrings"
-        },
-        {
-          "id": "adductors",
-          "name": "Adductors"
-        },
-        {
-          "id": "abs",
-          "name": "Abdominals"
-        }
-      ],
-      "prescription": {
-        "sets": 3,
-        "reps": 15,
-        "holdSeconds": null,
-        "loadKg": null,
-        "restSeconds": 45
-      }
-    },
-    {
-      "id": "ex-hanging-leg-raise",
-      "slug": "hanging-leg-raise",
-      "name": "Hanging leg raise",
-      "summary": "A demanding lower-ab exercise that also builds grip and shoulder stability.",
-      "topic": {
-        "id": "calisthenics",
-        "name": "Calisthenics",
-        "accent": "#FF9A6C",
-        "icon": "figure.strengthtraining.functional"
-      },
-      "type": {
-        "id": "strength",
-        "name": "Strength"
-      },
-      "difficulty": 4,
-      "durationSeconds": 45,
-      "animation": "legRaise",
-      "equipment": [
-        "Pull-up bar"
-      ],
-      "instructions": [
-        "Hang from the bar with shoulders active and legs together.",
-        "Curl your pelvis and lift your legs until they pass parallel.",
-        "Lower slowly without swinging."
-      ],
-      "cues": [
-        "Curl the pelvis, don’t just lift legs",
-        "No kip",
-        "Control the descent"
-      ],
-      "benefits": [
-        "Lower abs",
-        "Hip-flexor strength",
-        "Grip"
-      ],
-      "breathing": "Exhale as you lift, inhale down.",
-      "regions": [
-        {
-          "id": "upper-body",
-          "name": "Upper body"
-        },
-        {
-          "id": "core",
-          "name": "Core"
-        }
-      ],
-      "primaryMuscles": [
-        {
-          "id": "hip-flexors",
-          "name": "Hip flexors"
-        },
-        {
-          "id": "abs",
-          "name": "Abdominals"
-        }
-      ],
-      "secondaryMuscles": [
-        {
-          "id": "lats",
-          "name": "Lats"
-        },
-        {
-          "id": "forearms",
-          "name": "Forearms"
-        },
-        {
-          "id": "obliques",
-          "name": "Obliques"
-        }
-      ],
-      "prescription": {
-        "sets": 3,
-        "reps": 8,
-        "holdSeconds": null,
-        "loadKg": null,
-        "restSeconds": 75
-      }
-    },
-    {
-      "id": "ex-hollow-body-hold",
-      "slug": "hollow-body-hold",
-      "name": "Hollow body hold",
-      "summary": "A full-body anterior-chain isometric that teaches real core control.",
-      "topic": {
-        "id": "calisthenics",
-        "name": "Calisthenics",
-        "accent": "#FF9A6C",
-        "icon": "figure.strengthtraining.functional"
-      },
-      "type": {
-        "id": "isometric",
-        "name": "Isometric"
-      },
-      "difficulty": 3,
-      "durationSeconds": 40,
-      "animation": "hollowHold",
-      "equipment": [],
-      "instructions": [
-        "Lie on your back, press your lower back gently into the floor.",
-        "Lift shoulder blades and legs, reaching arms overhead.",
-        "Hold the banana shape while breathing behind the brace."
-      ],
-      "cues": [
-        "Ribs down",
-        "Lower back glued to floor",
-        "Scale by bending knees"
-      ],
-      "benefits": [
-        "Anterior core strength",
-        "Hollow-body skill",
-        "Low-back protection"
-      ],
-      "breathing": "Slow nasal breaths without losing the brace.",
-      "regions": [
-        {
-          "id": "full-body",
-          "name": "Full body"
-        },
-        {
-          "id": "core",
-          "name": "Core"
-        }
-      ],
-      "primaryMuscles": [
-        {
-          "id": "abs",
-          "name": "Abdominals"
-        }
-      ],
-      "secondaryMuscles": [
-        {
-          "id": "quads",
-          "name": "Quadriceps"
-        },
-        {
-          "id": "hip-flexors",
-          "name": "Hip flexors"
-        },
-        {
-          "id": "obliques",
-          "name": "Obliques"
-        }
-      ],
-      "prescription": {
-        "sets": 3,
-        "reps": null,
-        "holdSeconds": 30,
-        "loadKg": null,
-        "restSeconds": 60
-      }
-    },
-    {
-      "id": "ex-inverted-row",
-      "slug": "inverted-row",
-      "name": "Inverted row",
-      "summary": "A scalable horizontal pull using a bar, rings or a sturdy table.",
-      "topic": {
-        "id": "calisthenics",
-        "name": "Calisthenics",
-        "accent": "#FF9A6C",
-        "icon": "figure.strengthtraining.functional"
-      },
-      "type": {
-        "id": "strength",
-        "name": "Strength"
-      },
-      "difficulty": 2,
-      "durationSeconds": 40,
-      "animation": "row",
-      "equipment": [
-        "Bar"
-      ],
-      "instructions": [
-        "Lie under a low bar and grip it slightly wider than shoulders.",
-        "Keep your body in a line and pull your chest toward the bar.",
-        "Lower until your arms are fully straight."
-      ],
-      "cues": [
-        "Squeeze shoulder blades",
-        "Body stays rigid",
-        "Raise the bar to make it easier"
-      ],
-      "benefits": [
-        "Back strength",
-        "Posture",
-        "Pulling volume"
-      ],
-      "breathing": "Exhale on the pull.",
-      "regions": [
-        {
-          "id": "upper-body",
-          "name": "Upper body"
-        },
-        {
-          "id": "arms",
-          "name": "Arms"
-        },
-        {
-          "id": "back",
-          "name": "Back"
-        }
-      ],
-      "primaryMuscles": [
-        {
-          "id": "lats",
-          "name": "Lats"
-        },
-        {
-          "id": "rhomboids",
-          "name": "Rhomboids"
-        }
-      ],
-      "secondaryMuscles": [
-        {
-          "id": "rear-delts",
-          "name": "Rear delts"
-        },
-        {
-          "id": "biceps",
-          "name": "Biceps"
-        },
-        {
-          "id": "abs",
-          "name": "Abdominals"
-        }
-      ],
-      "prescription": {
-        "sets": 3,
-        "reps": 10,
-        "holdSeconds": null,
-        "loadKg": null,
-        "restSeconds": 75
-      }
-    },
-    {
-      "id": "ex-mountain-climber",
-      "slug": "mountain-climber",
-      "name": "Mountain climber",
-      "summary": "A fast, core-driven conditioning move from a plank position.",
-      "topic": {
-        "id": "calisthenics",
-        "name": "Calisthenics",
-        "accent": "#FF9A6C",
-        "icon": "figure.strengthtraining.functional"
-      },
-      "type": {
-        "id": "cardio",
-        "name": "Cardio"
-      },
-      "difficulty": 2,
-      "durationSeconds": 40,
-      "animation": "mountainClimber",
-      "equipment": [],
-      "instructions": [
-        "Start in a high plank with hands under shoulders.",
-        "Drive one knee toward your chest, then switch sides quickly.",
-        "Keep hips low and shoulders stacked over hands."
-      ],
-      "cues": [
-        "Quiet feet",
-        "Hips stay level",
-        "Breathe rhythmically"
-      ],
-      "benefits": [
-        "Conditioning",
-        "Core endurance",
-        "Hip mobility"
-      ],
-      "breathing": "Short, rhythmic breaths.",
-      "regions": [
-        {
-          "id": "full-body",
-          "name": "Full body"
-        },
-        {
-          "id": "core",
-          "name": "Core"
-        },
-        {
-          "id": "legs",
-          "name": "Legs"
-        }
-      ],
-      "primaryMuscles": [
-        {
-          "id": "hip-flexors",
-          "name": "Hip flexors"
-        },
-        {
-          "id": "abs",
-          "name": "Abdominals"
-        }
-      ],
-      "secondaryMuscles": [
-        {
-          "id": "quads",
-          "name": "Quadriceps"
-        },
-        {
-          "id": "front-delts",
-          "name": "Front delts"
-        },
-        {
-          "id": "serratus",
-          "name": "Serratus"
-        }
-      ],
-      "prescription": {
-        "sets": 4,
-        "reps": null,
-        "holdSeconds": 30,
-        "loadKg": null,
-        "restSeconds": 30
-      }
-    },
-    {
-      "id": "ex-parallel-bar-dip",
-      "slug": "parallel-bar-dip",
-      "name": "Parallel bar dip",
-      "summary": "A heavy bodyweight press for triceps and lower chest.",
-      "topic": {
-        "id": "calisthenics",
-        "name": "Calisthenics",
-        "accent": "#FF9A6C",
-        "icon": "figure.strengthtraining.functional"
-      },
-      "type": {
-        "id": "strength",
-        "name": "Strength"
-      },
-      "difficulty": 4,
-      "durationSeconds": 45,
-      "animation": "dip",
-      "equipment": [
-        "Parallel bars"
-      ],
-      "instructions": [
-        "Support yourself on the bars with arms locked.",
-        "Lower until your upper arms are parallel to the floor.",
-        "Press back up, keeping shoulders away from your ears."
-      ],
-      "cues": [
-        "Slight forward lean",
-        "Controlled depth",
-        "Elbows track back"
-      ],
-      "benefits": [
-        "Triceps strength",
-        "Chest strength",
-        "Shoulder stability"
-      ],
-      "breathing": "Inhale down, exhale up.",
-      "regions": [
-        {
-          "id": "upper-body",
-          "name": "Upper body"
-        },
-        {
-          "id": "arms",
-          "name": "Arms"
-        },
-        {
-          "id": "chest",
-          "name": "Chest"
-        }
-      ],
-      "primaryMuscles": [
-        {
-          "id": "chest",
-          "name": "Pectorals"
-        },
-        {
-          "id": "triceps",
-          "name": "Triceps"
-        }
-      ],
-      "secondaryMuscles": [
-        {
-          "id": "front-delts",
-          "name": "Front delts"
-        },
-        {
-          "id": "abs",
-          "name": "Abdominals"
-        }
-      ],
-      "prescription": {
-        "sets": 3,
-        "reps": 8,
-        "holdSeconds": null,
-        "loadKg": null,
-        "restSeconds": 90
-      }
-    },
-    {
-      "id": "ex-pike-push-up",
-      "slug": "pike-push-up",
-      "name": "Pike push-up",
-      "summary": "A bodyweight overhead press that builds shoulders and upper-chest strength.",
-      "topic": {
-        "id": "calisthenics",
-        "name": "Calisthenics",
-        "accent": "#FF9A6C",
-        "icon": "figure.strengthtraining.functional"
-      },
-      "type": {
-        "id": "strength",
-        "name": "Strength"
-      },
-      "difficulty": 3,
-      "durationSeconds": 45,
-      "animation": "pike",
-      "equipment": [],
-      "instructions": [
-        "Start in a downward-dog shape with hips high and hands shoulder-width.",
-        "Bend your elbows to lower the crown of your head toward the floor.",
-        "Press back up until your arms are straight."
-      ],
-      "cues": [
-        "Hips stay high",
-        "Head between hands",
-        "Elbows track back"
-      ],
-      "benefits": [
-        "Shoulder strength",
-        "Overhead range",
-        "Triceps"
-      ],
-      "breathing": "Inhale down, exhale up.",
-      "regions": [
-        {
-          "id": "upper-body",
-          "name": "Upper body"
-        },
-        {
-          "id": "arms",
-          "name": "Arms"
-        },
-        {
-          "id": "shoulders",
-          "name": "Shoulders"
-        }
-      ],
-      "primaryMuscles": [
-        {
-          "id": "front-delts",
-          "name": "Front delts"
-        },
-        {
-          "id": "triceps",
-          "name": "Triceps"
-        }
-      ],
-      "secondaryMuscles": [
-        {
-          "id": "chest",
-          "name": "Pectorals"
-        },
-        {
-          "id": "upper-back",
-          "name": "Upper back"
-        },
-        {
-          "id": "serratus",
-          "name": "Serratus"
-        }
-      ],
-      "prescription": {
-        "sets": 3,
-        "reps": 8,
-        "holdSeconds": null,
-        "loadKg": null,
-        "restSeconds": 75
-      }
-    },
-    {
-      "id": "ex-pull-up",
-      "slug": "pull-up",
-      "name": "Pull-up",
-      "summary": "The benchmark vertical pull for lats, biceps and shoulder health.",
-      "topic": {
-        "id": "calisthenics",
-        "name": "Calisthenics",
-        "accent": "#FF9A6C",
-        "icon": "figure.strengthtraining.functional"
-      },
-      "type": {
-        "id": "strength",
-        "name": "Strength"
-      },
-      "difficulty": 4,
-      "durationSeconds": 50,
-      "animation": "pullup",
-      "equipment": [
-        "Pull-up bar"
-      ],
-      "instructions": [
-        "Hang with an overhand grip just outside shoulder width.",
-        "Set your shoulders down and pull your elbows toward your ribs.",
-        "Bring your chin over the bar, then lower all the way to a long hang."
-      ],
-      "cues": [
-        "Lead with the chest",
-        "No kipping",
-        "Full hang at the bottom"
-      ],
-      "benefits": [
-        "Lat strength",
-        "Grip",
-        "Relative strength"
-      ],
-      "breathing": "Exhale as you pull, inhale on the descent.",
-      "regions": [
-        {
-          "id": "upper-body",
-          "name": "Upper body"
-        },
-        {
-          "id": "arms",
-          "name": "Arms"
-        },
-        {
-          "id": "back",
-          "name": "Back"
-        }
-      ],
-      "primaryMuscles": [
-        {
-          "id": "lats",
-          "name": "Lats"
-        },
-        {
-          "id": "biceps",
-          "name": "Biceps"
-        }
-      ],
-      "secondaryMuscles": [
-        {
-          "id": "rhomboids",
-          "name": "Rhomboids"
-        },
-        {
-          "id": "forearms",
-          "name": "Forearms"
-        },
-        {
-          "id": "abs",
-          "name": "Abdominals"
-        }
-      ],
-      "prescription": {
-        "sets": 3,
-        "reps": 6,
-        "holdSeconds": null,
-        "loadKg": null,
-        "restSeconds": 120
-      }
-    },
-    {
-      "id": "ex-push-up",
-      "slug": "push-up",
-      "name": "Push-up",
-      "summary": "The foundational horizontal push — scalable from knees to feet-elevated.",
-      "topic": {
-        "id": "calisthenics",
-        "name": "Calisthenics",
-        "accent": "#FF9A6C",
-        "icon": "figure.strengthtraining.functional"
-      },
-      "type": {
-        "id": "strength",
-        "name": "Strength"
-      },
-      "difficulty": 2,
-      "durationSeconds": 40,
-      "animation": "pushup",
-      "equipment": [],
-      "instructions": [
-        "Set hands slightly wider than shoulders, body in one long line.",
-        "Lower your chest until it is a fist above the floor, elbows at 45 degrees.",
-        "Press the floor away and lock out without letting the hips sag."
-      ],
-      "cues": [
-        "Squeeze glutes and abs",
-        "Elbows 45°, not flared",
-        "Push the floor away"
-      ],
-      "benefits": [
-        "Chest and triceps strength",
-        "Scapular control",
-        "Core stiffness"
-      ],
-      "breathing": "Inhale down, exhale up.",
-      "regions": [
-        {
-          "id": "upper-body",
-          "name": "Upper body"
-        },
-        {
-          "id": "core",
-          "name": "Core"
-        },
-        {
-          "id": "arms",
-          "name": "Arms"
-        },
-        {
-          "id": "chest",
-          "name": "Chest"
-        }
-      ],
-      "primaryMuscles": [
-        {
-          "id": "chest",
-          "name": "Pectorals"
-        },
-        {
-          "id": "triceps",
-          "name": "Triceps"
-        }
-      ],
-      "secondaryMuscles": [
-        {
-          "id": "front-delts",
-          "name": "Front delts"
-        },
-        {
-          "id": "abs",
-          "name": "Abdominals"
-        },
-        {
-          "id": "serratus",
-          "name": "Serratus"
-        }
-      ],
-      "prescription": {
-        "sets": 3,
-        "reps": 12,
-        "holdSeconds": null,
-        "loadKg": null,
-        "restSeconds": 60
-      }
-    },
-    {
-      "id": "ex-side-plank",
-      "slug": "side-plank",
-      "name": "Side plank",
-      "summary": "Lateral core strength and hip stability on one arm.",
-      "topic": {
-        "id": "calisthenics",
-        "name": "Calisthenics",
-        "accent": "#FF9A6C",
-        "icon": "figure.strengthtraining.functional"
-      },
-      "type": {
-        "id": "isometric",
-        "name": "Isometric"
-      },
-      "difficulty": 2,
-      "durationSeconds": 40,
-      "animation": "sidePlank",
-      "equipment": [],
-      "instructions": [
-        "Lie on one side with elbow under shoulder and feet stacked.",
-        "Lift your hips so your body is a straight line from head to feet.",
-        "Reach the top arm to the ceiling and hold."
-      ],
-      "cues": [
-        "Stack shoulders, hips and feet",
-        "Push the bottom shoulder away",
-        "Don’t let hips drift back"
-      ],
-      "benefits": [
-        "Oblique strength",
-        "Hip stability",
-        "Shoulder endurance"
-      ],
-      "breathing": "Steady breaths on both sides.",
-      "regions": [
-        {
-          "id": "core",
-          "name": "Core"
-        },
-        {
-          "id": "hips",
-          "name": "Hips"
-        }
-      ],
-      "primaryMuscles": [
-        {
-          "id": "obliques",
-          "name": "Obliques"
-        }
-      ],
-      "secondaryMuscles": [
-        {
-          "id": "glutes",
-          "name": "Glutes"
-        },
-        {
-          "id": "front-delts",
-          "name": "Front delts"
-        },
-        {
-          "id": "abs",
-          "name": "Abdominals"
-        }
-      ],
-      "prescription": {
-        "sets": 2,
-        "reps": null,
-        "holdSeconds": 30,
-        "loadKg": null,
-        "restSeconds": 45
-      }
-    },
-    {
-      "id": "ex-high-knees",
-      "slug": "high-knees",
-      "name": "High knees",
-      "summary": "A fast, low-space cardio burst that wakes up the hips and calves.",
-      "topic": {
-        "id": "cardio",
-        "name": "Cardio",
-        "accent": "#FF6B9A",
-        "icon": "heart.fill"
-      },
-      "type": {
-        "id": "plyometric",
-        "name": "Plyometric"
-      },
-      "difficulty": 2,
-      "durationSeconds": 40,
-      "animation": "run",
-      "equipment": [],
-      "instructions": [
-        "Stand tall and drive one knee at a time toward hip height.",
-        "Stay on the balls of your feet and keep a quick cadence.",
-        "Pump your arms and land softly."
-      ],
-      "cues": [
-        "Tall posture",
-        "Quick feet",
-        "Soft landings"
-      ],
-      "benefits": [
-        "Conditioning",
-        "Hip mobility",
-        "Coordination"
-      ],
-      "breathing": "Short, rhythmic breaths.",
-      "regions": [
-        {
-          "id": "full-body",
-          "name": "Full body"
-        },
-        {
-          "id": "legs",
-          "name": "Legs"
-        }
-      ],
-      "primaryMuscles": [
-        {
-          "id": "quads",
-          "name": "Quadriceps"
-        },
-        {
-          "id": "calves",
-          "name": "Calves"
-        },
-        {
-          "id": "hip-flexors",
-          "name": "Hip flexors"
-        }
-      ],
-      "secondaryMuscles": [
-        {
-          "id": "glutes",
-          "name": "Glutes"
-        },
-        {
-          "id": "abs",
-          "name": "Abdominals"
-        },
-        {
-          "id": "diaphragm",
-          "name": "Diaphragm"
-        }
-      ],
-      "prescription": {
-        "sets": 4,
-        "reps": null,
-        "holdSeconds": 30,
-        "loadKg": null,
-        "restSeconds": 30
-      }
-    },
-    {
-      "id": "ex-incline-walk",
-      "slug": "incline-walk",
-      "name": "Incline walk",
-      "summary": "Low-impact aerobic work that is kind to joints and easy to recover from.",
-      "topic": {
-        "id": "cardio",
-        "name": "Cardio",
-        "accent": "#FF6B9A",
-        "icon": "heart.fill"
-      },
-      "type": {
-        "id": "cardio",
-        "name": "Cardio"
-      },
-      "difficulty": 1,
-      "durationSeconds": 900,
-      "animation": "run",
-      "equipment": [
-        "Treadmill or hill"
-      ],
-      "instructions": [
-        "Set a treadmill incline of 8–12% or find a steady hill.",
-        "Walk at a pace that raises your heart rate but lets you speak.",
-        "Keep your posture tall and let your arms swing naturally."
-      ],
-      "cues": [
-        "Don’t hold the rails",
-        "Short steps uphill",
-        "Stand tall"
-      ],
-      "benefits": [
-        "Aerobic base",
-        "Glute and calf endurance",
-        "Low impact"
-      ],
-      "breathing": "Nasal breathing where possible.",
-      "regions": [
-        {
-          "id": "lower-body",
-          "name": "Lower body"
-        },
-        {
-          "id": "legs",
-          "name": "Legs"
-        }
-      ],
-      "primaryMuscles": [
-        {
-          "id": "quads",
-          "name": "Quadriceps"
-        },
-        {
-          "id": "glutes",
-          "name": "Glutes"
-        },
-        {
-          "id": "calves",
-          "name": "Calves"
-        }
-      ],
-      "secondaryMuscles": [
-        {
-          "id": "hamstrings",
-          "name": "Hamstrings"
-        },
-        {
-          "id": "abs",
-          "name": "Abdominals"
-        },
-        {
-          "id": "diaphragm",
-          "name": "Diaphragm"
-        }
-      ],
-      "prescription": {
-        "sets": 1,
-        "reps": null,
-        "holdSeconds": 900,
-        "loadKg": null,
-        "restSeconds": 0
-      }
-    },
-    {
-      "id": "ex-jump-rope",
-      "slug": "jump-rope",
-      "name": "Jump rope",
-      "summary": "A compact, high-return conditioning tool for calves and coordination.",
-      "topic": {
-        "id": "cardio",
-        "name": "Cardio",
-        "accent": "#FF6B9A",
-        "icon": "heart.fill"
-      },
-      "type": {
-        "id": "cardio",
-        "name": "Cardio"
-      },
-      "difficulty": 2,
-      "durationSeconds": 40,
-      "animation": "jumpingJack",
-      "equipment": [
-        "Jump rope"
-      ],
-      "instructions": [
-        "Hold the handles at hip height with elbows close to your ribs.",
-        "Turn the rope with your wrists and jump just high enough to clear it.",
-        "Land softly on the balls of your feet and keep a steady rhythm."
-      ],
-      "cues": [
-        "Wrists, not arms",
-        "Tiny jumps",
-        "Stay tall"
-      ],
-      "benefits": [
-        "Conditioning",
-        "Calf endurance",
-        "Coordination"
-      ],
-      "breathing": "Steady nasal or rhythmic breathing.",
-      "regions": [
-        {
-          "id": "full-body",
-          "name": "Full body"
-        },
-        {
-          "id": "legs",
-          "name": "Legs"
-        }
-      ],
-      "primaryMuscles": [
-        {
-          "id": "quads",
-          "name": "Quadriceps"
-        },
-        {
-          "id": "calves",
-          "name": "Calves"
-        }
-      ],
-      "secondaryMuscles": [
-        {
-          "id": "forearms",
-          "name": "Forearms"
-        },
-        {
-          "id": "abs",
-          "name": "Abdominals"
-        },
-        {
-          "id": "diaphragm",
-          "name": "Diaphragm"
-        }
-      ],
-      "prescription": {
-        "sets": 5,
-        "reps": null,
-        "holdSeconds": 60,
-        "loadKg": null,
-        "restSeconds": 30
-      }
-    },
-    {
-      "id": "ex-jumping-jacks",
-      "slug": "jumping-jacks",
-      "name": "Jumping jacks",
-      "summary": "A simple full-body warm-up that raises heart rate in seconds.",
-      "topic": {
-        "id": "cardio",
-        "name": "Cardio",
-        "accent": "#FF6B9A",
-        "icon": "heart.fill"
-      },
-      "type": {
-        "id": "plyometric",
-        "name": "Plyometric"
-      },
-      "difficulty": 1,
-      "durationSeconds": 35,
-      "animation": "jumpingJack",
-      "equipment": [],
-      "instructions": [
-        "Stand with feet together and arms by your sides.",
-        "Jump your feet wide while sweeping your arms overhead.",
-        "Jump back to the start and keep a steady rhythm."
-      ],
-      "cues": [
-        "Soft knees",
-        "Full arm swing",
-        "Breathe rhythmically"
-      ],
-      "benefits": [
-        "Warm-up",
-        "Conditioning",
-        "Coordination"
-      ],
-      "breathing": "Even, rhythmic breaths.",
-      "regions": [
-        {
-          "id": "full-body",
-          "name": "Full body"
-        },
-        {
-          "id": "shoulders",
-          "name": "Shoulders"
-        }
-      ],
-      "primaryMuscles": [
-        {
-          "id": "quads",
-          "name": "Quadriceps"
-        },
-        {
-          "id": "calves",
-          "name": "Calves"
-        },
-        {
-          "id": "side-delts",
-          "name": "Side delts"
-        }
-      ],
-      "secondaryMuscles": [
-        {
-          "id": "glutes",
-          "name": "Glutes"
-        },
-        {
-          "id": "hip-abductors",
-          "name": "Hip abductors"
-        },
-        {
-          "id": "diaphragm",
-          "name": "Diaphragm"
-        }
-      ],
-      "prescription": {
-        "sets": 3,
-        "reps": null,
-        "holdSeconds": 40,
-        "loadKg": null,
-        "restSeconds": 20
-      }
-    },
-    {
-      "id": "ex-shadow-boxing",
-      "slug": "shadow-boxing",
-      "name": "Shadow boxing",
-      "summary": "Playful, low-impact intervals that train the cardiovascular system and coordination.",
-      "topic": {
-        "id": "cardio",
-        "name": "Cardio",
-        "accent": "#FF6B9A",
-        "icon": "heart.fill"
-      },
-      "type": {
-        "id": "cardio",
-        "name": "Cardio"
-      },
-      "difficulty": 2,
-      "durationSeconds": 40,
-      "animation": "boxing",
-      "equipment": [],
-      "instructions": [
-        "Set a light stance with one foot forward and hands up.",
-        "Throw controlled jabs and crosses, rotating through the hips.",
-        "Stay light on your feet and breathe out on every punch."
-      ],
-      "cues": [
-        "Chin down",
-        "Punch from the hips",
-        "Reset your guard"
-      ],
-      "benefits": [
-        "Conditioning",
-        "Rotational power",
-        "Coordination"
-      ],
-      "breathing": "Sharp exhales on punches.",
-      "regions": [
-        {
-          "id": "full-body",
-          "name": "Full body"
-        },
-        {
-          "id": "upper-body",
-          "name": "Upper body"
-        },
-        {
-          "id": "core",
-          "name": "Core"
-        }
-      ],
-      "primaryMuscles": [
-        {
-          "id": "front-delts",
-          "name": "Front delts"
-        },
-        {
-          "id": "triceps",
-          "name": "Triceps"
-        },
-        {
-          "id": "obliques",
-          "name": "Obliques"
-        }
-      ],
-      "secondaryMuscles": [
-        {
-          "id": "calves",
-          "name": "Calves"
-        },
-        {
-          "id": "hip-flexors",
-          "name": "Hip flexors"
-        },
-        {
-          "id": "chest",
-          "name": "Pectorals"
-        },
-        {
-          "id": "lats",
-          "name": "Lats"
-        }
-      ],
-      "prescription": {
-        "sets": 4,
-        "reps": null,
-        "holdSeconds": 45,
-        "loadKg": null,
-        "restSeconds": 30
-      }
-    },
-    {
-      "id": "ex-zone-2-run",
-      "slug": "zone-2-run",
-      "name": "Zone 2 run",
-      "summary": "Conversational-pace running that builds your aerobic engine without burning you out.",
-      "topic": {
-        "id": "cardio",
-        "name": "Cardio",
-        "accent": "#FF6B9A",
-        "icon": "heart.fill"
-      },
-      "type": {
-        "id": "cardio",
-        "name": "Cardio"
-      },
-      "difficulty": 2,
-      "durationSeconds": 900,
-      "animation": "run",
-      "equipment": [
-        "Running shoes"
-      ],
-      "instructions": [
-        "Warm up with five minutes of easy walking or jogging.",
-        "Run at a pace where you can hold a conversation in full sentences.",
-        "Cool down with five minutes of walking and breathe through your nose."
-      ],
-      "cues": [
-        "Nose breathing if possible",
-        "Shoulders relaxed",
-        "Cadence over stride length"
-      ],
-      "benefits": [
-        "Aerobic base",
-        "Heart health",
-        "Recovery capacity"
-      ],
-      "breathing": "Nasal breathing, 3–4 steps per inhale.",
-      "regions": [
-        {
-          "id": "full-body",
-          "name": "Full body"
-        },
-        {
-          "id": "legs",
-          "name": "Legs"
-        }
-      ],
-      "primaryMuscles": [
-        {
-          "id": "quads",
-          "name": "Quadriceps"
-        },
-        {
-          "id": "hamstrings",
-          "name": "Hamstrings"
-        },
-        {
-          "id": "calves",
-          "name": "Calves"
-        }
-      ],
-      "secondaryMuscles": [
-        {
-          "id": "glutes",
-          "name": "Glutes"
-        },
-        {
-          "id": "hip-flexors",
-          "name": "Hip flexors"
-        },
-        {
-          "id": "diaphragm",
-          "name": "Diaphragm"
-        }
-      ],
-      "prescription": {
-        "sets": 1,
-        "reps": null,
-        "holdSeconds": 900,
-        "loadKg": null,
-        "restSeconds": 0
-      }
-    },
-    {
-      "id": "ex-90-90-hip-rotation",
-      "slug": "90-90-hip-rotation",
-      "name": "90/90 hip rotation",
-      "summary": "Controlled internal and external hip rotation, seated and unloaded.",
-      "topic": {
-        "id": "mobility",
-        "name": "Mobility",
-        "accent": "#6FE7DD",
-        "icon": "figure.flexibility"
-      },
-      "type": {
-        "id": "mobility",
-        "name": "Mobility"
-      },
-      "difficulty": 2,
-      "durationSeconds": 45,
-      "animation": "hipRotation",
-      "equipment": [
-        "Mat"
-      ],
-      "instructions": [
-        "Sit with both knees bent to 90 degrees, one leg in front and one to the side.",
-        "Keep your chest tall and lift both knees to rotate to the other side.",
-        "Move slowly and use your hands for support if needed."
-      ],
-      "cues": [
-        "Stay tall",
-        "Move from the hips",
-        "Don’t force the knees"
-      ],
-      "benefits": [
-        "Hip internal/external rotation",
-        "Glute and adductor mobility",
-        "Knee health"
-      ],
-      "breathing": "Exhale as you rotate.",
-      "regions": [
-        {
-          "id": "lower-body",
-          "name": "Lower body"
-        },
-        {
-          "id": "hips",
-          "name": "Hips"
-        },
-        {
-          "id": "glutes",
-          "name": "Glutes"
-        }
-      ],
-      "primaryMuscles": [
-        {
-          "id": "adductors",
-          "name": "Adductors"
-        },
-        {
-          "id": "hip-abductors",
-          "name": "Hip abductors"
-        }
-      ],
-      "secondaryMuscles": [
-        {
-          "id": "glutes",
-          "name": "Glutes"
-        },
-        {
-          "id": "abs",
-          "name": "Abdominals"
-        },
-        {
-          "id": "lower-back",
-          "name": "Spinal erectors"
-        }
-      ],
-      "prescription": {
-        "sets": 2,
-        "reps": 8,
-        "holdSeconds": null,
-        "loadKg": null,
-        "restSeconds": 15
-      }
-    },
-    {
-      "id": "ex-couch-stretch",
-      "slug": "couch-stretch",
-      "name": "Couch stretch",
-      "summary": "A deep hip-flexor and quad stretch for people who sit a lot.",
-      "topic": {
-        "id": "mobility",
-        "name": "Mobility",
-        "accent": "#6FE7DD",
-        "icon": "figure.flexibility"
-      },
-      "type": {
-        "id": "stretch",
-        "name": "Stretch"
-      },
-      "difficulty": 3,
-      "durationSeconds": 50,
-      "animation": "hipFlexorStretch",
-      "equipment": [
-        "Mat",
-        "Wall or couch"
-      ],
-      "instructions": [
-        "Kneel with one knee against a wall or couch, shin vertical.",
-        "Tuck your pelvis and squeeze the back glute.",
-        "Stay tall or bring the same-side arm overhead for more length."
-      ],
-      "cues": [
-        "Tuck the pelvis first",
-        "Squeeze the glute",
-        "Breathe into the front hip"
-      ],
-      "benefits": [
-        "Hip-flexor length",
-        "Quad stretch",
-        "Pelvic control"
-      ],
-      "breathing": "Slow breaths; back off if the knee complains.",
-      "regions": [
-        {
-          "id": "lower-body",
-          "name": "Lower body"
-        },
-        {
-          "id": "hips",
-          "name": "Hips"
-        },
-        {
-          "id": "legs",
-          "name": "Legs"
-        }
-      ],
-      "primaryMuscles": [
-        {
-          "id": "quads",
-          "name": "Quadriceps"
-        },
-        {
-          "id": "hip-flexors",
-          "name": "Hip flexors"
-        }
-      ],
-      "secondaryMuscles": [
-        {
-          "id": "glutes",
-          "name": "Glutes"
-        },
-        {
-          "id": "abs",
-          "name": "Abdominals"
-        }
-      ],
-      "prescription": {
-        "sets": 2,
-        "reps": null,
-        "holdSeconds": 45,
-        "loadKg": null,
-        "restSeconds": 10
-      }
-    },
-    {
-      "id": "ex-deep-squat-hold",
-      "slug": "deep-squat-hold",
-      "name": "Deep squat hold",
-      "summary": "A resting squat that keeps hips, knees and ankles in their full range.",
-      "topic": {
-        "id": "mobility",
-        "name": "Mobility",
-        "accent": "#6FE7DD",
-        "icon": "figure.flexibility"
-      },
-      "type": {
-        "id": "mobility",
-        "name": "Mobility"
-      },
-      "difficulty": 2,
-      "durationSeconds": 50,
-      "animation": "squat",
-      "equipment": [],
-      "instructions": [
-        "Stand with feet a little wider than shoulders.",
-        "Sit down into your deepest comfortable squat and hold your heels down.",
-        "Use a support under your heels or hold a doorframe if needed."
-      ],
-      "cues": [
-        "Chest tall",
-        "Knees track out",
-        "Breathe into the hips"
-      ],
-      "benefits": [
-        "Hip and ankle mobility",
-        "Knee health",
-        "Recovery"
-      ],
-      "breathing": "Slow breaths; let tension melt on each exhale.",
-      "regions": [
-        {
-          "id": "lower-body",
-          "name": "Lower body"
-        },
-        {
-          "id": "hips",
-          "name": "Hips"
-        },
-        {
-          "id": "legs",
-          "name": "Legs"
-        },
-        {
-          "id": "ankles",
-          "name": "Ankles"
-        }
-      ],
-      "primaryMuscles": [
-        {
-          "id": "calves",
-          "name": "Calves"
-        },
-        {
-          "id": "hip-flexors",
-          "name": "Hip flexors"
-        },
-        {
-          "id": "adductors",
-          "name": "Adductors"
-        }
-      ],
-      "secondaryMuscles": [
-        {
-          "id": "quads",
-          "name": "Quadriceps"
-        },
-        {
-          "id": "glutes",
-          "name": "Glutes"
-        },
-        {
-          "id": "lower-back",
-          "name": "Spinal erectors"
-        }
-      ],
-      "prescription": {
-        "sets": 2,
-        "reps": null,
-        "holdSeconds": 45,
-        "loadKg": null,
-        "restSeconds": 15
-      }
-    },
-    {
-      "id": "ex-neck-release",
-      "slug": "neck-release",
-      "name": "Neck release",
-      "summary": "A seated release for the neck and upper traps after screen time.",
-      "topic": {
-        "id": "mobility",
-        "name": "Mobility",
-        "accent": "#6FE7DD",
-        "icon": "figure.flexibility"
-      },
-      "type": {
-        "id": "stretch",
-        "name": "Stretch"
-      },
-      "difficulty": 1,
-      "durationSeconds": 35,
-      "animation": "neckStretch",
-      "equipment": [],
-      "instructions": [
-        "Sit tall and let one ear fall toward the shoulder.",
-        "Rest the same-side hand lightly on your head for a gentle stretch.",
-        "Breathe, return, and switch sides."
-      ],
-      "cues": [
-        "Shoulders down",
-        "No pulling",
-        "Small range is enough"
-      ],
-      "benefits": [
-        "Neck mobility",
-        "Tension release",
-        "Headache prevention"
-      ],
-      "breathing": "Long exhales.",
-      "regions": [
-        {
-          "id": "upper-body",
-          "name": "Upper body"
-        },
-        {
-          "id": "shoulders",
-          "name": "Shoulders"
-        },
-        {
-          "id": "neck",
-          "name": "Neck"
-        }
-      ],
-      "primaryMuscles": [
-        {
-          "id": "traps",
-          "name": "Trapezius"
-        },
-        {
-          "id": "neck",
-          "name": "Neck"
-        }
-      ],
-      "secondaryMuscles": [
-        {
-          "id": "upper-back",
-          "name": "Upper back"
-        },
-        {
-          "id": "rotator-cuff",
-          "name": "Rotator cuff"
-        }
-      ],
-      "prescription": {
-        "sets": 2,
-        "reps": null,
-        "holdSeconds": 25,
-        "loadKg": null,
-        "restSeconds": 10
-      }
-    },
-    {
-      "id": "ex-thoracic-rotation",
-      "slug": "thoracic-rotation",
-      "name": "Open-book thoracic rotation",
-      "summary": "A side-lying drill to reclaim upper-back rotation without arching the low back.",
-      "topic": {
-        "id": "mobility",
-        "name": "Mobility",
-        "accent": "#6FE7DD",
-        "icon": "figure.flexibility"
-      },
-      "type": {
-        "id": "mobility",
-        "name": "Mobility"
-      },
-      "difficulty": 1,
-      "durationSeconds": 40,
-      "animation": "twist",
-      "equipment": [
-        "Mat"
-      ],
-      "instructions": [
-        "Lie on your side with knees stacked and bent in front of you.",
-        "Reach the top arm across and open your chest toward the ceiling.",
-        "Follow your hand with your eyes and return slowly."
-      ],
-      "cues": [
-        "Knees stay stacked",
-        "Rotate from the ribs",
-        "Exhale into range"
-      ],
-      "benefits": [
-        "Thoracic mobility",
-        "Shoulder health",
-        "Breathing capacity"
-      ],
-      "breathing": "Inhale to prepare, exhale to open.",
-      "regions": [
-        {
-          "id": "shoulders",
-          "name": "Shoulders"
-        },
-        {
-          "id": "back",
-          "name": "Back"
-        },
-        {
-          "id": "spine",
-          "name": "Spine"
-        }
-      ],
-      "primaryMuscles": [
-        {
-          "id": "obliques",
-          "name": "Obliques"
-        },
-        {
-          "id": "upper-back",
-          "name": "Upper back"
-        }
-      ],
-      "secondaryMuscles": [
-        {
-          "id": "chest",
-          "name": "Pectorals"
-        },
-        {
-          "id": "lats",
-          "name": "Lats"
-        },
-        {
-          "id": "neck",
-          "name": "Neck"
-        }
-      ],
-      "prescription": {
-        "sets": 2,
-        "reps": 8,
-        "holdSeconds": null,
-        "loadKg": null,
-        "restSeconds": 0
-      }
-    },
-    {
-      "id": "ex-shoulder-dislocates",
-      "slug": "shoulder-dislocates",
-      "name": "Shoulder dislocates",
-      "summary": "A gentle pass-through drill that restores shoulder flexion and extension.",
-      "topic": {
-        "id": "mobility",
-        "name": "Mobility",
-        "accent": "#6FE7DD",
-        "icon": "figure.flexibility"
-      },
-      "type": {
-        "id": "mobility",
-        "name": "Mobility"
-      },
-      "difficulty": 2,
-      "durationSeconds": 40,
-      "animation": "shoulderStretch",
-      "equipment": [
-        "Broomstick or band"
-      ],
-      "instructions": [
-        "Hold a stick or band wide with both hands in front of your hips.",
-        "Keep your arms long and circle them overhead and behind you.",
-        "Use a wider grip if your shoulders feel pinched."
-      ],
-      "cues": [
-        "Arms stay long",
-        "Ribs down",
-        "Smooth, pain-free range"
-      ],
-      "benefits": [
-        "Shoulder mobility",
-        "Chest opening",
-        "Warm-up"
-      ],
-      "breathing": "Inhale as the arms go overhead.",
-      "regions": [
-        {
-          "id": "upper-body",
-          "name": "Upper body"
-        },
-        {
-          "id": "shoulders",
-          "name": "Shoulders"
-        },
-        {
-          "id": "chest",
-          "name": "Chest"
-        }
-      ],
-      "primaryMuscles": [
-        {
-          "id": "chest",
-          "name": "Pectorals"
-        },
-        {
-          "id": "front-delts",
-          "name": "Front delts"
-        }
-      ],
-      "secondaryMuscles": [
-        {
-          "id": "lats",
-          "name": "Lats"
-        },
-        {
-          "id": "upper-back",
-          "name": "Upper back"
-        },
-        {
-          "id": "rotator-cuff",
-          "name": "Rotator cuff"
-        }
-      ],
-      "prescription": {
-        "sets": 2,
-        "reps": 10,
-        "holdSeconds": null,
-        "loadKg": null,
-        "restSeconds": 10
-      }
-    },
-    {
-      "id": "ex-standing-hamstring-stretch",
-      "slug": "standing-hamstring-stretch",
-      "name": "Standing hamstring stretch",
-      "summary": "A simple, controllable hamstring lengthener with a supported spine.",
-      "topic": {
-        "id": "mobility",
-        "name": "Mobility",
-        "accent": "#6FE7DD",
-        "icon": "figure.flexibility"
-      },
-      "type": {
-        "id": "stretch",
-        "name": "Stretch"
-      },
-      "difficulty": 1,
-      "durationSeconds": 35,
-      "animation": "hamstringStretch",
-      "equipment": [],
-      "instructions": [
-        "Place one heel on a low step with the leg straight.",
-        "Hinge from the hip with a long spine until you feel the hamstring.",
-        "Breathe and hold, then switch sides."
-      ],
-      "cues": [
-        "Hinge, don’t round",
-        "Square hips",
-        "Gentle, not sharp"
-      ],
-      "benefits": [
-        "Hamstring flexibility",
-        "Hip hinge practice",
-        "Lower-back relief"
-      ],
-      "breathing": "Exhale to settle deeper.",
-      "regions": [
-        {
-          "id": "lower-body",
-          "name": "Lower body"
-        },
-        {
-          "id": "hips",
-          "name": "Hips"
-        },
-        {
-          "id": "legs",
-          "name": "Legs"
-        }
-      ],
-      "primaryMuscles": [
-        {
-          "id": "hamstrings",
-          "name": "Hamstrings"
-        }
-      ],
-      "secondaryMuscles": [
-        {
-          "id": "glutes",
-          "name": "Glutes"
-        },
-        {
-          "id": "calves",
-          "name": "Calves"
-        },
-        {
-          "id": "lower-back",
-          "name": "Spinal erectors"
-        }
-      ],
-      "prescription": {
-        "sets": 2,
-        "reps": null,
-        "holdSeconds": 30,
-        "loadKg": null,
-        "restSeconds": 10
-      }
-    },
-    {
-      "id": "ex-calf-stretch",
-      "slug": "calf-stretch",
-      "name": "Wall calf stretch",
-      "summary": "Ankle dorsiflexion you can feel, essential for deep squats and hiking.",
-      "topic": {
-        "id": "mobility",
-        "name": "Mobility",
-        "accent": "#6FE7DD",
-        "icon": "figure.flexibility"
-      },
-      "type": {
-        "id": "stretch",
-        "name": "Stretch"
-      },
-      "difficulty": 1,
-      "durationSeconds": 35,
-      "animation": "calfStretch",
-      "equipment": [
-        "Wall"
-      ],
-      "instructions": [
-        "Stand facing a wall with one foot back and heel down.",
-        "Bend the front knee and lean toward the wall, keeping the back leg straight.",
-        "Hold, then bend the back knee slightly for the deeper calf."
-      ],
-      "cues": [
-        "Back heel stays down",
-        "Toes point forward",
-        "Breathe into the ankle"
-      ],
-      "benefits": [
-        "Ankle mobility",
-        "Calf flexibility",
-        "Squat depth"
-      ],
-      "breathing": "Slow breaths.",
-      "regions": [
-        {
-          "id": "lower-body",
-          "name": "Lower body"
-        },
-        {
-          "id": "legs",
-          "name": "Legs"
-        },
-        {
-          "id": "ankles",
-          "name": "Ankles"
-        }
-      ],
-      "primaryMuscles": [
-        {
-          "id": "calves",
-          "name": "Calves"
-        },
-        {
-          "id": "ankles",
-          "name": "Ankles"
-        }
-      ],
-      "secondaryMuscles": [
-        {
-          "id": "hamstrings",
-          "name": "Hamstrings"
-        },
-        {
-          "id": "tibialis",
-          "name": "Tibialis"
-        }
-      ],
-      "prescription": {
-        "sets": 2,
-        "reps": null,
-        "holdSeconds": 30,
-        "loadKg": null,
-        "restSeconds": 10
-      }
-    },
-    {
-      "id": "ex-wall-slide",
-      "slug": "wall-slide",
-      "name": "Wall slide",
-      "summary": "A shoulder-mobility drill that teaches overhead reach with a rib cage that stays stacked.",
-      "topic": {
-        "id": "mobility",
-        "name": "Mobility",
-        "accent": "#6FE7DD",
-        "icon": "figure.flexibility"
-      },
-      "type": {
-        "id": "mobility",
-        "name": "Mobility"
-      },
-      "difficulty": 1,
-      "durationSeconds": 40,
-      "animation": "shoulderStretch",
-      "equipment": [
-        "Wall"
-      ],
-      "instructions": [
-        "Stand with your back to a wall, forearms and head touching it.",
-        "Slide your arms up while keeping ribs down and elbows on the wall.",
-        "Return slowly to the starting position."
-      ],
-      "cues": [
-        "Ribs down",
-        "Elbows stay on the wall",
-        "No lower-back arch"
-      ],
-      "benefits": [
-        "Overhead mobility",
-        "Scapular control",
-        "Posture"
-      ],
-      "breathing": "Exhale as you reach up.",
-      "regions": [
-        {
-          "id": "upper-body",
-          "name": "Upper body"
-        },
-        {
-          "id": "shoulders",
-          "name": "Shoulders"
-        },
-        {
-          "id": "spine",
-          "name": "Spine"
-        }
-      ],
-      "primaryMuscles": [
-        {
-          "id": "front-delts",
-          "name": "Front delts"
-        },
-        {
-          "id": "upper-back",
-          "name": "Upper back"
-        }
-      ],
-      "secondaryMuscles": [
-        {
-          "id": "traps",
-          "name": "Trapezius"
-        },
-        {
-          "id": "abs",
-          "name": "Abdominals"
-        },
-        {
-          "id": "rotator-cuff",
-          "name": "Rotator cuff"
-        }
-      ],
-      "prescription": {
-        "sets": 2,
-        "reps": 10,
-        "holdSeconds": null,
-        "loadKg": null,
-        "restSeconds": 10
-      }
-    },
-    {
-      "id": "ex-worlds-greatest-stretch",
-      "slug": "worlds-greatest-stretch",
-      "name": "World's greatest stretch",
-      "summary": "One flowing sequence that opens hips, hamstrings and thoracic spine.",
-      "topic": {
-        "id": "mobility",
-        "name": "Mobility",
-        "accent": "#6FE7DD",
-        "icon": "figure.flexibility"
-      },
-      "type": {
-        "id": "mobility",
-        "name": "Mobility"
-      },
-      "difficulty": 2,
-      "durationSeconds": 50,
-      "animation": "lunge",
-      "equipment": [
-        "Mat"
-      ],
-      "instructions": [
-        "Step into a deep lunge with both hands inside the front foot.",
-        "Drop the back knee if needed and press the front knee out.",
-        "Reach the inside arm up and rotate your chest open, then switch sides."
-      ],
-      "cues": [
-        "Long spine",
-        "Rotate from the ribs",
-        "Breathe into the tight spots"
-      ],
-      "benefits": [
-        "Whole-body mobility",
-        "Hip opening",
-        "Thoracic rotation"
-      ],
-      "breathing": "Inhale to reach, exhale to settle deeper.",
-      "regions": [
-        {
-          "id": "full-body",
-          "name": "Full body"
-        },
-        {
-          "id": "hips",
-          "name": "Hips"
-        },
-        {
-          "id": "legs",
-          "name": "Legs"
-        },
-        {
-          "id": "spine",
-          "name": "Spine"
-        }
-      ],
-      "primaryMuscles": [
-        {
-          "id": "hip-flexors",
-          "name": "Hip flexors"
-        },
-        {
-          "id": "adductors",
-          "name": "Adductors"
-        },
-        {
-          "id": "obliques",
-          "name": "Obliques"
-        }
-      ],
-      "secondaryMuscles": [
-        {
-          "id": "hamstrings",
-          "name": "Hamstrings"
-        },
-        {
-          "id": "glutes",
-          "name": "Glutes"
-        },
-        {
-          "id": "upper-back",
-          "name": "Upper back"
-        }
-      ],
-      "prescription": {
-        "sets": 2,
-        "reps": 5,
-        "holdSeconds": null,
-        "loadKg": null,
-        "restSeconds": 0
-      }
-    },
-    {
-      "id": "ex-wrist-prep",
-      "slug": "wrist-prep",
-      "name": "Wrist prep",
-      "summary": "A quick wrist and forearm sequence before any floor-based training.",
-      "topic": {
-        "id": "mobility",
-        "name": "Mobility",
-        "accent": "#6FE7DD",
-        "icon": "figure.flexibility"
-      },
-      "type": {
-        "id": "mobility",
-        "name": "Mobility"
-      },
-      "difficulty": 1,
-      "durationSeconds": 35,
-      "animation": "wristPrep",
-      "equipment": [
-        "Mat"
-      ],
-      "instructions": [
-        "From all fours, turn your fingers toward your knees and rock gently.",
-        "Flip to the backs of your hands and rock again with care.",
-        "Finish with slow wrist circles in both directions."
-      ],
-      "cues": [
-        "Stay within comfort",
-        "Keep elbows soft",
-        "Move slowly"
-      ],
-      "benefits": [
-        "Wrist mobility",
-        "Forearm prep",
-        "Push-up comfort"
-      ],
-      "breathing": "Steady, relaxed breathing.",
-      "regions": [
-        {
-          "id": "arms",
-          "name": "Arms"
-        },
-        {
-          "id": "wrists",
-          "name": "Wrists"
-        }
-      ],
-      "primaryMuscles": [
-        {
-          "id": "forearms",
-          "name": "Forearms"
-        },
-        {
-          "id": "wrists",
-          "name": "Wrists"
-        }
-      ],
-      "secondaryMuscles": [
-        {
-          "id": "biceps",
-          "name": "Biceps"
-        },
-        {
-          "id": "triceps",
-          "name": "Triceps"
-        }
-      ],
-      "prescription": {
-        "sets": 2,
-        "reps": 8,
-        "holdSeconds": null,
-        "loadKg": null,
-        "restSeconds": 10
-      }
-    },
-    {
-      "id": "ex-body-scan",
-      "slug": "body-scan",
-      "name": "Body scan",
-      "summary": "A guided-feel meditation that moves attention through the body and releases holding.",
-      "topic": {
-        "id": "recovery",
-        "name": "Recovery",
-        "accent": "#8FB8FF",
-        "icon": "moon.stars.fill"
-      },
-      "type": {
-        "id": "breathwork",
-        "name": "Breathwork"
-      },
-      "difficulty": 1,
-      "durationSeconds": 300,
-      "animation": "breathe",
-      "equipment": [
-        "Mat"
-      ],
-      "instructions": [
-        "Lie down with palms up and let your feet fall open.",
-        "Move your attention slowly from your toes to the top of your head.",
-        "When you find tension, breathe into it and let it soften on the exhale."
-      ],
-      "cues": [
-        "No fixing, just noticing",
-        "Slow and unhurried",
-        "Stay warm"
-      ],
-      "benefits": [
-        "Relaxation",
-        "Interoception",
-        "Sleep readiness"
-      ],
-      "breathing": "Natural breath, no control.",
-      "regions": [
-        {
-          "id": "full-body",
-          "name": "Full body"
-        }
-      ],
-      "primaryMuscles": [
-        {
-          "id": "diaphragm",
-          "name": "Diaphragm"
-        },
-        {
-          "id": "pelvic-floor",
-          "name": "Pelvic floor"
-        }
-      ],
-      "secondaryMuscles": [
-        {
-          "id": "abs",
-          "name": "Abdominals"
-        },
-        {
-          "id": "lower-back",
-          "name": "Spinal erectors"
-        },
-        {
-          "id": "neck",
-          "name": "Neck"
-        }
-      ],
-      "prescription": {
-        "sets": 1,
-        "reps": null,
-        "holdSeconds": 300,
-        "loadKg": null,
-        "restSeconds": 0
-      }
-    },
-    {
-      "id": "ex-box-breathing",
-      "slug": "box-breathing",
-      "name": "Box breathing",
-      "summary": "Four equal counts in, hold, out and hold — a portable reset for the nervous system.",
-      "topic": {
-        "id": "recovery",
-        "name": "Recovery",
-        "accent": "#8FB8FF",
-        "icon": "moon.stars.fill"
-      },
-      "type": {
-        "id": "breathwork",
-        "name": "Breathwork"
-      },
-      "difficulty": 1,
-      "durationSeconds": 180,
-      "animation": "breathe",
-      "equipment": [],
-      "instructions": [
-        "Sit or lie comfortably and exhale fully.",
-        "Inhale for four, hold for four, exhale for four, hold for four.",
-        "Repeat for several minutes, letting your shoulders drop."
-      ],
-      "cues": [
-        "Gentle through the nose",
-        "No strain on the holds",
-        "Relax your jaw"
-      ],
-      "benefits": [
-        "Stress regulation",
-        "Focus",
-        "Better sleep"
-      ],
-      "breathing": "4-4-4-4 box rhythm.",
-      "regions": [
-        {
-          "id": "full-body",
-          "name": "Full body"
-        },
-        {
-          "id": "core",
-          "name": "Core"
-        }
-      ],
-      "primaryMuscles": [
-        {
-          "id": "diaphragm",
-          "name": "Diaphragm"
-        }
-      ],
-      "secondaryMuscles": [
-        {
-          "id": "abs",
-          "name": "Abdominals"
-        },
-        {
-          "id": "neck",
-          "name": "Neck"
-        },
-        {
-          "id": "pelvic-floor",
-          "name": "Pelvic floor"
-        }
-      ],
-      "prescription": {
-        "sets": 1,
-        "reps": null,
-        "holdSeconds": 180,
-        "loadKg": null,
-        "restSeconds": 0
-      }
-    },
-    {
-      "id": "ex-physiological-sigh",
-      "slug": "physiological-sigh",
-      "name": "Physiological sigh",
-      "summary": "Two inhales and a long exhale — the fastest known voluntary calm-down.",
-      "topic": {
-        "id": "recovery",
-        "name": "Recovery",
-        "accent": "#8FB8FF",
-        "icon": "moon.stars.fill"
-      },
-      "type": {
-        "id": "breathwork",
-        "name": "Breathwork"
-      },
-      "difficulty": 1,
-      "durationSeconds": 60,
-      "animation": "breathe",
-      "equipment": [],
-      "instructions": [
-        "Inhale through your nose until about 80% full.",
-        "Add a short second inhale through the nose.",
-        "Exhale slowly and completely through the mouth, then repeat."
-      ],
-      "cues": [
-        "Second inhale is small",
-        "Make the exhale longer than the inhale",
-        "Drop your shoulders"
-      ],
-      "benefits": [
-        "Rapid stress relief",
-        "Heart-rate downshift",
-        "Mood regulation"
-      ],
-      "breathing": "Double inhale, long exhale.",
-      "regions": [
-        {
-          "id": "full-body",
-          "name": "Full body"
-        },
-        {
-          "id": "core",
-          "name": "Core"
-        }
-      ],
-      "primaryMuscles": [
-        {
-          "id": "diaphragm",
-          "name": "Diaphragm"
-        }
-      ],
-      "secondaryMuscles": [
-        {
-          "id": "abs",
-          "name": "Abdominals"
-        },
-        {
-          "id": "pelvic-floor",
-          "name": "Pelvic floor"
-        }
-      ],
-      "prescription": {
-        "sets": 1,
-        "reps": null,
-        "holdSeconds": 60,
-        "loadKg": null,
-        "restSeconds": 0
-      }
-    },
-    {
-      "id": "ex-progressive-muscle-relaxation",
-      "slug": "progressive-muscle-relaxation",
-      "name": "Progressive muscle relaxation",
-      "summary": "Tense and release each muscle group to teach your body the difference.",
-      "topic": {
-        "id": "recovery",
-        "name": "Recovery",
-        "accent": "#8FB8FF",
-        "icon": "moon.stars.fill"
-      },
-      "type": {
-        "id": "breathwork",
-        "name": "Breathwork"
-      },
-      "difficulty": 1,
-      "durationSeconds": 300,
-      "animation": "breathe",
-      "equipment": [
-        "Mat"
-      ],
-      "instructions": [
-        "Lie down and take a few slow breaths.",
-        "Tense one muscle group for five seconds, then release for ten.",
-        "Work from your feet up to your face, noticing the contrast."
-      ],
-      "cues": [
-        "Tense at 70%, not 100%",
-        "Release fully",
-        "Keep breathing"
-      ],
-      "benefits": [
-        "Deep relaxation",
-        "Body awareness",
-        "Sleep support"
-      ],
-      "breathing": "Inhale to tense, exhale to release.",
-      "regions": [
-        {
-          "id": "full-body",
-          "name": "Full body"
-        }
-      ],
-      "primaryMuscles": [
-        {
-          "id": "abs",
-          "name": "Abdominals"
-        },
-        {
-          "id": "diaphragm",
-          "name": "Diaphragm"
-        }
-      ],
-      "secondaryMuscles": [
-        {
-          "id": "quads",
-          "name": "Quadriceps"
-        },
-        {
-          "id": "glutes",
-          "name": "Glutes"
-        },
-        {
-          "id": "forearms",
-          "name": "Forearms"
-        },
-        {
-          "id": "neck",
-          "name": "Neck"
-        }
-      ],
-      "prescription": {
-        "sets": 1,
-        "reps": null,
-        "holdSeconds": 300,
-        "loadKg": null,
-        "restSeconds": 0
-      }
-    },
-    {
-      "id": "ex-supine-twist",
-      "slug": "supine-twist",
-      "name": "Supine twist",
-      "summary": "A gentle reclined rotation that lets the spine and hips unwind.",
-      "topic": {
-        "id": "recovery",
-        "name": "Recovery",
-        "accent": "#8FB8FF",
-        "icon": "moon.stars.fill"
-      },
-      "type": {
-        "id": "stretch",
-        "name": "Stretch"
-      },
-      "difficulty": 1,
-      "durationSeconds": 45,
-      "animation": "twist",
-      "equipment": [
-        "Mat"
-      ],
-      "instructions": [
-        "Lie on your back and draw your knees toward your chest.",
-        "Let both knees fall to one side while your shoulders stay down.",
-        "Breathe and hold, then switch sides."
-      ],
-      "cues": [
-        "Let gravity do the work",
-        "Shoulders stay grounded",
-        "Slow exhales"
-      ],
-      "benefits": [
-        "Spinal rotation",
-        "Lower-back release",
-        "Wind-down"
-      ],
-      "breathing": "Long, quiet exhales.",
-      "regions": [
-        {
-          "id": "core",
-          "name": "Core"
-        },
-        {
-          "id": "hips",
-          "name": "Hips"
-        },
-        {
-          "id": "spine",
-          "name": "Spine"
-        }
-      ],
-      "primaryMuscles": [
-        {
-          "id": "obliques",
-          "name": "Obliques"
-        },
-        {
-          "id": "lower-back",
-          "name": "Spinal erectors"
-        }
-      ],
-      "secondaryMuscles": [
-        {
-          "id": "glutes",
-          "name": "Glutes"
-        },
-        {
-          "id": "hip-flexors",
-          "name": "Hip flexors"
-        },
-        {
-          "id": "abs",
-          "name": "Abdominals"
-        }
-      ],
-      "prescription": {
-        "sets": 2,
-        "reps": null,
-        "holdSeconds": 45,
-        "loadKg": null,
-        "restSeconds": 0
-      }
-    },
     {
       "id": "ex-barbell-back-squat",
       "slug": "barbell-back-squat",
@@ -5279,6 +2536,2749 @@
         "holdSeconds": 40,
         "loadKg": null,
         "restSeconds": 10
+      }
+    },
+    {
+      "id": "ex-90-90-hip-rotation",
+      "slug": "90-90-hip-rotation",
+      "name": "90/90 hip rotation",
+      "summary": "Controlled internal and external hip rotation, seated and unloaded.",
+      "topic": {
+        "id": "mobility",
+        "name": "Mobility",
+        "accent": "#6FE7DD",
+        "icon": "figure.flexibility"
+      },
+      "type": {
+        "id": "mobility",
+        "name": "Mobility"
+      },
+      "difficulty": 2,
+      "durationSeconds": 45,
+      "animation": "hipRotation",
+      "equipment": [
+        "Mat"
+      ],
+      "instructions": [
+        "Sit with both knees bent to 90 degrees, one leg in front and one to the side.",
+        "Keep your chest tall and lift both knees to rotate to the other side.",
+        "Move slowly and use your hands for support if needed."
+      ],
+      "cues": [
+        "Stay tall",
+        "Move from the hips",
+        "Don’t force the knees"
+      ],
+      "benefits": [
+        "Hip internal/external rotation",
+        "Glute and adductor mobility",
+        "Knee health"
+      ],
+      "breathing": "Exhale as you rotate.",
+      "regions": [
+        {
+          "id": "lower-body",
+          "name": "Lower body"
+        },
+        {
+          "id": "hips",
+          "name": "Hips"
+        },
+        {
+          "id": "glutes",
+          "name": "Glutes"
+        }
+      ],
+      "primaryMuscles": [
+        {
+          "id": "adductors",
+          "name": "Adductors"
+        },
+        {
+          "id": "hip-abductors",
+          "name": "Hip abductors"
+        }
+      ],
+      "secondaryMuscles": [
+        {
+          "id": "glutes",
+          "name": "Glutes"
+        },
+        {
+          "id": "abs",
+          "name": "Abdominals"
+        },
+        {
+          "id": "lower-back",
+          "name": "Spinal erectors"
+        }
+      ],
+      "prescription": {
+        "sets": 2,
+        "reps": 8,
+        "holdSeconds": null,
+        "loadKg": null,
+        "restSeconds": 15
+      }
+    },
+    {
+      "id": "ex-couch-stretch",
+      "slug": "couch-stretch",
+      "name": "Couch stretch",
+      "summary": "A deep hip-flexor and quad stretch for people who sit a lot.",
+      "topic": {
+        "id": "mobility",
+        "name": "Mobility",
+        "accent": "#6FE7DD",
+        "icon": "figure.flexibility"
+      },
+      "type": {
+        "id": "stretch",
+        "name": "Stretch"
+      },
+      "difficulty": 3,
+      "durationSeconds": 50,
+      "animation": "hipFlexorStretch",
+      "equipment": [
+        "Mat",
+        "Wall or couch"
+      ],
+      "instructions": [
+        "Kneel with one knee against a wall or couch, shin vertical.",
+        "Tuck your pelvis and squeeze the back glute.",
+        "Stay tall or bring the same-side arm overhead for more length."
+      ],
+      "cues": [
+        "Tuck the pelvis first",
+        "Squeeze the glute",
+        "Breathe into the front hip"
+      ],
+      "benefits": [
+        "Hip-flexor length",
+        "Quad stretch",
+        "Pelvic control"
+      ],
+      "breathing": "Slow breaths; back off if the knee complains.",
+      "regions": [
+        {
+          "id": "lower-body",
+          "name": "Lower body"
+        },
+        {
+          "id": "hips",
+          "name": "Hips"
+        },
+        {
+          "id": "legs",
+          "name": "Legs"
+        }
+      ],
+      "primaryMuscles": [
+        {
+          "id": "quads",
+          "name": "Quadriceps"
+        },
+        {
+          "id": "hip-flexors",
+          "name": "Hip flexors"
+        }
+      ],
+      "secondaryMuscles": [
+        {
+          "id": "glutes",
+          "name": "Glutes"
+        },
+        {
+          "id": "abs",
+          "name": "Abdominals"
+        }
+      ],
+      "prescription": {
+        "sets": 2,
+        "reps": null,
+        "holdSeconds": 45,
+        "loadKg": null,
+        "restSeconds": 10
+      }
+    },
+    {
+      "id": "ex-deep-squat-hold",
+      "slug": "deep-squat-hold",
+      "name": "Deep squat hold",
+      "summary": "A resting squat that keeps hips, knees and ankles in their full range.",
+      "topic": {
+        "id": "mobility",
+        "name": "Mobility",
+        "accent": "#6FE7DD",
+        "icon": "figure.flexibility"
+      },
+      "type": {
+        "id": "mobility",
+        "name": "Mobility"
+      },
+      "difficulty": 2,
+      "durationSeconds": 50,
+      "animation": "squat",
+      "equipment": [],
+      "instructions": [
+        "Stand with feet a little wider than shoulders.",
+        "Sit down into your deepest comfortable squat and hold your heels down.",
+        "Use a support under your heels or hold a doorframe if needed."
+      ],
+      "cues": [
+        "Chest tall",
+        "Knees track out",
+        "Breathe into the hips"
+      ],
+      "benefits": [
+        "Hip and ankle mobility",
+        "Knee health",
+        "Recovery"
+      ],
+      "breathing": "Slow breaths; let tension melt on each exhale.",
+      "regions": [
+        {
+          "id": "lower-body",
+          "name": "Lower body"
+        },
+        {
+          "id": "hips",
+          "name": "Hips"
+        },
+        {
+          "id": "legs",
+          "name": "Legs"
+        },
+        {
+          "id": "ankles",
+          "name": "Ankles"
+        }
+      ],
+      "primaryMuscles": [
+        {
+          "id": "calves",
+          "name": "Calves"
+        },
+        {
+          "id": "hip-flexors",
+          "name": "Hip flexors"
+        },
+        {
+          "id": "adductors",
+          "name": "Adductors"
+        }
+      ],
+      "secondaryMuscles": [
+        {
+          "id": "quads",
+          "name": "Quadriceps"
+        },
+        {
+          "id": "glutes",
+          "name": "Glutes"
+        },
+        {
+          "id": "lower-back",
+          "name": "Spinal erectors"
+        }
+      ],
+      "prescription": {
+        "sets": 2,
+        "reps": null,
+        "holdSeconds": 45,
+        "loadKg": null,
+        "restSeconds": 15
+      }
+    },
+    {
+      "id": "ex-neck-release",
+      "slug": "neck-release",
+      "name": "Neck release",
+      "summary": "A seated release for the neck and upper traps after screen time.",
+      "topic": {
+        "id": "mobility",
+        "name": "Mobility",
+        "accent": "#6FE7DD",
+        "icon": "figure.flexibility"
+      },
+      "type": {
+        "id": "stretch",
+        "name": "Stretch"
+      },
+      "difficulty": 1,
+      "durationSeconds": 35,
+      "animation": "neckStretch",
+      "equipment": [],
+      "instructions": [
+        "Sit tall and let one ear fall toward the shoulder.",
+        "Rest the same-side hand lightly on your head for a gentle stretch.",
+        "Breathe, return, and switch sides."
+      ],
+      "cues": [
+        "Shoulders down",
+        "No pulling",
+        "Small range is enough"
+      ],
+      "benefits": [
+        "Neck mobility",
+        "Tension release",
+        "Headache prevention"
+      ],
+      "breathing": "Long exhales.",
+      "regions": [
+        {
+          "id": "upper-body",
+          "name": "Upper body"
+        },
+        {
+          "id": "shoulders",
+          "name": "Shoulders"
+        },
+        {
+          "id": "neck",
+          "name": "Neck"
+        }
+      ],
+      "primaryMuscles": [
+        {
+          "id": "traps",
+          "name": "Trapezius"
+        },
+        {
+          "id": "neck",
+          "name": "Neck"
+        }
+      ],
+      "secondaryMuscles": [
+        {
+          "id": "upper-back",
+          "name": "Upper back"
+        },
+        {
+          "id": "rotator-cuff",
+          "name": "Rotator cuff"
+        }
+      ],
+      "prescription": {
+        "sets": 2,
+        "reps": null,
+        "holdSeconds": 25,
+        "loadKg": null,
+        "restSeconds": 10
+      }
+    },
+    {
+      "id": "ex-thoracic-rotation",
+      "slug": "thoracic-rotation",
+      "name": "Open-book thoracic rotation",
+      "summary": "A side-lying drill to reclaim upper-back rotation without arching the low back.",
+      "topic": {
+        "id": "mobility",
+        "name": "Mobility",
+        "accent": "#6FE7DD",
+        "icon": "figure.flexibility"
+      },
+      "type": {
+        "id": "mobility",
+        "name": "Mobility"
+      },
+      "difficulty": 1,
+      "durationSeconds": 40,
+      "animation": "twist",
+      "equipment": [
+        "Mat"
+      ],
+      "instructions": [
+        "Lie on your side with knees stacked and bent in front of you.",
+        "Reach the top arm across and open your chest toward the ceiling.",
+        "Follow your hand with your eyes and return slowly."
+      ],
+      "cues": [
+        "Knees stay stacked",
+        "Rotate from the ribs",
+        "Exhale into range"
+      ],
+      "benefits": [
+        "Thoracic mobility",
+        "Shoulder health",
+        "Breathing capacity"
+      ],
+      "breathing": "Inhale to prepare, exhale to open.",
+      "regions": [
+        {
+          "id": "shoulders",
+          "name": "Shoulders"
+        },
+        {
+          "id": "back",
+          "name": "Back"
+        },
+        {
+          "id": "spine",
+          "name": "Spine"
+        }
+      ],
+      "primaryMuscles": [
+        {
+          "id": "obliques",
+          "name": "Obliques"
+        },
+        {
+          "id": "upper-back",
+          "name": "Upper back"
+        }
+      ],
+      "secondaryMuscles": [
+        {
+          "id": "chest",
+          "name": "Pectorals"
+        },
+        {
+          "id": "lats",
+          "name": "Lats"
+        },
+        {
+          "id": "neck",
+          "name": "Neck"
+        }
+      ],
+      "prescription": {
+        "sets": 2,
+        "reps": 8,
+        "holdSeconds": null,
+        "loadKg": null,
+        "restSeconds": 0
+      }
+    },
+    {
+      "id": "ex-shoulder-dislocates",
+      "slug": "shoulder-dislocates",
+      "name": "Shoulder dislocates",
+      "summary": "A gentle pass-through drill that restores shoulder flexion and extension.",
+      "topic": {
+        "id": "mobility",
+        "name": "Mobility",
+        "accent": "#6FE7DD",
+        "icon": "figure.flexibility"
+      },
+      "type": {
+        "id": "mobility",
+        "name": "Mobility"
+      },
+      "difficulty": 2,
+      "durationSeconds": 40,
+      "animation": "shoulderStretch",
+      "equipment": [
+        "Broomstick or band"
+      ],
+      "instructions": [
+        "Hold a stick or band wide with both hands in front of your hips.",
+        "Keep your arms long and circle them overhead and behind you.",
+        "Use a wider grip if your shoulders feel pinched."
+      ],
+      "cues": [
+        "Arms stay long",
+        "Ribs down",
+        "Smooth, pain-free range"
+      ],
+      "benefits": [
+        "Shoulder mobility",
+        "Chest opening",
+        "Warm-up"
+      ],
+      "breathing": "Inhale as the arms go overhead.",
+      "regions": [
+        {
+          "id": "upper-body",
+          "name": "Upper body"
+        },
+        {
+          "id": "shoulders",
+          "name": "Shoulders"
+        },
+        {
+          "id": "chest",
+          "name": "Chest"
+        }
+      ],
+      "primaryMuscles": [
+        {
+          "id": "chest",
+          "name": "Pectorals"
+        },
+        {
+          "id": "front-delts",
+          "name": "Front delts"
+        }
+      ],
+      "secondaryMuscles": [
+        {
+          "id": "lats",
+          "name": "Lats"
+        },
+        {
+          "id": "upper-back",
+          "name": "Upper back"
+        },
+        {
+          "id": "rotator-cuff",
+          "name": "Rotator cuff"
+        }
+      ],
+      "prescription": {
+        "sets": 2,
+        "reps": 10,
+        "holdSeconds": null,
+        "loadKg": null,
+        "restSeconds": 10
+      }
+    },
+    {
+      "id": "ex-standing-hamstring-stretch",
+      "slug": "standing-hamstring-stretch",
+      "name": "Standing hamstring stretch",
+      "summary": "A simple, controllable hamstring lengthener with a supported spine.",
+      "topic": {
+        "id": "mobility",
+        "name": "Mobility",
+        "accent": "#6FE7DD",
+        "icon": "figure.flexibility"
+      },
+      "type": {
+        "id": "stretch",
+        "name": "Stretch"
+      },
+      "difficulty": 1,
+      "durationSeconds": 35,
+      "animation": "hamstringStretch",
+      "equipment": [],
+      "instructions": [
+        "Place one heel on a low step with the leg straight.",
+        "Hinge from the hip with a long spine until you feel the hamstring.",
+        "Breathe and hold, then switch sides."
+      ],
+      "cues": [
+        "Hinge, don’t round",
+        "Square hips",
+        "Gentle, not sharp"
+      ],
+      "benefits": [
+        "Hamstring flexibility",
+        "Hip hinge practice",
+        "Lower-back relief"
+      ],
+      "breathing": "Exhale to settle deeper.",
+      "regions": [
+        {
+          "id": "lower-body",
+          "name": "Lower body"
+        },
+        {
+          "id": "hips",
+          "name": "Hips"
+        },
+        {
+          "id": "legs",
+          "name": "Legs"
+        }
+      ],
+      "primaryMuscles": [
+        {
+          "id": "hamstrings",
+          "name": "Hamstrings"
+        }
+      ],
+      "secondaryMuscles": [
+        {
+          "id": "glutes",
+          "name": "Glutes"
+        },
+        {
+          "id": "calves",
+          "name": "Calves"
+        },
+        {
+          "id": "lower-back",
+          "name": "Spinal erectors"
+        }
+      ],
+      "prescription": {
+        "sets": 2,
+        "reps": null,
+        "holdSeconds": 30,
+        "loadKg": null,
+        "restSeconds": 10
+      }
+    },
+    {
+      "id": "ex-calf-stretch",
+      "slug": "calf-stretch",
+      "name": "Wall calf stretch",
+      "summary": "Ankle dorsiflexion you can feel, essential for deep squats and hiking.",
+      "topic": {
+        "id": "mobility",
+        "name": "Mobility",
+        "accent": "#6FE7DD",
+        "icon": "figure.flexibility"
+      },
+      "type": {
+        "id": "stretch",
+        "name": "Stretch"
+      },
+      "difficulty": 1,
+      "durationSeconds": 35,
+      "animation": "calfStretch",
+      "equipment": [
+        "Wall"
+      ],
+      "instructions": [
+        "Stand facing a wall with one foot back and heel down.",
+        "Bend the front knee and lean toward the wall, keeping the back leg straight.",
+        "Hold, then bend the back knee slightly for the deeper calf."
+      ],
+      "cues": [
+        "Back heel stays down",
+        "Toes point forward",
+        "Breathe into the ankle"
+      ],
+      "benefits": [
+        "Ankle mobility",
+        "Calf flexibility",
+        "Squat depth"
+      ],
+      "breathing": "Slow breaths.",
+      "regions": [
+        {
+          "id": "lower-body",
+          "name": "Lower body"
+        },
+        {
+          "id": "legs",
+          "name": "Legs"
+        },
+        {
+          "id": "ankles",
+          "name": "Ankles"
+        }
+      ],
+      "primaryMuscles": [
+        {
+          "id": "calves",
+          "name": "Calves"
+        },
+        {
+          "id": "ankles",
+          "name": "Ankles"
+        }
+      ],
+      "secondaryMuscles": [
+        {
+          "id": "hamstrings",
+          "name": "Hamstrings"
+        },
+        {
+          "id": "tibialis",
+          "name": "Tibialis"
+        }
+      ],
+      "prescription": {
+        "sets": 2,
+        "reps": null,
+        "holdSeconds": 30,
+        "loadKg": null,
+        "restSeconds": 10
+      }
+    },
+    {
+      "id": "ex-wall-slide",
+      "slug": "wall-slide",
+      "name": "Wall slide",
+      "summary": "A shoulder-mobility drill that teaches overhead reach with a rib cage that stays stacked.",
+      "topic": {
+        "id": "mobility",
+        "name": "Mobility",
+        "accent": "#6FE7DD",
+        "icon": "figure.flexibility"
+      },
+      "type": {
+        "id": "mobility",
+        "name": "Mobility"
+      },
+      "difficulty": 1,
+      "durationSeconds": 40,
+      "animation": "shoulderStretch",
+      "equipment": [
+        "Wall"
+      ],
+      "instructions": [
+        "Stand with your back to a wall, forearms and head touching it.",
+        "Slide your arms up while keeping ribs down and elbows on the wall.",
+        "Return slowly to the starting position."
+      ],
+      "cues": [
+        "Ribs down",
+        "Elbows stay on the wall",
+        "No lower-back arch"
+      ],
+      "benefits": [
+        "Overhead mobility",
+        "Scapular control",
+        "Posture"
+      ],
+      "breathing": "Exhale as you reach up.",
+      "regions": [
+        {
+          "id": "upper-body",
+          "name": "Upper body"
+        },
+        {
+          "id": "shoulders",
+          "name": "Shoulders"
+        },
+        {
+          "id": "spine",
+          "name": "Spine"
+        }
+      ],
+      "primaryMuscles": [
+        {
+          "id": "front-delts",
+          "name": "Front delts"
+        },
+        {
+          "id": "upper-back",
+          "name": "Upper back"
+        }
+      ],
+      "secondaryMuscles": [
+        {
+          "id": "traps",
+          "name": "Trapezius"
+        },
+        {
+          "id": "abs",
+          "name": "Abdominals"
+        },
+        {
+          "id": "rotator-cuff",
+          "name": "Rotator cuff"
+        }
+      ],
+      "prescription": {
+        "sets": 2,
+        "reps": 10,
+        "holdSeconds": null,
+        "loadKg": null,
+        "restSeconds": 10
+      }
+    },
+    {
+      "id": "ex-worlds-greatest-stretch",
+      "slug": "worlds-greatest-stretch",
+      "name": "World's greatest stretch",
+      "summary": "One flowing sequence that opens hips, hamstrings and thoracic spine.",
+      "topic": {
+        "id": "mobility",
+        "name": "Mobility",
+        "accent": "#6FE7DD",
+        "icon": "figure.flexibility"
+      },
+      "type": {
+        "id": "mobility",
+        "name": "Mobility"
+      },
+      "difficulty": 2,
+      "durationSeconds": 50,
+      "animation": "lunge",
+      "equipment": [
+        "Mat"
+      ],
+      "instructions": [
+        "Step into a deep lunge with both hands inside the front foot.",
+        "Drop the back knee if needed and press the front knee out.",
+        "Reach the inside arm up and rotate your chest open, then switch sides."
+      ],
+      "cues": [
+        "Long spine",
+        "Rotate from the ribs",
+        "Breathe into the tight spots"
+      ],
+      "benefits": [
+        "Whole-body mobility",
+        "Hip opening",
+        "Thoracic rotation"
+      ],
+      "breathing": "Inhale to reach, exhale to settle deeper.",
+      "regions": [
+        {
+          "id": "full-body",
+          "name": "Full body"
+        },
+        {
+          "id": "hips",
+          "name": "Hips"
+        },
+        {
+          "id": "legs",
+          "name": "Legs"
+        },
+        {
+          "id": "spine",
+          "name": "Spine"
+        }
+      ],
+      "primaryMuscles": [
+        {
+          "id": "hip-flexors",
+          "name": "Hip flexors"
+        },
+        {
+          "id": "adductors",
+          "name": "Adductors"
+        },
+        {
+          "id": "obliques",
+          "name": "Obliques"
+        }
+      ],
+      "secondaryMuscles": [
+        {
+          "id": "hamstrings",
+          "name": "Hamstrings"
+        },
+        {
+          "id": "glutes",
+          "name": "Glutes"
+        },
+        {
+          "id": "upper-back",
+          "name": "Upper back"
+        }
+      ],
+      "prescription": {
+        "sets": 2,
+        "reps": 5,
+        "holdSeconds": null,
+        "loadKg": null,
+        "restSeconds": 0
+      }
+    },
+    {
+      "id": "ex-wrist-prep",
+      "slug": "wrist-prep",
+      "name": "Wrist prep",
+      "summary": "A quick wrist and forearm sequence before any floor-based training.",
+      "topic": {
+        "id": "mobility",
+        "name": "Mobility",
+        "accent": "#6FE7DD",
+        "icon": "figure.flexibility"
+      },
+      "type": {
+        "id": "mobility",
+        "name": "Mobility"
+      },
+      "difficulty": 1,
+      "durationSeconds": 35,
+      "animation": "wristPrep",
+      "equipment": [
+        "Mat"
+      ],
+      "instructions": [
+        "From all fours, turn your fingers toward your knees and rock gently.",
+        "Flip to the backs of your hands and rock again with care.",
+        "Finish with slow wrist circles in both directions."
+      ],
+      "cues": [
+        "Stay within comfort",
+        "Keep elbows soft",
+        "Move slowly"
+      ],
+      "benefits": [
+        "Wrist mobility",
+        "Forearm prep",
+        "Push-up comfort"
+      ],
+      "breathing": "Steady, relaxed breathing.",
+      "regions": [
+        {
+          "id": "arms",
+          "name": "Arms"
+        },
+        {
+          "id": "wrists",
+          "name": "Wrists"
+        }
+      ],
+      "primaryMuscles": [
+        {
+          "id": "forearms",
+          "name": "Forearms"
+        },
+        {
+          "id": "wrists",
+          "name": "Wrists"
+        }
+      ],
+      "secondaryMuscles": [
+        {
+          "id": "biceps",
+          "name": "Biceps"
+        },
+        {
+          "id": "triceps",
+          "name": "Triceps"
+        }
+      ],
+      "prescription": {
+        "sets": 2,
+        "reps": 8,
+        "holdSeconds": null,
+        "loadKg": null,
+        "restSeconds": 10
+      }
+    },
+    {
+      "id": "ex-burpee",
+      "slug": "burpee",
+      "name": "Burpee",
+      "summary": "A full-body, no-equipment conditioner with a squat, push and jump.",
+      "topic": {
+        "id": "calisthenics",
+        "name": "Calisthenics",
+        "accent": "#FF9A6C",
+        "icon": "figure.strengthtraining.functional"
+      },
+      "type": {
+        "id": "cardio",
+        "name": "Cardio"
+      },
+      "difficulty": 3,
+      "durationSeconds": 45,
+      "animation": "burpee",
+      "equipment": [],
+      "instructions": [
+        "From standing, crouch and place your hands on the floor.",
+        "Jump or step back to a plank, complete a push-up if you like, then jump the feet in.",
+        "Stand and finish with a small jump, landing softly."
+      ],
+      "cues": [
+        "Pace yourself",
+        "Soft landings",
+        "Scale the push-up"
+      ],
+      "benefits": [
+        "Conditioning",
+        "Full-body coordination",
+        "Work capacity"
+      ],
+      "breathing": "Exhale on the jump, inhale on the descent.",
+      "regions": [
+        {
+          "id": "full-body",
+          "name": "Full body"
+        },
+        {
+          "id": "core",
+          "name": "Core"
+        },
+        {
+          "id": "legs",
+          "name": "Legs"
+        }
+      ],
+      "primaryMuscles": [
+        {
+          "id": "quads",
+          "name": "Quadriceps"
+        },
+        {
+          "id": "chest",
+          "name": "Pectorals"
+        },
+        {
+          "id": "abs",
+          "name": "Abdominals"
+        }
+      ],
+      "secondaryMuscles": [
+        {
+          "id": "hamstrings",
+          "name": "Hamstrings"
+        },
+        {
+          "id": "glutes",
+          "name": "Glutes"
+        },
+        {
+          "id": "front-delts",
+          "name": "Front delts"
+        },
+        {
+          "id": "triceps",
+          "name": "Triceps"
+        }
+      ],
+      "prescription": {
+        "sets": 3,
+        "reps": 10,
+        "holdSeconds": null,
+        "loadKg": null,
+        "restSeconds": 60
+      }
+    },
+    {
+      "id": "ex-forearm-plank",
+      "slug": "forearm-plank",
+      "name": "Forearm plank",
+      "summary": "A foundational anti-extension hold for the whole trunk.",
+      "topic": {
+        "id": "calisthenics",
+        "name": "Calisthenics",
+        "accent": "#FF9A6C",
+        "icon": "figure.strengthtraining.functional"
+      },
+      "type": {
+        "id": "isometric",
+        "name": "Isometric"
+      },
+      "difficulty": 1,
+      "durationSeconds": 40,
+      "animation": "plank",
+      "equipment": [],
+      "instructions": [
+        "Set elbows under shoulders and forearms on the floor.",
+        "Extend your legs and tuck your pelvis so your body forms a line.",
+        "Spread your shoulder blades and hold while breathing evenly."
+      ],
+      "cues": [
+        "Tuck the pelvis",
+        "Push the floor away",
+        "No sagging hips"
+      ],
+      "benefits": [
+        "Core stability",
+        "Shoulder endurance",
+        "Posture"
+      ],
+      "breathing": "Slow, steady nasal breathing.",
+      "regions": [
+        {
+          "id": "full-body",
+          "name": "Full body"
+        },
+        {
+          "id": "core",
+          "name": "Core"
+        },
+        {
+          "id": "shoulders",
+          "name": "Shoulders"
+        }
+      ],
+      "primaryMuscles": [
+        {
+          "id": "abs",
+          "name": "Abdominals"
+        },
+        {
+          "id": "obliques",
+          "name": "Obliques"
+        }
+      ],
+      "secondaryMuscles": [
+        {
+          "id": "quads",
+          "name": "Quadriceps"
+        },
+        {
+          "id": "glutes",
+          "name": "Glutes"
+        },
+        {
+          "id": "front-delts",
+          "name": "Front delts"
+        },
+        {
+          "id": "serratus",
+          "name": "Serratus"
+        }
+      ],
+      "prescription": {
+        "sets": 3,
+        "reps": null,
+        "holdSeconds": 40,
+        "loadKg": null,
+        "restSeconds": 45
+      }
+    },
+    {
+      "id": "ex-glute-bridge",
+      "slug": "glute-bridge",
+      "name": "Glute bridge",
+      "summary": "A gentle but effective glute activator and hip-extension drill.",
+      "topic": {
+        "id": "calisthenics",
+        "name": "Calisthenics",
+        "accent": "#FF9A6C",
+        "icon": "figure.strengthtraining.functional"
+      },
+      "type": {
+        "id": "strength",
+        "name": "Strength"
+      },
+      "difficulty": 1,
+      "durationSeconds": 35,
+      "animation": "bridge",
+      "equipment": [],
+      "instructions": [
+        "Lie on your back with knees bent and feet flat, heels near your glutes.",
+        "Drive through your heels to lift your hips into a bridge.",
+        "Pause and squeeze, then lower slowly."
+      ],
+      "cues": [
+        "Ribs down",
+        "Knees in line with feet",
+        "Glutes, not lower back"
+      ],
+      "benefits": [
+        "Glute activation",
+        "Hip mobility",
+        "Low-back relief"
+      ],
+      "breathing": "Exhale up, inhale down.",
+      "regions": [
+        {
+          "id": "lower-body",
+          "name": "Lower body"
+        },
+        {
+          "id": "hips",
+          "name": "Hips"
+        },
+        {
+          "id": "glutes",
+          "name": "Glutes"
+        }
+      ],
+      "primaryMuscles": [
+        {
+          "id": "glutes",
+          "name": "Glutes"
+        }
+      ],
+      "secondaryMuscles": [
+        {
+          "id": "hamstrings",
+          "name": "Hamstrings"
+        },
+        {
+          "id": "adductors",
+          "name": "Adductors"
+        },
+        {
+          "id": "abs",
+          "name": "Abdominals"
+        }
+      ],
+      "prescription": {
+        "sets": 3,
+        "reps": 15,
+        "holdSeconds": null,
+        "loadKg": null,
+        "restSeconds": 45
+      }
+    },
+    {
+      "id": "ex-hanging-leg-raise",
+      "slug": "hanging-leg-raise",
+      "name": "Hanging leg raise",
+      "summary": "A demanding lower-ab exercise that also builds grip and shoulder stability.",
+      "topic": {
+        "id": "calisthenics",
+        "name": "Calisthenics",
+        "accent": "#FF9A6C",
+        "icon": "figure.strengthtraining.functional"
+      },
+      "type": {
+        "id": "strength",
+        "name": "Strength"
+      },
+      "difficulty": 4,
+      "durationSeconds": 45,
+      "animation": "legRaise",
+      "equipment": [
+        "Pull-up bar"
+      ],
+      "instructions": [
+        "Hang from the bar with shoulders active and legs together.",
+        "Curl your pelvis and lift your legs until they pass parallel.",
+        "Lower slowly without swinging."
+      ],
+      "cues": [
+        "Curl the pelvis, don’t just lift legs",
+        "No kip",
+        "Control the descent"
+      ],
+      "benefits": [
+        "Lower abs",
+        "Hip-flexor strength",
+        "Grip"
+      ],
+      "breathing": "Exhale as you lift, inhale down.",
+      "regions": [
+        {
+          "id": "upper-body",
+          "name": "Upper body"
+        },
+        {
+          "id": "core",
+          "name": "Core"
+        }
+      ],
+      "primaryMuscles": [
+        {
+          "id": "hip-flexors",
+          "name": "Hip flexors"
+        },
+        {
+          "id": "abs",
+          "name": "Abdominals"
+        }
+      ],
+      "secondaryMuscles": [
+        {
+          "id": "lats",
+          "name": "Lats"
+        },
+        {
+          "id": "forearms",
+          "name": "Forearms"
+        },
+        {
+          "id": "obliques",
+          "name": "Obliques"
+        }
+      ],
+      "prescription": {
+        "sets": 3,
+        "reps": 8,
+        "holdSeconds": null,
+        "loadKg": null,
+        "restSeconds": 75
+      }
+    },
+    {
+      "id": "ex-hollow-body-hold",
+      "slug": "hollow-body-hold",
+      "name": "Hollow body hold",
+      "summary": "A full-body anterior-chain isometric that teaches real core control.",
+      "topic": {
+        "id": "calisthenics",
+        "name": "Calisthenics",
+        "accent": "#FF9A6C",
+        "icon": "figure.strengthtraining.functional"
+      },
+      "type": {
+        "id": "isometric",
+        "name": "Isometric"
+      },
+      "difficulty": 3,
+      "durationSeconds": 40,
+      "animation": "hollowHold",
+      "equipment": [],
+      "instructions": [
+        "Lie on your back, press your lower back gently into the floor.",
+        "Lift shoulder blades and legs, reaching arms overhead.",
+        "Hold the banana shape while breathing behind the brace."
+      ],
+      "cues": [
+        "Ribs down",
+        "Lower back glued to floor",
+        "Scale by bending knees"
+      ],
+      "benefits": [
+        "Anterior core strength",
+        "Hollow-body skill",
+        "Low-back protection"
+      ],
+      "breathing": "Slow nasal breaths without losing the brace.",
+      "regions": [
+        {
+          "id": "full-body",
+          "name": "Full body"
+        },
+        {
+          "id": "core",
+          "name": "Core"
+        }
+      ],
+      "primaryMuscles": [
+        {
+          "id": "abs",
+          "name": "Abdominals"
+        }
+      ],
+      "secondaryMuscles": [
+        {
+          "id": "quads",
+          "name": "Quadriceps"
+        },
+        {
+          "id": "hip-flexors",
+          "name": "Hip flexors"
+        },
+        {
+          "id": "obliques",
+          "name": "Obliques"
+        }
+      ],
+      "prescription": {
+        "sets": 3,
+        "reps": null,
+        "holdSeconds": 30,
+        "loadKg": null,
+        "restSeconds": 60
+      }
+    },
+    {
+      "id": "ex-inverted-row",
+      "slug": "inverted-row",
+      "name": "Inverted row",
+      "summary": "A scalable horizontal pull using a bar, rings or a sturdy table.",
+      "topic": {
+        "id": "calisthenics",
+        "name": "Calisthenics",
+        "accent": "#FF9A6C",
+        "icon": "figure.strengthtraining.functional"
+      },
+      "type": {
+        "id": "strength",
+        "name": "Strength"
+      },
+      "difficulty": 2,
+      "durationSeconds": 40,
+      "animation": "row",
+      "equipment": [
+        "Bar"
+      ],
+      "instructions": [
+        "Lie under a low bar and grip it slightly wider than shoulders.",
+        "Keep your body in a line and pull your chest toward the bar.",
+        "Lower until your arms are fully straight."
+      ],
+      "cues": [
+        "Squeeze shoulder blades",
+        "Body stays rigid",
+        "Raise the bar to make it easier"
+      ],
+      "benefits": [
+        "Back strength",
+        "Posture",
+        "Pulling volume"
+      ],
+      "breathing": "Exhale on the pull.",
+      "regions": [
+        {
+          "id": "upper-body",
+          "name": "Upper body"
+        },
+        {
+          "id": "arms",
+          "name": "Arms"
+        },
+        {
+          "id": "back",
+          "name": "Back"
+        }
+      ],
+      "primaryMuscles": [
+        {
+          "id": "lats",
+          "name": "Lats"
+        },
+        {
+          "id": "rhomboids",
+          "name": "Rhomboids"
+        }
+      ],
+      "secondaryMuscles": [
+        {
+          "id": "rear-delts",
+          "name": "Rear delts"
+        },
+        {
+          "id": "biceps",
+          "name": "Biceps"
+        },
+        {
+          "id": "abs",
+          "name": "Abdominals"
+        }
+      ],
+      "prescription": {
+        "sets": 3,
+        "reps": 10,
+        "holdSeconds": null,
+        "loadKg": null,
+        "restSeconds": 75
+      }
+    },
+    {
+      "id": "ex-mountain-climber",
+      "slug": "mountain-climber",
+      "name": "Mountain climber",
+      "summary": "A fast, core-driven conditioning move from a plank position.",
+      "topic": {
+        "id": "calisthenics",
+        "name": "Calisthenics",
+        "accent": "#FF9A6C",
+        "icon": "figure.strengthtraining.functional"
+      },
+      "type": {
+        "id": "cardio",
+        "name": "Cardio"
+      },
+      "difficulty": 2,
+      "durationSeconds": 40,
+      "animation": "mountainClimber",
+      "equipment": [],
+      "instructions": [
+        "Start in a high plank with hands under shoulders.",
+        "Drive one knee toward your chest, then switch sides quickly.",
+        "Keep hips low and shoulders stacked over hands."
+      ],
+      "cues": [
+        "Quiet feet",
+        "Hips stay level",
+        "Breathe rhythmically"
+      ],
+      "benefits": [
+        "Conditioning",
+        "Core endurance",
+        "Hip mobility"
+      ],
+      "breathing": "Short, rhythmic breaths.",
+      "regions": [
+        {
+          "id": "full-body",
+          "name": "Full body"
+        },
+        {
+          "id": "core",
+          "name": "Core"
+        },
+        {
+          "id": "legs",
+          "name": "Legs"
+        }
+      ],
+      "primaryMuscles": [
+        {
+          "id": "hip-flexors",
+          "name": "Hip flexors"
+        },
+        {
+          "id": "abs",
+          "name": "Abdominals"
+        }
+      ],
+      "secondaryMuscles": [
+        {
+          "id": "quads",
+          "name": "Quadriceps"
+        },
+        {
+          "id": "front-delts",
+          "name": "Front delts"
+        },
+        {
+          "id": "serratus",
+          "name": "Serratus"
+        }
+      ],
+      "prescription": {
+        "sets": 4,
+        "reps": null,
+        "holdSeconds": 30,
+        "loadKg": null,
+        "restSeconds": 30
+      }
+    },
+    {
+      "id": "ex-parallel-bar-dip",
+      "slug": "parallel-bar-dip",
+      "name": "Parallel bar dip",
+      "summary": "A heavy bodyweight press for triceps and lower chest.",
+      "topic": {
+        "id": "calisthenics",
+        "name": "Calisthenics",
+        "accent": "#FF9A6C",
+        "icon": "figure.strengthtraining.functional"
+      },
+      "type": {
+        "id": "strength",
+        "name": "Strength"
+      },
+      "difficulty": 4,
+      "durationSeconds": 45,
+      "animation": "dip",
+      "equipment": [
+        "Parallel bars"
+      ],
+      "instructions": [
+        "Support yourself on the bars with arms locked.",
+        "Lower until your upper arms are parallel to the floor.",
+        "Press back up, keeping shoulders away from your ears."
+      ],
+      "cues": [
+        "Slight forward lean",
+        "Controlled depth",
+        "Elbows track back"
+      ],
+      "benefits": [
+        "Triceps strength",
+        "Chest strength",
+        "Shoulder stability"
+      ],
+      "breathing": "Inhale down, exhale up.",
+      "regions": [
+        {
+          "id": "upper-body",
+          "name": "Upper body"
+        },
+        {
+          "id": "arms",
+          "name": "Arms"
+        },
+        {
+          "id": "chest",
+          "name": "Chest"
+        }
+      ],
+      "primaryMuscles": [
+        {
+          "id": "chest",
+          "name": "Pectorals"
+        },
+        {
+          "id": "triceps",
+          "name": "Triceps"
+        }
+      ],
+      "secondaryMuscles": [
+        {
+          "id": "front-delts",
+          "name": "Front delts"
+        },
+        {
+          "id": "abs",
+          "name": "Abdominals"
+        }
+      ],
+      "prescription": {
+        "sets": 3,
+        "reps": 8,
+        "holdSeconds": null,
+        "loadKg": null,
+        "restSeconds": 90
+      }
+    },
+    {
+      "id": "ex-pike-push-up",
+      "slug": "pike-push-up",
+      "name": "Pike push-up",
+      "summary": "A bodyweight overhead press that builds shoulders and upper-chest strength.",
+      "topic": {
+        "id": "calisthenics",
+        "name": "Calisthenics",
+        "accent": "#FF9A6C",
+        "icon": "figure.strengthtraining.functional"
+      },
+      "type": {
+        "id": "strength",
+        "name": "Strength"
+      },
+      "difficulty": 3,
+      "durationSeconds": 45,
+      "animation": "pike",
+      "equipment": [],
+      "instructions": [
+        "Start in a downward-dog shape with hips high and hands shoulder-width.",
+        "Bend your elbows to lower the crown of your head toward the floor.",
+        "Press back up until your arms are straight."
+      ],
+      "cues": [
+        "Hips stay high",
+        "Head between hands",
+        "Elbows track back"
+      ],
+      "benefits": [
+        "Shoulder strength",
+        "Overhead range",
+        "Triceps"
+      ],
+      "breathing": "Inhale down, exhale up.",
+      "regions": [
+        {
+          "id": "upper-body",
+          "name": "Upper body"
+        },
+        {
+          "id": "arms",
+          "name": "Arms"
+        },
+        {
+          "id": "shoulders",
+          "name": "Shoulders"
+        }
+      ],
+      "primaryMuscles": [
+        {
+          "id": "front-delts",
+          "name": "Front delts"
+        },
+        {
+          "id": "triceps",
+          "name": "Triceps"
+        }
+      ],
+      "secondaryMuscles": [
+        {
+          "id": "chest",
+          "name": "Pectorals"
+        },
+        {
+          "id": "upper-back",
+          "name": "Upper back"
+        },
+        {
+          "id": "serratus",
+          "name": "Serratus"
+        }
+      ],
+      "prescription": {
+        "sets": 3,
+        "reps": 8,
+        "holdSeconds": null,
+        "loadKg": null,
+        "restSeconds": 75
+      }
+    },
+    {
+      "id": "ex-pull-up",
+      "slug": "pull-up",
+      "name": "Pull-up",
+      "summary": "The benchmark vertical pull for lats, biceps and shoulder health.",
+      "topic": {
+        "id": "calisthenics",
+        "name": "Calisthenics",
+        "accent": "#FF9A6C",
+        "icon": "figure.strengthtraining.functional"
+      },
+      "type": {
+        "id": "strength",
+        "name": "Strength"
+      },
+      "difficulty": 4,
+      "durationSeconds": 50,
+      "animation": "pullup",
+      "equipment": [
+        "Pull-up bar"
+      ],
+      "instructions": [
+        "Hang with an overhand grip just outside shoulder width.",
+        "Set your shoulders down and pull your elbows toward your ribs.",
+        "Bring your chin over the bar, then lower all the way to a long hang."
+      ],
+      "cues": [
+        "Lead with the chest",
+        "No kipping",
+        "Full hang at the bottom"
+      ],
+      "benefits": [
+        "Lat strength",
+        "Grip",
+        "Relative strength"
+      ],
+      "breathing": "Exhale as you pull, inhale on the descent.",
+      "regions": [
+        {
+          "id": "upper-body",
+          "name": "Upper body"
+        },
+        {
+          "id": "arms",
+          "name": "Arms"
+        },
+        {
+          "id": "back",
+          "name": "Back"
+        }
+      ],
+      "primaryMuscles": [
+        {
+          "id": "lats",
+          "name": "Lats"
+        },
+        {
+          "id": "biceps",
+          "name": "Biceps"
+        }
+      ],
+      "secondaryMuscles": [
+        {
+          "id": "rhomboids",
+          "name": "Rhomboids"
+        },
+        {
+          "id": "forearms",
+          "name": "Forearms"
+        },
+        {
+          "id": "abs",
+          "name": "Abdominals"
+        }
+      ],
+      "prescription": {
+        "sets": 3,
+        "reps": 6,
+        "holdSeconds": null,
+        "loadKg": null,
+        "restSeconds": 120
+      }
+    },
+    {
+      "id": "ex-push-up",
+      "slug": "push-up",
+      "name": "Push-up",
+      "summary": "The foundational horizontal push — scalable from knees to feet-elevated.",
+      "topic": {
+        "id": "calisthenics",
+        "name": "Calisthenics",
+        "accent": "#FF9A6C",
+        "icon": "figure.strengthtraining.functional"
+      },
+      "type": {
+        "id": "strength",
+        "name": "Strength"
+      },
+      "difficulty": 2,
+      "durationSeconds": 40,
+      "animation": "pushup",
+      "equipment": [],
+      "instructions": [
+        "Set hands slightly wider than shoulders, body in one long line.",
+        "Lower your chest until it is a fist above the floor, elbows at 45 degrees.",
+        "Press the floor away and lock out without letting the hips sag."
+      ],
+      "cues": [
+        "Squeeze glutes and abs",
+        "Elbows 45°, not flared",
+        "Push the floor away"
+      ],
+      "benefits": [
+        "Chest and triceps strength",
+        "Scapular control",
+        "Core stiffness"
+      ],
+      "breathing": "Inhale down, exhale up.",
+      "regions": [
+        {
+          "id": "upper-body",
+          "name": "Upper body"
+        },
+        {
+          "id": "core",
+          "name": "Core"
+        },
+        {
+          "id": "arms",
+          "name": "Arms"
+        },
+        {
+          "id": "chest",
+          "name": "Chest"
+        }
+      ],
+      "primaryMuscles": [
+        {
+          "id": "chest",
+          "name": "Pectorals"
+        },
+        {
+          "id": "triceps",
+          "name": "Triceps"
+        }
+      ],
+      "secondaryMuscles": [
+        {
+          "id": "front-delts",
+          "name": "Front delts"
+        },
+        {
+          "id": "abs",
+          "name": "Abdominals"
+        },
+        {
+          "id": "serratus",
+          "name": "Serratus"
+        }
+      ],
+      "prescription": {
+        "sets": 3,
+        "reps": 12,
+        "holdSeconds": null,
+        "loadKg": null,
+        "restSeconds": 60
+      }
+    },
+    {
+      "id": "ex-side-plank",
+      "slug": "side-plank",
+      "name": "Side plank",
+      "summary": "Lateral core strength and hip stability on one arm.",
+      "topic": {
+        "id": "calisthenics",
+        "name": "Calisthenics",
+        "accent": "#FF9A6C",
+        "icon": "figure.strengthtraining.functional"
+      },
+      "type": {
+        "id": "isometric",
+        "name": "Isometric"
+      },
+      "difficulty": 2,
+      "durationSeconds": 40,
+      "animation": "sidePlank",
+      "equipment": [],
+      "instructions": [
+        "Lie on one side with elbow under shoulder and feet stacked.",
+        "Lift your hips so your body is a straight line from head to feet.",
+        "Reach the top arm to the ceiling and hold."
+      ],
+      "cues": [
+        "Stack shoulders, hips and feet",
+        "Push the bottom shoulder away",
+        "Don’t let hips drift back"
+      ],
+      "benefits": [
+        "Oblique strength",
+        "Hip stability",
+        "Shoulder endurance"
+      ],
+      "breathing": "Steady breaths on both sides.",
+      "regions": [
+        {
+          "id": "core",
+          "name": "Core"
+        },
+        {
+          "id": "hips",
+          "name": "Hips"
+        }
+      ],
+      "primaryMuscles": [
+        {
+          "id": "obliques",
+          "name": "Obliques"
+        }
+      ],
+      "secondaryMuscles": [
+        {
+          "id": "glutes",
+          "name": "Glutes"
+        },
+        {
+          "id": "front-delts",
+          "name": "Front delts"
+        },
+        {
+          "id": "abs",
+          "name": "Abdominals"
+        }
+      ],
+      "prescription": {
+        "sets": 2,
+        "reps": null,
+        "holdSeconds": 30,
+        "loadKg": null,
+        "restSeconds": 45
+      }
+    },
+    {
+      "id": "ex-high-knees",
+      "slug": "high-knees",
+      "name": "High knees",
+      "summary": "A fast, low-space cardio burst that wakes up the hips and calves.",
+      "topic": {
+        "id": "cardio",
+        "name": "Cardio",
+        "accent": "#FF6B9A",
+        "icon": "heart.fill"
+      },
+      "type": {
+        "id": "plyometric",
+        "name": "Plyometric"
+      },
+      "difficulty": 2,
+      "durationSeconds": 40,
+      "animation": "run",
+      "equipment": [],
+      "instructions": [
+        "Stand tall and drive one knee at a time toward hip height.",
+        "Stay on the balls of your feet and keep a quick cadence.",
+        "Pump your arms and land softly."
+      ],
+      "cues": [
+        "Tall posture",
+        "Quick feet",
+        "Soft landings"
+      ],
+      "benefits": [
+        "Conditioning",
+        "Hip mobility",
+        "Coordination"
+      ],
+      "breathing": "Short, rhythmic breaths.",
+      "regions": [
+        {
+          "id": "full-body",
+          "name": "Full body"
+        },
+        {
+          "id": "legs",
+          "name": "Legs"
+        }
+      ],
+      "primaryMuscles": [
+        {
+          "id": "quads",
+          "name": "Quadriceps"
+        },
+        {
+          "id": "calves",
+          "name": "Calves"
+        },
+        {
+          "id": "hip-flexors",
+          "name": "Hip flexors"
+        }
+      ],
+      "secondaryMuscles": [
+        {
+          "id": "glutes",
+          "name": "Glutes"
+        },
+        {
+          "id": "abs",
+          "name": "Abdominals"
+        },
+        {
+          "id": "diaphragm",
+          "name": "Diaphragm"
+        }
+      ],
+      "prescription": {
+        "sets": 4,
+        "reps": null,
+        "holdSeconds": 30,
+        "loadKg": null,
+        "restSeconds": 30
+      }
+    },
+    {
+      "id": "ex-incline-walk",
+      "slug": "incline-walk",
+      "name": "Incline walk",
+      "summary": "Low-impact aerobic work that is kind to joints and easy to recover from.",
+      "topic": {
+        "id": "cardio",
+        "name": "Cardio",
+        "accent": "#FF6B9A",
+        "icon": "heart.fill"
+      },
+      "type": {
+        "id": "cardio",
+        "name": "Cardio"
+      },
+      "difficulty": 1,
+      "durationSeconds": 900,
+      "animation": "run",
+      "equipment": [
+        "Treadmill or hill"
+      ],
+      "instructions": [
+        "Set a treadmill incline of 8–12% or find a steady hill.",
+        "Walk at a pace that raises your heart rate but lets you speak.",
+        "Keep your posture tall and let your arms swing naturally."
+      ],
+      "cues": [
+        "Don’t hold the rails",
+        "Short steps uphill",
+        "Stand tall"
+      ],
+      "benefits": [
+        "Aerobic base",
+        "Glute and calf endurance",
+        "Low impact"
+      ],
+      "breathing": "Nasal breathing where possible.",
+      "regions": [
+        {
+          "id": "lower-body",
+          "name": "Lower body"
+        },
+        {
+          "id": "legs",
+          "name": "Legs"
+        }
+      ],
+      "primaryMuscles": [
+        {
+          "id": "quads",
+          "name": "Quadriceps"
+        },
+        {
+          "id": "glutes",
+          "name": "Glutes"
+        },
+        {
+          "id": "calves",
+          "name": "Calves"
+        }
+      ],
+      "secondaryMuscles": [
+        {
+          "id": "hamstrings",
+          "name": "Hamstrings"
+        },
+        {
+          "id": "abs",
+          "name": "Abdominals"
+        },
+        {
+          "id": "diaphragm",
+          "name": "Diaphragm"
+        }
+      ],
+      "prescription": {
+        "sets": 1,
+        "reps": null,
+        "holdSeconds": 900,
+        "loadKg": null,
+        "restSeconds": 0
+      }
+    },
+    {
+      "id": "ex-jump-rope",
+      "slug": "jump-rope",
+      "name": "Jump rope",
+      "summary": "A compact, high-return conditioning tool for calves and coordination.",
+      "topic": {
+        "id": "cardio",
+        "name": "Cardio",
+        "accent": "#FF6B9A",
+        "icon": "heart.fill"
+      },
+      "type": {
+        "id": "cardio",
+        "name": "Cardio"
+      },
+      "difficulty": 2,
+      "durationSeconds": 40,
+      "animation": "jumpingJack",
+      "equipment": [
+        "Jump rope"
+      ],
+      "instructions": [
+        "Hold the handles at hip height with elbows close to your ribs.",
+        "Turn the rope with your wrists and jump just high enough to clear it.",
+        "Land softly on the balls of your feet and keep a steady rhythm."
+      ],
+      "cues": [
+        "Wrists, not arms",
+        "Tiny jumps",
+        "Stay tall"
+      ],
+      "benefits": [
+        "Conditioning",
+        "Calf endurance",
+        "Coordination"
+      ],
+      "breathing": "Steady nasal or rhythmic breathing.",
+      "regions": [
+        {
+          "id": "full-body",
+          "name": "Full body"
+        },
+        {
+          "id": "legs",
+          "name": "Legs"
+        }
+      ],
+      "primaryMuscles": [
+        {
+          "id": "quads",
+          "name": "Quadriceps"
+        },
+        {
+          "id": "calves",
+          "name": "Calves"
+        }
+      ],
+      "secondaryMuscles": [
+        {
+          "id": "forearms",
+          "name": "Forearms"
+        },
+        {
+          "id": "abs",
+          "name": "Abdominals"
+        },
+        {
+          "id": "diaphragm",
+          "name": "Diaphragm"
+        }
+      ],
+      "prescription": {
+        "sets": 5,
+        "reps": null,
+        "holdSeconds": 60,
+        "loadKg": null,
+        "restSeconds": 30
+      }
+    },
+    {
+      "id": "ex-jumping-jacks",
+      "slug": "jumping-jacks",
+      "name": "Jumping jacks",
+      "summary": "A simple full-body warm-up that raises heart rate in seconds.",
+      "topic": {
+        "id": "cardio",
+        "name": "Cardio",
+        "accent": "#FF6B9A",
+        "icon": "heart.fill"
+      },
+      "type": {
+        "id": "plyometric",
+        "name": "Plyometric"
+      },
+      "difficulty": 1,
+      "durationSeconds": 35,
+      "animation": "jumpingJack",
+      "equipment": [],
+      "instructions": [
+        "Stand with feet together and arms by your sides.",
+        "Jump your feet wide while sweeping your arms overhead.",
+        "Jump back to the start and keep a steady rhythm."
+      ],
+      "cues": [
+        "Soft knees",
+        "Full arm swing",
+        "Breathe rhythmically"
+      ],
+      "benefits": [
+        "Warm-up",
+        "Conditioning",
+        "Coordination"
+      ],
+      "breathing": "Even, rhythmic breaths.",
+      "regions": [
+        {
+          "id": "full-body",
+          "name": "Full body"
+        },
+        {
+          "id": "shoulders",
+          "name": "Shoulders"
+        }
+      ],
+      "primaryMuscles": [
+        {
+          "id": "quads",
+          "name": "Quadriceps"
+        },
+        {
+          "id": "calves",
+          "name": "Calves"
+        },
+        {
+          "id": "side-delts",
+          "name": "Side delts"
+        }
+      ],
+      "secondaryMuscles": [
+        {
+          "id": "glutes",
+          "name": "Glutes"
+        },
+        {
+          "id": "hip-abductors",
+          "name": "Hip abductors"
+        },
+        {
+          "id": "diaphragm",
+          "name": "Diaphragm"
+        }
+      ],
+      "prescription": {
+        "sets": 3,
+        "reps": null,
+        "holdSeconds": 40,
+        "loadKg": null,
+        "restSeconds": 20
+      }
+    },
+    {
+      "id": "ex-shadow-boxing",
+      "slug": "shadow-boxing",
+      "name": "Shadow boxing",
+      "summary": "Playful, low-impact intervals that train the cardiovascular system and coordination.",
+      "topic": {
+        "id": "cardio",
+        "name": "Cardio",
+        "accent": "#FF6B9A",
+        "icon": "heart.fill"
+      },
+      "type": {
+        "id": "cardio",
+        "name": "Cardio"
+      },
+      "difficulty": 2,
+      "durationSeconds": 40,
+      "animation": "boxing",
+      "equipment": [],
+      "instructions": [
+        "Set a light stance with one foot forward and hands up.",
+        "Throw controlled jabs and crosses, rotating through the hips.",
+        "Stay light on your feet and breathe out on every punch."
+      ],
+      "cues": [
+        "Chin down",
+        "Punch from the hips",
+        "Reset your guard"
+      ],
+      "benefits": [
+        "Conditioning",
+        "Rotational power",
+        "Coordination"
+      ],
+      "breathing": "Sharp exhales on punches.",
+      "regions": [
+        {
+          "id": "full-body",
+          "name": "Full body"
+        },
+        {
+          "id": "upper-body",
+          "name": "Upper body"
+        },
+        {
+          "id": "core",
+          "name": "Core"
+        }
+      ],
+      "primaryMuscles": [
+        {
+          "id": "front-delts",
+          "name": "Front delts"
+        },
+        {
+          "id": "triceps",
+          "name": "Triceps"
+        },
+        {
+          "id": "obliques",
+          "name": "Obliques"
+        }
+      ],
+      "secondaryMuscles": [
+        {
+          "id": "calves",
+          "name": "Calves"
+        },
+        {
+          "id": "hip-flexors",
+          "name": "Hip flexors"
+        },
+        {
+          "id": "chest",
+          "name": "Pectorals"
+        },
+        {
+          "id": "lats",
+          "name": "Lats"
+        }
+      ],
+      "prescription": {
+        "sets": 4,
+        "reps": null,
+        "holdSeconds": 45,
+        "loadKg": null,
+        "restSeconds": 30
+      }
+    },
+    {
+      "id": "ex-zone-2-run",
+      "slug": "zone-2-run",
+      "name": "Zone 2 run",
+      "summary": "Conversational-pace running that builds your aerobic engine without burning you out.",
+      "topic": {
+        "id": "cardio",
+        "name": "Cardio",
+        "accent": "#FF6B9A",
+        "icon": "heart.fill"
+      },
+      "type": {
+        "id": "cardio",
+        "name": "Cardio"
+      },
+      "difficulty": 2,
+      "durationSeconds": 900,
+      "animation": "run",
+      "equipment": [
+        "Running shoes"
+      ],
+      "instructions": [
+        "Warm up with five minutes of easy walking or jogging.",
+        "Run at a pace where you can hold a conversation in full sentences.",
+        "Cool down with five minutes of walking and breathe through your nose."
+      ],
+      "cues": [
+        "Nose breathing if possible",
+        "Shoulders relaxed",
+        "Cadence over stride length"
+      ],
+      "benefits": [
+        "Aerobic base",
+        "Heart health",
+        "Recovery capacity"
+      ],
+      "breathing": "Nasal breathing, 3–4 steps per inhale.",
+      "regions": [
+        {
+          "id": "full-body",
+          "name": "Full body"
+        },
+        {
+          "id": "legs",
+          "name": "Legs"
+        }
+      ],
+      "primaryMuscles": [
+        {
+          "id": "quads",
+          "name": "Quadriceps"
+        },
+        {
+          "id": "hamstrings",
+          "name": "Hamstrings"
+        },
+        {
+          "id": "calves",
+          "name": "Calves"
+        }
+      ],
+      "secondaryMuscles": [
+        {
+          "id": "glutes",
+          "name": "Glutes"
+        },
+        {
+          "id": "hip-flexors",
+          "name": "Hip flexors"
+        },
+        {
+          "id": "diaphragm",
+          "name": "Diaphragm"
+        }
+      ],
+      "prescription": {
+        "sets": 1,
+        "reps": null,
+        "holdSeconds": 900,
+        "loadKg": null,
+        "restSeconds": 0
+      }
+    },
+    {
+      "id": "ex-body-scan",
+      "slug": "body-scan",
+      "name": "Body scan",
+      "summary": "A guided-feel meditation that moves attention through the body and releases holding.",
+      "topic": {
+        "id": "recovery",
+        "name": "Recovery",
+        "accent": "#8FB8FF",
+        "icon": "moon.stars.fill"
+      },
+      "type": {
+        "id": "breathwork",
+        "name": "Breathwork"
+      },
+      "difficulty": 1,
+      "durationSeconds": 300,
+      "animation": "breathe",
+      "equipment": [
+        "Mat"
+      ],
+      "instructions": [
+        "Lie down with palms up and let your feet fall open.",
+        "Move your attention slowly from your toes to the top of your head.",
+        "When you find tension, breathe into it and let it soften on the exhale."
+      ],
+      "cues": [
+        "No fixing, just noticing",
+        "Slow and unhurried",
+        "Stay warm"
+      ],
+      "benefits": [
+        "Relaxation",
+        "Interoception",
+        "Sleep readiness"
+      ],
+      "breathing": "Natural breath, no control.",
+      "regions": [
+        {
+          "id": "full-body",
+          "name": "Full body"
+        }
+      ],
+      "primaryMuscles": [
+        {
+          "id": "diaphragm",
+          "name": "Diaphragm"
+        },
+        {
+          "id": "pelvic-floor",
+          "name": "Pelvic floor"
+        }
+      ],
+      "secondaryMuscles": [
+        {
+          "id": "abs",
+          "name": "Abdominals"
+        },
+        {
+          "id": "lower-back",
+          "name": "Spinal erectors"
+        },
+        {
+          "id": "neck",
+          "name": "Neck"
+        }
+      ],
+      "prescription": {
+        "sets": 1,
+        "reps": null,
+        "holdSeconds": 300,
+        "loadKg": null,
+        "restSeconds": 0
+      }
+    },
+    {
+      "id": "ex-box-breathing",
+      "slug": "box-breathing",
+      "name": "Box breathing",
+      "summary": "Four equal counts in, hold, out and hold — a portable reset for the nervous system.",
+      "topic": {
+        "id": "recovery",
+        "name": "Recovery",
+        "accent": "#8FB8FF",
+        "icon": "moon.stars.fill"
+      },
+      "type": {
+        "id": "breathwork",
+        "name": "Breathwork"
+      },
+      "difficulty": 1,
+      "durationSeconds": 180,
+      "animation": "breathe",
+      "equipment": [],
+      "instructions": [
+        "Sit or lie comfortably and exhale fully.",
+        "Inhale for four, hold for four, exhale for four, hold for four.",
+        "Repeat for several minutes, letting your shoulders drop."
+      ],
+      "cues": [
+        "Gentle through the nose",
+        "No strain on the holds",
+        "Relax your jaw"
+      ],
+      "benefits": [
+        "Stress regulation",
+        "Focus",
+        "Better sleep"
+      ],
+      "breathing": "4-4-4-4 box rhythm.",
+      "regions": [
+        {
+          "id": "full-body",
+          "name": "Full body"
+        },
+        {
+          "id": "core",
+          "name": "Core"
+        }
+      ],
+      "primaryMuscles": [
+        {
+          "id": "diaphragm",
+          "name": "Diaphragm"
+        }
+      ],
+      "secondaryMuscles": [
+        {
+          "id": "abs",
+          "name": "Abdominals"
+        },
+        {
+          "id": "neck",
+          "name": "Neck"
+        },
+        {
+          "id": "pelvic-floor",
+          "name": "Pelvic floor"
+        }
+      ],
+      "prescription": {
+        "sets": 1,
+        "reps": null,
+        "holdSeconds": 180,
+        "loadKg": null,
+        "restSeconds": 0
+      }
+    },
+    {
+      "id": "ex-physiological-sigh",
+      "slug": "physiological-sigh",
+      "name": "Physiological sigh",
+      "summary": "Two inhales and a long exhale — the fastest known voluntary calm-down.",
+      "topic": {
+        "id": "recovery",
+        "name": "Recovery",
+        "accent": "#8FB8FF",
+        "icon": "moon.stars.fill"
+      },
+      "type": {
+        "id": "breathwork",
+        "name": "Breathwork"
+      },
+      "difficulty": 1,
+      "durationSeconds": 60,
+      "animation": "breathe",
+      "equipment": [],
+      "instructions": [
+        "Inhale through your nose until about 80% full.",
+        "Add a short second inhale through the nose.",
+        "Exhale slowly and completely through the mouth, then repeat."
+      ],
+      "cues": [
+        "Second inhale is small",
+        "Make the exhale longer than the inhale",
+        "Drop your shoulders"
+      ],
+      "benefits": [
+        "Rapid stress relief",
+        "Heart-rate downshift",
+        "Mood regulation"
+      ],
+      "breathing": "Double inhale, long exhale.",
+      "regions": [
+        {
+          "id": "full-body",
+          "name": "Full body"
+        },
+        {
+          "id": "core",
+          "name": "Core"
+        }
+      ],
+      "primaryMuscles": [
+        {
+          "id": "diaphragm",
+          "name": "Diaphragm"
+        }
+      ],
+      "secondaryMuscles": [
+        {
+          "id": "abs",
+          "name": "Abdominals"
+        },
+        {
+          "id": "pelvic-floor",
+          "name": "Pelvic floor"
+        }
+      ],
+      "prescription": {
+        "sets": 1,
+        "reps": null,
+        "holdSeconds": 60,
+        "loadKg": null,
+        "restSeconds": 0
+      }
+    },
+    {
+      "id": "ex-progressive-muscle-relaxation",
+      "slug": "progressive-muscle-relaxation",
+      "name": "Progressive muscle relaxation",
+      "summary": "Tense and release each muscle group to teach your body the difference.",
+      "topic": {
+        "id": "recovery",
+        "name": "Recovery",
+        "accent": "#8FB8FF",
+        "icon": "moon.stars.fill"
+      },
+      "type": {
+        "id": "breathwork",
+        "name": "Breathwork"
+      },
+      "difficulty": 1,
+      "durationSeconds": 300,
+      "animation": "breathe",
+      "equipment": [
+        "Mat"
+      ],
+      "instructions": [
+        "Lie down and take a few slow breaths.",
+        "Tense one muscle group for five seconds, then release for ten.",
+        "Work from your feet up to your face, noticing the contrast."
+      ],
+      "cues": [
+        "Tense at 70%, not 100%",
+        "Release fully",
+        "Keep breathing"
+      ],
+      "benefits": [
+        "Deep relaxation",
+        "Body awareness",
+        "Sleep support"
+      ],
+      "breathing": "Inhale to tense, exhale to release.",
+      "regions": [
+        {
+          "id": "full-body",
+          "name": "Full body"
+        }
+      ],
+      "primaryMuscles": [
+        {
+          "id": "abs",
+          "name": "Abdominals"
+        },
+        {
+          "id": "diaphragm",
+          "name": "Diaphragm"
+        }
+      ],
+      "secondaryMuscles": [
+        {
+          "id": "quads",
+          "name": "Quadriceps"
+        },
+        {
+          "id": "glutes",
+          "name": "Glutes"
+        },
+        {
+          "id": "forearms",
+          "name": "Forearms"
+        },
+        {
+          "id": "neck",
+          "name": "Neck"
+        }
+      ],
+      "prescription": {
+        "sets": 1,
+        "reps": null,
+        "holdSeconds": 300,
+        "loadKg": null,
+        "restSeconds": 0
+      }
+    },
+    {
+      "id": "ex-supine-twist",
+      "slug": "supine-twist",
+      "name": "Supine twist",
+      "summary": "A gentle reclined rotation that lets the spine and hips unwind.",
+      "topic": {
+        "id": "recovery",
+        "name": "Recovery",
+        "accent": "#8FB8FF",
+        "icon": "moon.stars.fill"
+      },
+      "type": {
+        "id": "stretch",
+        "name": "Stretch"
+      },
+      "difficulty": 1,
+      "durationSeconds": 45,
+      "animation": "twist",
+      "equipment": [
+        "Mat"
+      ],
+      "instructions": [
+        "Lie on your back and draw your knees toward your chest.",
+        "Let both knees fall to one side while your shoulders stay down.",
+        "Breathe and hold, then switch sides."
+      ],
+      "cues": [
+        "Let gravity do the work",
+        "Shoulders stay grounded",
+        "Slow exhales"
+      ],
+      "benefits": [
+        "Spinal rotation",
+        "Lower-back release",
+        "Wind-down"
+      ],
+      "breathing": "Long, quiet exhales.",
+      "regions": [
+        {
+          "id": "core",
+          "name": "Core"
+        },
+        {
+          "id": "hips",
+          "name": "Hips"
+        },
+        {
+          "id": "spine",
+          "name": "Spine"
+        }
+      ],
+      "primaryMuscles": [
+        {
+          "id": "obliques",
+          "name": "Obliques"
+        },
+        {
+          "id": "lower-back",
+          "name": "Spinal erectors"
+        }
+      ],
+      "secondaryMuscles": [
+        {
+          "id": "glutes",
+          "name": "Glutes"
+        },
+        {
+          "id": "hip-flexors",
+          "name": "Hip flexors"
+        },
+        {
+          "id": "abs",
+          "name": "Abdominals"
+        }
+      ],
+      "prescription": {
+        "sets": 2,
+        "reps": null,
+        "holdSeconds": 45,
+        "loadKg": null,
+        "restSeconds": 0
       }
     }
   ]
