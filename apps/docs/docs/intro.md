@@ -103,8 +103,8 @@ on the server.
 | Exercise visualization | ✅ 41 hand-keyframed Canvas animations, no video assets |
 | Bun API + SQLite | ✅ Typed REST API, deterministic plans, seeded demo history |
 | Documentation | ✅ Docusaurus (this site) |
-| Marketing website | ✅ Static site deployed alongside docs |
-| GitHub deployment | ✅ Single Pages workflow for both sites |
+| Marketing website | ✅ Static site with real app screenshots |
+| GitHub deployment | ✅ Workflow configured — enable Pages and push |
 | Multi-user auth | ⏳ Planned — header-based single-user mode today |
 
 :::note[Demo data]

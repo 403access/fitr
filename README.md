@@ -104,17 +104,26 @@ Pages artifact:
 - `apps/web` → `/`
 - `apps/docs/build` → `/docs/`
 
-### One-time GitHub setup
+The workflow is ready; nothing has been pushed to a remote yet. To publish:
 
-1. Create a repository and push this project.
-2. Open **Settings → Pages → Build and deployment** and set **Source** to **GitHub Actions**.
-3. Push to `main`. The workflow derives the owner and repository from `GITHUB_REPOSITORY`, so
-   Docusaurus uses the correct base URL automatically.
-4. Update `apps/ios/Fitr/App/AppConfig.swift` with your GitHub owner so in-app documentation
-   links point to the deployed site.
+```bash
+git remote add origin git@github.com:<owner>/fitr.git
+git push -u origin main
+```
 
-No secrets are required. See [Deployment](apps/docs/docs/technology/deployment.md) for custom
-domains, server hosting, TLS and the production checklist.
+Then open **Settings → Pages → Build and deployment**, set **Source** to **GitHub Actions**,
+and run (or re-run) the `Deploy site` workflow. Once it is green:
+
+- Marketing site: `https://<owner>.github.io/fitr/`
+- Documentation: `https://<owner>.github.io/fitr/docs/`
+
+Finally, update `apps/ios/Fitr/App/AppConfig.swift` with your GitHub owner so the in-app
+documentation and website links point at the live site.
+
+No secrets are required. The workflow derives the owner and repository from
+`GITHUB_REPOSITORY`, so Docusaurus uses the correct base URL automatically. See
+[Deployment](apps/docs/docs/technology/deployment.md) for custom domains, server hosting, TLS
+and the production checklist.
 
 ## Testing
 

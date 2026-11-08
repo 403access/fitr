@@ -5,6 +5,12 @@ title: Deployment
 
 # Deployment
 
+:::info[Current state]
+The deployment workflow is committed and verified by a local GitHub Pages simulation, but no
+remote has been configured yet. Push the repository and enable Pages to make the URLs below
+live. See **GitHub Pages → One-time repository setup**.
+:::
+
 There are two independent deployment surfaces:
 
 1. **Static sites** — marketing site and documentation, deployed together to GitHub Pages.
