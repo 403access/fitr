@@ -1,0 +1,22 @@
+{
+  "name": "@fitr/server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "bun --watch src/index.ts",
+    "start": "bun src/index.ts",
+    "test": "bun test",
+    "typecheck": "tsc --noEmit",
+    "db:reset": "bun scripts/reset.ts",
+    "export:ios": "bun scripts/export-catalog.ts"
+  },
+  "dependencies": {
+    "hono": "^4.7.0",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "typescript": "^5.7.0"
+  }
+}

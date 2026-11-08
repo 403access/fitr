@@ -1,0 +1,40 @@
+# macOS
+.DS_Store
+
+# Node / Bun
+node_modules/
+bun.lockb
+*.log
+
+# Build output
+dist/
+build/
+apps/docs/.docusaurus/
+apps/docs/build/
+_site/
+
+# Server data
+apps/server/data/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+*.db
+
+# Xcode
+apps/ios/*.xcodeproj/
+apps/ios/*.xcworkspace/
+apps/ios/DerivedData/
+apps/ios/build/
+xcuserdata/
+*.xcuserstate
+*.xcscmblueprint
+.swiftpm/
+
+# Env & secrets
+.env
+.env.*
+!.env.example
+
+# Tests & coverage
+coverage/
+.playwright/

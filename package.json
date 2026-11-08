@@ -1,0 +1,19 @@
+{
+  "name": "fitr",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Fitr — a self-coaching fitness system with a SwiftUI iOS app, Bun API and SQLite.",
+  "workspaces": [
+    "apps/server"
+  ],
+  "scripts": {
+    "dev:server": "bun run --cwd apps/server dev",
+    "dev:docs": "bun run --cwd apps/docs start",
+    "test": "bun run --cwd apps/server test",
+    "db:reset": "bun run --cwd apps/server db:reset",
+    "export:catalog": "bun run --cwd apps/server export:ios"
+  },
+  "engines": {
+    "bun": ">=1.2.0"
+  }
+}
