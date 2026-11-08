@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fitr — Train on your rhythm</title>
+  <meta name="description" content="A self-hosted fitness operating system: 60 animated exercises, a day plan across six time regions, and progress you can prove. Built with SwiftUI, Bun and SQLite." />
+  <meta name="theme-color" content="#08090C" />
+  <meta property="og:title" content="Fitr — Train on your rhythm" />
+  <meta property="og:description" content="A self-hosted fitness operating system with animated exercises, adaptive weekly plans and honest progress tracking." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/screenshots/today.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/app-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script>document.documentElement.classList.add('js');</script>
+  <script defer src="main.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" id="top">
+    <nav class="nav shell" aria-label="Primary">
+      <a class="brand" href="#top" aria-label="Fitr home">
+        <img src="assets/logo.svg" width="28" height="28" alt="" />
+        <span>FITR</span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links">
+        <span class="sr-only">Toggle navigation</span>
+        <span></span><span></span>
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="#rhythm">Rhythm</a>
+        <a href="#features">Features</a>
+        <a href="#progress">Progress</a>
+        <a href="#self-hosted">Self-hosted</a>
+        <a href="docs/">Docs</a>
+        <a class="nav-repo" data-github href="https://github.com/YOUR_GITHUB_USERNAME/fitr" rel="noreferrer">
+          GitHub <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12L12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="hero-glow hero-glow--one" aria-hidden="true"></div>
+      <div class="hero-glow hero-glow--two" aria-hidden="true"></div>
+      <div class="shell hero-grid">
+        <div class="hero-copy" data-reveal>
+          <div class="eyebrow"><span class="pulse"></span> SELF-HOSTED FITNESS OS · v0.1</div>
+          <h1>Train on<br />your <span class="accent">rhythm.</span></h1>
+          <p class="lede">
+            A catalogue of beautifully animated movement, a day plan that flows from wake to sleep,
+            and progress you can actually prove. Your plan gets harder every week — your data stays yours.
+          </p>
+          <div class="hero-actions">
+            <a class="button button--lime" href="docs/">Read the docs <span aria-hidden="true">→</span></a>
+            <a class="button button--ghost" data-github href="https://github.com/YOUR_GITHUB_USERNAME/fitr" rel="noreferrer">View source</a>
+          </div>
+          <dl class="hero-stats">
+            <div><dt>60</dt><dd>exercises</dd></div>
+            <div><dt>41</dt><dd>live animations</dd></div>
+            <div><dt>6</dt><dd>time regions</dd></div>
+            <div><dt>0</dt><dd>video assets</dd></div>
+          </dl>
+          <p class="build-line">SwiftUI · Bun · TypeScript · SQLite · Docusaurus</p>
+        </div>
+
+        <div class="hero-phone-wrap" data-reveal>
+          <div class="orbit orbit--one" aria-hidden="true"></div>
+          <div class="orbit orbit--two" aria-hidden="true"></div>
+          <div class="phone phone--hero" data-carousel>
+            <div class="phone-frame">
+              <div class="phone-island" aria-hidden="true"></div>
+              <div class="carousel" aria-roledescription="carousel" aria-label="Fitr app screenshots">
+                <figure class="slide is-active" data-caption="Your day, grouped by energy">
+                  <img src="assets/screenshots/today.jpg" width="900" height="1956" alt="Fitr Today screen with week strip and six time-region task groups" fetchpriority="high" />
+                </figure>
+                <figure class="slide" data-caption="Proof, not vibes">
+                  <img src="assets/screenshots/progress.jpg" width="900" height="1956" alt="Fitr progress dashboard with consistency ring and training-load chart" loading="lazy" />
+                </figure>
+                <figure class="slide" data-caption="A library with anatomy">
+                  <img src="assets/screenshots/catalogue.jpg" width="900" height="1956" alt="Fitr exercise catalogue with animated cards and filters" loading="lazy" />
+                </figure>
+                <figure class="slide" data-caption="Every rep, illustrated">
+                  <img src="assets/screenshots/player.jpg" width="900" height="1956" alt="Fitr exercise player with an animated squat figure and logging controls" loading="lazy" />
+                </figure>
+              </div>
+            </div>
+            <div class="carousel-controls">
+              <button class="carousel-btn" data-carousel-prev aria-label="Previous screenshot">←</button>
+              <div class="carousel-dots" role="tablist" aria-label="Choose screenshot">
+                <button class="dot is-active" data-carousel-dot="0" role="tab" aria-selected="true" aria-label="Today"></button>
+                <button class="dot" data-carousel-dot="1" role="tab" aria-selected="false" aria-label="Progress"></button>
+                <button class="dot" data-carousel-dot="2" role="tab" aria-selected="false" aria-label="Catalogue"></button>
+                <button class="dot" data-carousel-dot="3" role="tab" aria-selected="false" aria-label="Player"></button>
+              </div>
+              <button class="carousel-btn" data-carousel-next aria-label="Next screenshot">→</button>
+            </div>
+            <div class="phone-caption" aria-live="polite">Your day, grouped by energy</div>
+          </div>
+          <div class="floating-card floating-card--streak" aria-hidden="true">
+            <span class="flame">▲</span>
+            <div><strong>27 day streak</strong><small>consistency compounds</small></div>
+          </div>
+          <div class="floating-card floating-card--progress" aria-hidden="true">
+            <span class="mini-ring"></span>
+            <div><strong>+18.0%</strong><small>volume vs. last block</small></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="marquee" aria-label="Principles">
+      <div class="marquee-track">
+        <span>Self-hosted</span><span>•</span><span>No feed</span><span>•</span><span>No ads</span><span>•</span><span>No video assets</span><span>•</span><span>Offline catalogue</span><span>•</span><span>Weekly overload</span><span>•</span><span>Recovery included</span><span>•</span><span>Your data, your SQLite</span><span>•</span>
+      </div>
+    </section>
+
+    <section class="section" id="rhythm">
+      <div class="shell split">
+        <div class="section-copy" data-reveal>
+          <div class="eyebrow"><span class="pulse"></span> THE DAY PLAN</div>
+          <h2>Six windows.<br />One coherent day.</h2>
+          <p>
+            Training is not one block at 6pm. Fitr distributes intent across the day: mobility when you wake,
+            quality strength in the morning, a midday reset, a second block, an evening flow and a pre-sleep
+            downshift. Recovery days stay intentional.
+          </p>
+          <a class="text-link" href="docs/product/features">See how the day is built <span aria-hidden="true">→</span></a>
+        </div>
+
+        <div class="timeline" data-reveal>
+          <article class="timeline-item">
+            <time>06:45</time>
+            <div class="timeline-dot dot--mint"></div>
+            <div class="timeline-card">
+              <span class="timeline-tag tag--mint">After wake</span>
+              <h3>Deep squat hold</h3>
+              <p>2 × 45s · 3 min</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <time>08:15</time>
+            <div class="timeline-dot dot--lime"></div>
+            <div class="timeline-card">
+              <span class="timeline-tag tag--lime">Morning</span>
+              <h3>Barbell back squat</h3>
+              <p>4 × 9 @ 55 kg + triceps pushdown</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <time>12:30</time>
+            <div class="timeline-dot dot--violet"></div>
+            <div class="timeline-card">
+              <span class="timeline-tag tag--violet">Midday</span>
+              <h3>90/90 hip rotation</h3>
+              <p>2 × 8 · posture reset</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <time>16:00</time>
+            <div class="timeline-dot dot--coral"></div>
+            <div class="timeline-card">
+              <span class="timeline-tag tag--coral">Afternoon</span>
+              <h3>Inverted row</h3>
+              <p>3 × 12 · pull volume</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <time>19:00</time>
+            <div class="timeline-dot dot--violet"></div>
+            <div class="timeline-card">
+              <span class="timeline-tag tag--violet">Evening</span>
+              <h3>Cat–cow flow</h3>
+              <p>2 × 9 · decompress</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <time>22:00</time>
+            <div class="timeline-dot dot--sky"></div>
+            <div class="timeline-card">
+              <span class="timeline-tag tag--sky">Before sleep</span>
+              <h3>Supine twist</h3>
+              <p>2 × 45s · downshift</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--surface" id="features">
+      <div class="shell">
+        <div class="section-heading" data-reveal>
+          <div class="eyebrow"><span class="pulse"></span> THE SYSTEM</div>
+          <h2>Built for the work<br />between the highlights.</h2>
+          <p>No feed to scroll, no achievements to farm. Six surfaces that make the next right action obvious.</p>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature" data-reveal>
+            <div class="feature-icon icon--violet">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2.2"/><path d="M12 8v5m0 0-2.5 6m2.5-6 2.5 6M6 10l6-1 6 1"/></svg>
+            </div>
+            <h3>Anatomy, not tags</h3>
+            <p>Topic, type, region, primary muscles, auxiliary muscles, difficulty, equipment, cues and breathing. Every filter is backed by real data.</p>
+          </article>
+          <article class="feature" data-reveal>
+            <div class="feature-icon icon--lime">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg>
+            </div>
+            <h3>Time-region planning</h3>
+            <p>Six windows with different jobs, generated from your goal, experience, equipment, training days and session length.</p>
+          </article>
+          <article class="feature" data-reveal>
+            <div class="feature-icon icon--coral">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9m5 10V5m5 14v-7m5 7V8"/></svg>
+            </div>
+            <h3>Overload with receipts</h3>
+            <p>+6% volume and +4% intensity each week. Finish all sets at effort 7 or below and the next week adds load or reps.</p>
+          </article>
+          <article class="feature" data-reveal>
+            <div class="feature-icon icon--sky">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 4v5c0 5-3.4 8-8 9-4.6-1-8-4-8-9V7z"/><path d="M8.5 12l2.2 2.2L16 9"/></svg>
+            </div>
+            <h3>Proof of progress</h3>
+            <p>Day, week, month and year. Calendar heatmap, streak, muscle balance, e1RM records and period-over-period improvement.</p>
+          </article>
+          <article class="feature" data-reveal>
+            <div class="feature-icon icon--pink">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M18.5 16l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z"/></svg>
+            </div>
+            <h3>Living illustrations</h3>
+            <p>Every movement is a Canvas-rendered skeleton with eased keyframes, motion trails and topic tinting. No video, no sprites, infinite resolution.</p>
+          </article>
+          <article class="feature" data-reveal>
+            <div class="feature-icon icon--mint">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/></svg>
+            </div>
+            <h3>Your data, your file</h3>
+            <p>A Bun API and a SQLite database you run yourself. No account, no third-party analytics, no lock-in. Back up one file.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="progress">
+      <div class="shell progress-grid">
+        <div class="gallery" data-reveal>
+          <div class="phone phone--small gallery-phone gallery-phone--back">
+            <div class="phone-frame"><img src="assets/screenshots/catalogue.jpg" width="900" height="1956" alt="Exercise catalogue" loading="lazy" /></div>
+          </div>
+          <div class="phone phone--small gallery-phone gallery-phone--main">
+            <div class="phone-frame"><img src="assets/screenshots/progress.jpg" width="900" height="1956" alt="Progress dashboard with charts and records" loading="lazy" /></div>
+          </div>
+          <div class="phone phone--small gallery-phone gallery-phone--front">
+            <div class="phone-frame"><img src="assets/screenshots/player.jpg" width="900" height="1956" alt="Exercise player with animated squat" loading="lazy" /></div>
+          </div>
+        </div>
+
+        <div class="section-copy" data-reveal>
+          <div class="eyebrow"><span class="pulse"></span> THE TRACKER</div>
+          <h2>Improvement you can<br />argue with.</h2>
+          <p>
+            Activity is easy to display. Improvement is harder. Fitr compares each period with the one before it,
+            using the same exercise and the same metric: estimated 1RM for loaded work, total reps for bodyweight,
+            total hold seconds for isometrics.
+          </p>
+          <ul class="check-list">
+            <li>Consistency ring and adherence that ignores future tasks</li>
+            <li>Calendar heatmap for done, partial, missed and rest days</li>
+            <li>Muscle balance from primary work, not guesses</li>
+            <li>Streaks that survive one missed day</li>
+            <li>Every record traceable to a date and prescription</li>
+          </ul>
+          <a class="text-link" href="docs/product/progression">Read the progression math <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--surface">
+      <div class="shell math-grid">
+        <div class="section-copy" data-reveal>
+          <div class="eyebrow"><span class="pulse"></span> PROGRESSIVE OVERLOAD</div>
+          <h2>Every week asks<br />a little more.</h2>
+          <p>
+            Volume rises 6% per week and intensity 4%, capped so the curve stays honest. Autoregulation adds a
+            bump only when you complete the work at a sustainable effort. Recovery slots never inflate.
+          </p>
+          <div class="formula-card">
+            <span class="formula-label">WEEKLY MULTIPLIER</span>
+            <code>volume = min(1 + 0.06 × (week − 1), 1.8)</code>
+            <code>load&nbsp;&nbsp;&nbsp;= min(1 + 0.04 × (week − 1), 1.5)</code>
+          </div>
+        </div>
+
+        <div class="chart-card" data-reveal>
+          <div class="chart-head">
+            <div>
+              <span class="chart-kicker">BARBELL BACK SQUAT</span>
+              <strong>4 × 9 @ 55 kg</strong>
+            </div>
+            <span class="delta">+18.0% e1RM</span>
+          </div>
+          <div class="bars" aria-label="Weekly training load rising from week 1 to week 6">
+            <div class="bar-col"><span style="--h: 42%"></span><small>W1</small></div>
+            <div class="bar-col"><span style="--h: 50%"></span><small>W2</small></div>
+            <div class="bar-col"><span style="--h: 58%"></span><small>W3</small></div>
+            <div class="bar-col is-current"><span style="--h: 67%"></span><small>W4</small></div>
+            <div class="bar-col"><span style="--h: 77%"></span><small>W5</small></div>
+            <div class="bar-col"><span style="--h: 88%"></span><small>W6</small></div>
+          </div>
+          <div class="chart-legend"><span>Volume</span><span>Intensity</span><span>Autoregulated</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="self-hosted">
+      <div class="shell host-grid">
+        <div class="section-copy" data-reveal>
+          <div class="eyebrow"><span class="pulse"></span> SELF-HOSTED</div>
+          <h2>An app with<br />a front door.</h2>
+          <p>
+            Fitr is not a black box. The iOS app talks to a small Bun API you run. Everything — catalogue,
+            plans, completions — lives in one SQLite file. Read the code, change the rules, keep the data.
+          </p>
+          <div class="host-points">
+            <div><span>01</span><p><strong>One command.</strong> Bun installs, seeds 60 exercises and starts the API.</p></div>
+            <div><span>02</span><p><strong>One database.</strong> Plans and history in SQLite with WAL and foreign keys.</p></div>
+            <div><span>03</span><p><strong>One repo.</strong> App, server, docs and this site are versioned together.</p></div>
+          </div>
+          <a class="text-link" href="docs/technology/development">Run it locally <span aria-hidden="true">→</span></a>
+        </div>
+
+        <div class="terminal" data-reveal>
+          <div class="terminal-bar"><span></span><span></span><span></span><em>fitr — zsh</em></div>
+          <pre><code><span class="t-muted">$</span> git clone &lt;repo&gt; fitr
+<span class="t-muted">$</span> cd fitr
+<span class="t-muted">$</span> bun install
+<span class="t-muted">$</span> bun run dev:server
+
+  <span class="t-lime">Fitr API</span>  ▸  http://localhost:8787
+  <span class="t-muted">database</span>  ▸  ./apps/server/data/fitr.sqlite
+  <span class="t-muted">catalogue</span> ▸  60 exercises · seeded history
+
+<span class="t-muted">$</span> cd apps/ios &amp;&amp; xcodegen generate
+<span class="t-muted">$</span> open Fitr.xcodeproj <span class="t-cursor">▍</span></code></pre>
+          <div class="terminal-foot">
+            <span>SwiftUI client</span><span>Bun API</span><span>SQLite</span><span>GitHub Pages</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--surface">
+      <div class="shell">
+        <div class="section-heading" data-reveal>
+          <div class="eyebrow"><span class="pulse"></span> QUESTIONS</div>
+          <h2>The honest answers.</h2>
+        </div>
+        <div class="faq" data-reveal>
+          <details>
+            <summary>Is Fitr on the App Store?</summary>
+            <p>Not yet. It is a self-hosted iOS app you build from source with Xcode. TestFlight and App Store distribution are on the roadmap, after authentication and production hardening.</p>
+          </details>
+          <details>
+            <summary>Do I need to run a server?</summary>
+            <p>For the full experience, yes: a small Bun process on your Mac, a VPS or a home server. The exercise catalogue and animations work offline from the bundled snapshot, and the last plan is cached, but logging requires the API.</p>
+          </details>
+          <details>
+            <summary>Does every week really get harder?</summary>
+            <p>Training weeks raise volume by 6% and intensity by 4%, capped at +80% and +50%. If you finish all sets at effort 7 or below, the next week adds 2.5 kg or 2 reps. Recovery slots are excluded. There is no silent deload; an opt-in deload is planned.</p>
+          </details>
+          <details>
+            <summary>How are the exercises animated?</summary>
+            <p>Each movement is a hand-keyframed 14-joint skeleton drawn live with SwiftUI Canvas. That is why there are no video assets, why the illustrations stay sharp at any size, and why they can take on the color of their topic.</p>
+          </details>
+          <details>
+            <summary>Is my data private?</summary>
+            <p>It stays in your SQLite database on your machine. There is no analytics SDK, no account, and no third-party service. The current API is single-user and trusts its local network, so put it behind TLS and authentication before exposing it publicly.</p>
+          </details>
+          <details>
+            <summary>Can I customise the catalogue and the rules?</summary>
+            <p>Yes. Exercises, muscles and coaching content live in one seed file. The progression constants live in one TypeScript module. Change them, reset the database, export the catalogue and rebuild the app.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="shell cta-inner" data-reveal>
+        <img src="assets/app-icon.png" width="96" height="96" alt="Fitr app icon" />
+        <div>
+          <div class="eyebrow"><span class="pulse"></span> READY WHEN YOU ARE</div>
+          <h2>Build your rhythm.</h2>
+          <p>Start with the docs, run the server, and make the next week a little harder than the last.</p>
+        </div>
+        <div class="cta-actions">
+          <a class="button button--lime" href="docs/">Open the docs <span aria-hidden="true">→</span></a>
+          <a class="button button--ghost" data-github href="https://github.com/YOUR_GITHUB_USERNAME/fitr" rel="noreferrer">GitHub</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="#top"><img src="assets/logo.svg" width="26" height="26" alt="" /><span>FITR</span></a>
+        <p>Train on your rhythm.<br />A self-hosted fitness operating system.</p>
+        <span class="footer-status"><span class="pulse"></span> v0.1.0 · built and documented</span>
+      </div>
+      <div class="footer-col">
+        <h3>Product</h3>
+        <a href="docs/product/vision">Vision</a>
+        <a href="docs/product/features">Features</a>
+        <a href="docs/product/progression">Progression</a>
+        <a href="docs/product/design">Design</a>
+      </div>
+      <div class="footer-col">
+        <h3>Technology</h3>
+        <a href="docs/technology/architecture">Architecture</a>
+        <a href="docs/technology/api">API</a>
+        <a href="docs/technology/animations">Animations</a>
+        <a href="docs/technology/deployment">Deployment</a>
+      </div>
+      <div class="footer-col">
+        <h3>Project</h3>
+        <a href="docs/roadmap">Roadmap</a>
+        <a href="docs/changelog">Changelog</a>
+        <a href="docs/decisions">Decisions</a>
+        <a data-github href="https://github.com/YOUR_GITHUB_USERNAME/fitr" rel="noreferrer">GitHub</a>
+      </div>
+    </div>
+    <div class="shell footer-bottom">
+      <span>© <span id="year">2026</span> Fitr. Private project.</span>
+      <span>Made with SwiftUI · Bun · SQLite · Docusaurus</span>
+    </div>
+  </footer>
+</body>
+</html>
