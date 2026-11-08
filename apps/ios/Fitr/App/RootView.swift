@@ -4,6 +4,7 @@ struct RootView: View {
     @Environment(AppStore.self) private var store
     @Environment(AppSettings.self) private var settings
     @State private var tab: AppTab
+    @State private var profileDrawerOpen = false
 
     init() {
         var initial: AppTab = .today
@@ -14,6 +15,11 @@ struct RootView: View {
         }
         #endif
         _tab = State(initialValue: initial)
+        #if DEBUG
+        if ProcessInfo.processInfo.environment["FITR_DRAWER"] == "1" {
+            _profileDrawerOpen = State(initialValue: true)
+        }
+        #endif
     }
 
     var body: some View {
@@ -39,7 +45,7 @@ struct RootView: View {
                 case .catalogue: CatalogueView()
                 case .progress: TrainingProgressView()
                 case .health: HealthView()
-                case .profile: ProfileView()
+                case .profile: ProfileView(drawerOpen: $profileDrawerOpen)
                 }
             }
             .safeAreaInset(edge: .bottom) { Color.clear.frame(height: 78) }
@@ -52,8 +58,12 @@ struct RootView: View {
             .frame(height: 130)
             .frame(maxHeight: .infinity, alignment: .bottom)
             .allowsHitTesting(false)
+            .opacity(profileDrawerOpen ? 0 : 1)
 
-            FitrTabBar(selection: $tab)
+            if !profileDrawerOpen {
+                FitrTabBar(selection: $tab)
+                    .transition(.move(edge: .bottom).combined(with: .opacity))
+            }
 
             if let toast = store.toast {
                 ToastBanner(text: toast)
@@ -63,6 +73,7 @@ struct RootView: View {
             }
         }
         .animation(.spring(response: 0.4, dampingFraction: 0.85), value: store.toast)
+        .animation(.spring(response: 0.42, dampingFraction: 0.86), value: profileDrawerOpen)
     }
 }
 

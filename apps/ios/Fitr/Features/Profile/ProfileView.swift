@@ -5,6 +5,9 @@ struct ProfileView: View {
     @Environment(AppSettings.self) private var settings
     @Environment(\.openURL) private var openURL
 
+    @Binding var drawerOpen: Bool
+
+    @State private var section: ProfileSection = .profile
     @State private var name = ""
     @State private var goal: GoalOption = .balanced
     @State private var experience: ExperienceOption = .intermediate
@@ -14,40 +17,93 @@ struct ProfileView: View {
     @State private var serverURL = ""
     @State private var connection: ConnectionState = .idle
     @State private var hydratedFor: String?
+    @State private var dragOffset: CGFloat = 0
+
+    private let drawerWidth: CGFloat = 304
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 20) {
-                header
-                if let message = store.errorMessage, store.isOffline {
-                    ErrorBanner(message: message) {
-                        Task { await store.reconnect(serverURL: serverURL) }
-                    } dismiss: {
-                        store.dismissError()
+        ZStack(alignment: .leading) {
+            content
+                .disabled(drawerOpen)
+                .accessibilityHidden(drawerOpen)
+                .scaleEffect(drawerOpen ? 0.97 : 1, anchor: .trailing)
+                .animation(.spring(response: 0.42, dampingFraction: 0.86), value: drawerOpen)
+
+            if drawerOpen {
+                scrim
+                drawer
+                    .transition(.move(edge: .leading))
+            }
+        }
+        .animation(.spring(response: 0.42, dampingFraction: 0.86), value: drawerOpen)
+        .onAppear { hydrate() }
+    }
+
+    private var content: some View {
+        ScrollViewReader { proxy in
+            ScrollView {
+                VStack(alignment: .leading, spacing: 20) {
+                    Color.clear
+                        .frame(height: 0)
+                        .id("top")
+
+                    header
+                    if let message = store.errorMessage, store.isOffline {
+                        ErrorBanner(message: message) {
+                            Task { await store.reconnect(serverURL: serverURL) }
+                        } dismiss: {
+                            store.dismissError()
+                        }
                     }
+                    sectionContent
                 }
-                identityCard
-                focusCard
-                rhythmCard
-                equipmentCard
-                saveBar
+                .padding(.horizontal, 20)
+                .padding(.top, 10)
+                .padding(.bottom, 24)
+            }
+            .scrollIndicators(.hidden)
+            .scrollDismissesKeyboard(.interactively)
+            .onChange(of: section) {
+                withAnimation(.easeOut(duration: 0.2)) {
+                    proxy.scrollTo("top", anchor: .top)
+                }
+            }
+        }
+    }
+
+    @ViewBuilder
+    private var sectionContent: some View {
+        Group {
+            switch section {
+            case .profile:
+                VStack(alignment: .leading, spacing: 20) {
+                    identityCard
+                    focusCard
+                    saveBar
+                }
+            case .training:
+                VStack(alignment: .leading, spacing: 20) {
+                    rhythmCard
+                    equipmentCard
+                    saveBar
+                }
+            case .connection:
                 connectionCard
+            case .program:
                 programCard
+            case .about:
                 aboutCard
             }
-            .padding(.horizontal, 20)
-            .padding(.top, 10)
-            .padding(.bottom, 24)
         }
-        .scrollIndicators(.hidden)
-        .scrollDismissesKeyboard(.interactively)
-        .onAppear { hydrate() }
+        .id(section)
+        .transition(.opacity.combined(with: .move(edge: .trailing)))
     }
 
     // MARK: - Header
 
     private var header: some View {
-        HStack(alignment: .top) {
+        HStack(alignment: .top, spacing: 12) {
+            menuButton
             VStack(alignment: .leading, spacing: 6) {
                 Text("YOUR SYSTEM")
                     .font(Theme.font(10, .bold))
@@ -56,27 +112,258 @@ struct ProfileView: View {
                 Text("You")
                     .font(Theme.font(34, .heavy))
                     .foregroundStyle(Theme.text)
-                Text("Coaching, connection and the plan engine.")
+                Text(section.subtitle)
                     .font(Theme.font(12))
                     .foregroundStyle(Theme.textSecondary)
             }
-            Spacer()
-            ZStack {
-                Circle()
-                    .fill(
-                        LinearGradient(
-                            colors: [goalColor.opacity(0.9), Theme.violet.opacity(0.8)],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
-                Text(initials)
-                    .font(Theme.font(22, .heavy))
-                    .foregroundStyle(Theme.ink)
-            }
-            .frame(width: 58, height: 58)
-            .overlay(Circle().strokeBorder(Color.white.opacity(0.16), lineWidth: 1))
+            Spacer(minLength: 0)
+            avatar(size: 54)
         }
+    }
+
+    private var menuButton: some View {
+        Button {
+            UIImpactFeedbackGenerator(style: .soft).impactOccurred()
+            withAnimation(.spring(response: 0.42, dampingFraction: 0.86)) {
+                drawerOpen = true
+            }
+        } label: {
+            Image(systemName: "line.3.horizontal")
+                .font(.system(size: 15, weight: .semibold))
+                .foregroundStyle(Theme.text)
+                .frame(width: 44, height: 44)
+                .background(Circle().fill(Theme.surface))
+                .overlay(Circle().strokeBorder(Theme.stroke, lineWidth: 1))
+        }
+        .buttonStyle(.plain)
+        .accessibilityLabel("Open menu")
+        .padding(.top, 4)
+    }
+
+    private func avatar(size: CGFloat) -> some View {
+        ZStack {
+            Circle()
+                .fill(
+                    LinearGradient(
+                        colors: [goalColor.opacity(0.9), Theme.violet.opacity(0.8)],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    )
+                )
+            Text(initials)
+                .font(Theme.font(size * 0.38, .heavy))
+                .foregroundStyle(Theme.ink)
+        }
+        .frame(width: size, height: size)
+        .overlay(Circle().strokeBorder(Color.white.opacity(0.16), lineWidth: 1))
+    }
+
+    // MARK: - Drawer
+
+    private var scrim: some View {
+        Color.black.opacity(0.55)
+            .ignoresSafeArea()
+            .contentShape(Rectangle())
+            .onTapGesture { closeDrawer() }
+            .transition(.opacity)
+    }
+
+    private var drawer: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            drawerHeader
+
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack(alignment: .leading, spacing: 16) {
+                    drawerGroup("PERSONAL", items: [.profile, .training])
+                    drawerGroup("SYSTEM", items: [.connection, .program, .about])
+                }
+                .padding(.horizontal, 14)
+                .padding(.bottom, 12)
+            }
+
+            drawerFooter
+        }
+        .frame(width: drawerWidth)
+        .frame(maxHeight: .infinity, alignment: .top)
+        .background {
+            UnevenRoundedRectangle(
+                bottomTrailingRadius: 34,
+                topTrailingRadius: 34,
+                style: .continuous
+            )
+            .fill(Theme.inkSoft)
+            .overlay(
+                UnevenRoundedRectangle(
+                    bottomTrailingRadius: 34,
+                    topTrailingRadius: 34,
+                    style: .continuous
+                )
+                .strokeBorder(Theme.strokeStrong, lineWidth: 1)
+            )
+            .shadow(color: .black.opacity(0.5), radius: 30, x: 18, y: 0)
+            .ignoresSafeArea()
+        }
+        .offset(x: dragOffset)
+        .gesture(closeDrag)
+        .accessibilityAddTraits(.isModal)
+    }
+
+    private var drawerHeader: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            HStack {
+                Text("MENU")
+                    .font(Theme.font(10, .bold))
+                    .tracking(2)
+                    .foregroundStyle(Theme.textTertiary)
+                Spacer()
+                Button {
+                    closeDrawer()
+                } label: {
+                    Image(systemName: "xmark")
+                        .font(.system(size: 11, weight: .bold))
+                        .foregroundStyle(Theme.textSecondary)
+                        .frame(width: 30, height: 30)
+                        .background(Circle().fill(Color.white.opacity(0.06)))
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel("Close menu")
+            }
+
+            HStack(spacing: 12) {
+                avatar(size: 52)
+                VStack(alignment: .leading, spacing: 3) {
+                    Text(name.isEmpty ? "Athlete" : name)
+                        .font(Theme.font(20, .heavy))
+                        .foregroundStyle(Theme.text)
+                        .lineLimit(1)
+                    Text("\(goal.title) · \(experience.title)")
+                        .font(Theme.font(11))
+                        .foregroundStyle(Theme.textSecondary)
+                        .lineLimit(1)
+                }
+                Spacer(minLength: 0)
+            }
+
+            HStack(spacing: 6) {
+                FitrPill(text: "\(Int(daysPerWeek)) days", icon: "calendar", tint: Theme.mint)
+                FitrPill(text: "\(Int(sessionMinutes)) min", icon: "clock.fill", tint: Theme.violet)
+            }
+        }
+        .padding(.horizontal, 20)
+        .padding(.top, 8)
+        .padding(.bottom, 18)
+    }
+
+    private func drawerGroup(_ title: String, items: [ProfileSection]) -> some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text(title)
+                .font(Theme.font(9, .bold))
+                .tracking(1.4)
+                .foregroundStyle(Theme.textTertiary)
+                .padding(.leading, 10)
+            ForEach(items) { item in
+                drawerRow(item)
+            }
+        }
+    }
+
+    private func drawerRow(_ item: ProfileSection) -> some View {
+        let selected = section == item
+        return Button {
+            select(item)
+        } label: {
+            HStack(spacing: 12) {
+                Image(systemName: item.icon)
+                    .font(.system(size: 13, weight: .semibold))
+                    .foregroundStyle(selected ? Theme.ink : item.tint)
+                    .frame(width: 34, height: 34)
+                    .background(Circle().fill(selected ? item.tint : item.tint.opacity(0.12)))
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(item.title)
+                        .font(Theme.font(14, .semibold))
+                        .foregroundStyle(Theme.text)
+                    Text(item.caption)
+                        .font(Theme.font(10))
+                        .foregroundStyle(selected ? Theme.textSecondary : Theme.textTertiary)
+                        .lineLimit(1)
+                }
+                Spacer(minLength: 0)
+                if selected {
+                    Image(systemName: "checkmark")
+                        .font(.system(size: 10, weight: .bold))
+                        .foregroundStyle(item.tint)
+                }
+            }
+            .padding(.horizontal, 10)
+            .padding(.vertical, 9)
+            .background(
+                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    .fill(selected ? item.tint.opacity(0.12) : .clear)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16, style: .continuous)
+                            .strokeBorder(selected ? item.tint.opacity(0.28) : .clear, lineWidth: 1)
+                    )
+            )
+        }
+        .buttonStyle(.plain)
+        .accessibilityAddTraits(selected ? .isSelected : [])
+    }
+
+    private var drawerFooter: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Rectangle()
+                .fill(Theme.stroke)
+                .frame(height: 1)
+            HStack {
+                FitrPill(
+                    text: store.isOffline ? "Offline" : "Connected",
+                    icon: store.isOffline ? "exclamationmark.triangle.fill" : "checkmark.circle.fill",
+                    tint: store.isOffline ? Theme.coral : Theme.lime
+                )
+                Spacer()
+                Text("v0.1.0")
+                    .font(Theme.mono(10))
+                    .foregroundStyle(Theme.textTertiary)
+            }
+        }
+        .padding(.horizontal, 20)
+        .padding(.bottom, 10)
+    }
+
+    private var closeDrag: some Gesture {
+        DragGesture()
+            .onChanged { value in
+                dragOffset = min(0, value.translation.width)
+            }
+            .onEnded { value in
+                if value.translation.width < -70 || value.predictedEndTranslation.width < -140 {
+                    closeDrawer()
+                } else {
+                    withAnimation(.spring(response: 0.32, dampingFraction: 0.86)) {
+                        dragOffset = 0
+                    }
+                }
+            }
+    }
+
+    private func select(_ item: ProfileSection) {
+        guard item != section else {
+            closeDrawer()
+            return
+        }
+        UISelectionFeedbackGenerator().selectionChanged()
+        withAnimation(.snappy(duration: 0.24)) {
+            section = item
+            drawerOpen = false
+        }
+        dragOffset = 0
+    }
+
+    private func closeDrawer() {
+        withAnimation(.spring(response: 0.42, dampingFraction: 0.86)) {
+            drawerOpen = false
+        }
+        dragOffset = 0
     }
 
     // MARK: - Cards
@@ -531,5 +818,61 @@ struct ProfileView: View {
 
     private enum ConnectionState {
         case idle, testing, success, failure
+    }
+}
+
+private enum ProfileSection: String, CaseIterable, Identifiable {
+    case profile, training, connection, program, about
+
+    var id: String { rawValue }
+
+    var title: String {
+        switch self {
+        case .profile: return "Profile"
+        case .training: return "Training"
+        case .connection: return "Connection"
+        case .program: return "Program"
+        case .about: return "About Fitr"
+        }
+    }
+
+    var caption: String {
+        switch self {
+        case .profile: return "Name, focus and experience"
+        case .training: return "Rhythm, sessions and equipment"
+        case .connection: return "Server, health checks and offline"
+        case .program: return "Progression and weekly targets"
+        case .about: return "Docs, links and version"
+        }
+    }
+
+    var subtitle: String {
+        switch self {
+        case .profile: return "Identity, training focus and experience."
+        case .training: return "Weekly rhythm, session length and equipment."
+        case .connection: return "Server connection, health checks and offline mode."
+        case .program: return "The progression engine and this week's targets."
+        case .about: return "How Fitr is built, plus docs and links."
+        }
+    }
+
+    var icon: String {
+        switch self {
+        case .profile: return "person.fill"
+        case .training: return "waveform.path.ecg"
+        case .connection: return "server.rack"
+        case .program: return "level.fill"
+        case .about: return "info.circle.fill"
+        }
+    }
+
+    var tint: Color {
+        switch self {
+        case .profile: return Theme.violet
+        case .training: return Theme.mint
+        case .connection: return Theme.sky
+        case .program: return Theme.lime
+        case .about: return Theme.coral
+        }
     }
 }
