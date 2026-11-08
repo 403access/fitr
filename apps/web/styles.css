@@ -575,13 +575,15 @@ h3 { font-size: 1.08rem; letter-spacing: -0.02em; }
 }
 
 .floating-card--streak {
-  left: 0;
-  bottom: 90px;
+  right: calc(50% + 168px);
+  left: auto;
+  bottom: 80px;
 }
 
 .floating-card--progress {
-  right: -8px;
-  top: 76px;
+  left: calc(50% + 168px);
+  right: auto;
+  top: 92px;
   animation-delay: -3.2s;
 }
 
@@ -1406,6 +1408,12 @@ h3 { font-size: 1.08rem; letter-spacing: -0.02em; }
 
   .cta-actions {
     width: 100%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .floating-card {
+    display: none;
   }
 }
 
