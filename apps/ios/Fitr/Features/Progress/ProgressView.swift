@@ -340,14 +340,6 @@ struct TrainingProgressView: View {
                     )
                 )
                 .cornerRadius(4)
-                if point.scheduled > 0 {
-                    RuleMark(
-                        x: .value("Period", point.label),
-                        yStart: .value("Base", 0),
-                        yEnd: .value("Target", 0)
-                    )
-                    .opacity(0)
-                }
             }
             .chartYScale(domain: 0...maxValue)
             .chartYAxis {

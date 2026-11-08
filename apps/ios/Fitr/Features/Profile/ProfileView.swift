@@ -42,7 +42,6 @@ struct ProfileView: View {
         .scrollIndicators(.hidden)
         .scrollDismissesKeyboard(.interactively)
         .onAppear { hydrate() }
-        .onChange(of: store.bootstrap?.serverTime) { _, _ in hydrate() }
     }
 
     // MARK: - Header
@@ -484,7 +483,7 @@ struct ProfileView: View {
     }
 
     private func hydrate() {
-        guard let user = store.user, hydratedFor != user.id + (store.bootstrap?.serverTime ?? "") else { return }
+        guard let user = store.user, hydratedFor != user.id else { return }
         name = user.name
         goal = GoalOption(rawValue: user.goal) ?? .balanced
         experience = ExperienceOption(rawValue: user.experience) ?? .intermediate
@@ -492,7 +491,7 @@ struct ProfileView: View {
         sessionMinutes = Double(user.sessionMinutes)
         equipment = Set(user.equipment)
         serverURL = settings.serverURLString
-        hydratedFor = user.id + (store.bootstrap?.serverTime ?? "")
+        hydratedFor = user.id
     }
 
     private func save() {

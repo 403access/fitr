@@ -262,8 +262,8 @@ final class AppStore {
         do {
             _ = try await api.updateProfile(patch)
             await refresh(date: selectedDate, silent: true)
-            // A settings change only shapes future weeks; regenerate the next
-            // week's plan eagerly so the effect is visible in the catalogue of days.
+            // Profile changes shape future plans; the current week is left
+            // intact so progression stays auditable.
             showToast("Profile saved · new rhythm applies next week")
             return true
         } catch {
