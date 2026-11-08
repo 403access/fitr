@@ -754,7 +754,11 @@ struct HealthView: View {
                     }
                 }
                 Spacer()
-                DeltaBadge(value: summary.changePct)
+                if analysis.range == .day {
+                    FitrPill(text: "today", icon: "sun.max.fill", tint: Theme.textSecondary)
+                } else {
+                    DeltaBadge(value: summary.changePct)
+                }
             }
 
             HStack(alignment: .firstTextBaseline, spacing: 7) {
@@ -836,10 +840,11 @@ struct HealthView: View {
 
                 Chart {
                     ForEach(points) { point in
-                        if analysis.range == .week {
+                        if analysis.range == .day || analysis.range == .week {
                             BarMark(
                                 x: .value("Day", point.date, unit: .day),
-                                y: .value(metric.title, point.value)
+                                y: .value(metric.title, point.value),
+                                width: analysis.range == .day ? .fixed(54) : .automatic
                             )
                             .foregroundStyle(
                                 LinearGradient(
@@ -1141,7 +1146,8 @@ struct HealthView: View {
                 Chart(buckets) { bucket in
                     BarMark(
                         x: .value("Date", bucket.date, unit: chartUnit(for: analysis.range)),
-                        y: .value("Minutes", bucket.minutes)
+                        y: .value("Minutes", bucket.minutes),
+                        width: analysis.range == .day ? .fixed(54) : .automatic
                     )
                     .foregroundStyle(
                         LinearGradient(
@@ -1627,6 +1633,8 @@ struct HealthView: View {
 
     private func chartDateLabel(_ date: Date, range: HealthRange) -> String {
         switch range {
+        case .day:
+            return "Today"
         case .week:
             return date.formatted(.dateTime.weekday(.abbreviated))
         case .month:
@@ -1640,7 +1648,7 @@ struct HealthView: View {
 
     private func chartUnit(for range: HealthRange) -> Calendar.Component {
         switch range {
-        case .week, .month: return .day
+        case .day, .week, .month: return .day
         case .quarter: return .weekOfYear
         case .year: return .month
         }

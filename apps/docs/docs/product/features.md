@@ -133,7 +133,7 @@ Watch, Apple Fitness, the Health app and any third-party training app that write
 
 - **Overview** — today's move/exercise/stand rings, steps, sleep, resting heart rate, active
   energy and the rest of today's metrics.
-- **Trends** — a 7-day, 30-day, 90-day or 1-year range with a metric picker covering steps,
+- **Trends** — a 1-day, 7-day, 30-day, 90-day or 1-year range with a metric picker covering steps,
   energy, exercise, distance, sleep, resting heart rate, heart rate, HRV, mindful minutes,
   weight and stand hours. Each metric has a daily chart, average line, total/average, best day,
   latest value and a period-over-period change.
@@ -160,7 +160,7 @@ idempotent per calendar day and can run automatically when a training day is com
 - [x] The permission sheet is explicit; the app never prompts on cold launch.
 - [x] Read data includes activity, sleep, heart, HRV, energy and body weight.
 - [x] Third-party workouts and sources appear with their app names.
-- [x] Trends can be filtered by 7D/30D/90D/1Y and by any supported metric.
+- [x] Trends can be filtered by 1D/7D/30D/90D/1Y and by any supported metric.
 - [x] Workouts can be filtered by activity type and source app.
 - [x] Sources exposes the Fitr-authored audit so write-back is verifiable.
 - [x] A completed day can be written to Health once, with duplicate protection.

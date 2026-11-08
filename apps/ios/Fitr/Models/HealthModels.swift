@@ -125,6 +125,7 @@ struct HealthSource: Identifiable, Sendable {
 // MARK: - Ranges, metrics and series
 
 enum HealthRange: String, CaseIterable, Identifiable, Sendable {
+    case day
     case week
     case month
     case quarter
@@ -134,6 +135,7 @@ enum HealthRange: String, CaseIterable, Identifiable, Sendable {
 
     var title: String {
         switch self {
+        case .day: return "1D"
         case .week: return "7D"
         case .month: return "30D"
         case .quarter: return "90D"
@@ -143,6 +145,7 @@ enum HealthRange: String, CaseIterable, Identifiable, Sendable {
 
     var days: Int {
         switch self {
+        case .day: return 1
         case .week: return 7
         case .month: return 30
         case .quarter: return 90
@@ -152,6 +155,7 @@ enum HealthRange: String, CaseIterable, Identifiable, Sendable {
 
     var subtitle: String {
         switch self {
+        case .day: return "Today"
         case .week: return "Last seven days"
         case .month: return "Last thirty days"
         case .quarter: return "Last ninety days"

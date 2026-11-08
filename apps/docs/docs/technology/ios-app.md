@@ -133,7 +133,7 @@ objects or query results.
   queries read the latest heart and weight values; collection queries build daily series for
   trends; a workout query supplies activity type, duration, energy, distance and source app;
   a source query lists the apps contributing step samples.
-- **Analysis** — `loadAnalysis(range:)` builds a multi-metric daily series for 7D/30D/90D/1Y,
+- **Analysis** — `loadAnalysis(range:)` builds a multi-metric daily series for 1D/7D/30D/90D/1Y,
   caches each range, and powers the Trends, Workouts and Sources views without re-querying on
   every tab switch.
 - **Sleep** — category samples from multiple apps are merged by interval before summing, so
@@ -167,7 +167,7 @@ A dedicated tab with four views:
 
 - **Overview** — connection state, nested move/exercise/stand rings, today's metric grid,
   seven-day steps, recent workouts, source chips and export card.
-- **Trends** — range picker (7D/30D/90D/1Y), metric picker across eleven metrics, summary card
+- **Trends** — range picker (1D/7D/30D/90D/1Y), metric picker across eleven metrics, summary card
   with total/average, best and latest, daily line or bar chart, average rule and workout mix
   donut.
 - **Workouts** — range, activity-type and source filters; count/minutes/energy summary;

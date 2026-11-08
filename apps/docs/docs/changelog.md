@@ -25,7 +25,7 @@ and the project follows [Semantic Versioning](https://semver.org).
 - Body-today strip on the Today screen.
 - New Health tab with rings, metrics, workouts, sources and privacy notes.
 - Health views for Overview, Trends, Workouts and Sources.
-- Range filters for 7D/30D/90D/1Y and metric filters across eleven Health metrics.
+- Range filters for 1D/7D/30D/90D/1Y and metric filters across eleven Health metrics.
 - Daily trend charts, averages, best/latest values and workout-mix visualisation.
 - Workout filters by activity type and source app, with count/minutes/energy summaries.
 - Source breakdown and a Fitr-authored data audit confirming Fitr has not modified Health.

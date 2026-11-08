@@ -98,6 +98,11 @@ final class FitrTests: XCTestCase {
     }
 
     func testHealthAnalysisSummariesAndFilters() {
+        XCTAssertEqual(HealthRange.day.days, 1)
+        XCTAssertEqual(HealthRange.week.days, 7)
+        XCTAssertEqual(HealthRange.month.days, 30)
+        XCTAssertEqual(HealthRange.quarter.days, 90)
+        XCTAssertEqual(HealthRange.year.days, 365)
         let start = FitrDate.date("2026-11-02")
         let series = (0..<7).map { offset in
             HealthSeriesPoint(
