@@ -1,14 +1,17 @@
 # Fitr
 
 **Train on your rhythm.** A self-hosted fitness operating system: a catalogue of 60 exercises
-with hand-authored vector animations, a daily plan across six time regions, and a progress
-tracker that proves improvement week over week.
+with hand-authored vector animations, a daily plan across six time regions, Apple Health and
+GPS movement in one private picture, and a progress tracker that proves improvement week over
+week.
 
 <p align="center">
-  <img src="apps/web/assets/screenshots/today.jpg" width="220" alt="Today plan" />
-  <img src="apps/web/assets/screenshots/catalogue.jpg" width="220" alt="Exercise catalogue" />
-  <img src="apps/web/assets/screenshots/player.jpg" width="220" alt="Exercise player" />
-  <img src="apps/web/assets/screenshots/progress.jpg" width="220" alt="Progress tracker" />
+  <img src="apps/web/assets/screenshots/today.jpg" width="190" alt="Today plan" />
+  <img src="apps/web/assets/screenshots/catalogue.jpg" width="190" alt="Exercise catalogue" />
+  <img src="apps/web/assets/screenshots/player.jpg" width="190" alt="Exercise player" />
+  <img src="apps/web/assets/screenshots/progress.jpg" width="190" alt="Progress tracker" />
+  <img src="apps/web/assets/screenshots/routes.jpg" width="190" alt="GPS routes and Health" />
+  <img src="apps/web/assets/screenshots/you.jpg" width="190" alt="You menu drawer" />
 </p>
 
 ```text
@@ -38,6 +41,8 @@ apps/
   on-device recording adds day-long movement history from now on. Optional write-back of
   completed Fitr sessions as workouts, with an explicit Fitr-authored audit. Health and
   location data stay on the device.
+- **You** — a section drawer groups profile, training rhythm, connection, program and about
+  without turning settings into a long page.
 - **Motion** — 41 hand-keyframed skeleton sequences rendered live with SwiftUI Canvas. No video,
   GIF or sprite assets; crisp at any size and tinted by topic.
 - **Self-hosted** — one Bun process, one SQLite file, no account or third-party analytics.

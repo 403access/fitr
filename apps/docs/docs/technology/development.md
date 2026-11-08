@@ -57,6 +57,9 @@ simulator shares the host network, so no changes are needed.
 4. Accept the local-network prompt on first launch.
 5. Open **Health → Connect Apple Health** to grant HealthKit access. The simulator supports
    HealthKit too, but a physical iPhone is the useful source of Watch and third-party data.
+6. Open **Health → Routes** to import workout GPS. Toggle recording to test the local trail; on
+   a device choose **Always** to verify background updates. Location samples stay in
+   `Library/Application Support/Fitr/routes.json` inside the app container.
 
 The Info.plist allows cleartext local networking for development. Do not ship that
 configuration to production without TLS.

@@ -4,10 +4,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Fitr — Train on your rhythm</title>
-  <meta name="description" content="A self-hosted fitness operating system: 60 animated exercises, a day plan across six time regions, and progress you can prove. Built with SwiftUI, Bun and SQLite." />
+  <meta name="description" content="A self-hosted fitness operating system: 60 animated exercises, a day plan across six time regions, Apple Health and GPS routes, and progress you can prove. Built with SwiftUI, Bun and SQLite." />
   <meta name="theme-color" content="#08090C" />
   <meta property="og:title" content="Fitr — Train on your rhythm" />
-  <meta property="og:description" content="A self-hosted fitness operating system with animated exercises, adaptive weekly plans and honest progress tracking." />
+  <meta property="og:description" content="A self-hosted fitness operating system with animated exercises, adaptive weekly plans, Apple Health, GPS routes and honest progress tracking." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="assets/screenshots/today.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -37,6 +37,7 @@
         <a href="#rhythm">Rhythm</a>
         <a href="#features">Features</a>
         <a href="#progress">Progress</a>
+        <a href="#health">Health</a>
         <a href="#self-hosted">Self-hosted</a>
         <a href="docs/">Docs</a>
         <a class="nav-repo" data-github href="https://github.com/YOUR_GITHUB_USERNAME/fitr" rel="noreferrer">
@@ -52,11 +53,12 @@
       <div class="hero-glow hero-glow--two" aria-hidden="true"></div>
       <div class="shell hero-grid">
         <div class="hero-copy" data-reveal>
-          <div class="eyebrow"><span class="pulse"></span> SELF-HOSTED FITNESS OS · v0.1</div>
+          <div class="eyebrow"><span class="pulse"></span> SELF-HOSTED FITNESS OS · HEALTH + ROUTES</div>
           <h1>Train on<br />your <span class="accent">rhythm.</span></h1>
           <p class="lede">
             A catalogue of beautifully animated movement, a day plan that flows from wake to sleep,
-            and progress you can actually prove. Your plan gets harder every week — your data stays yours.
+            Apple Health and GPS routes in one private picture, and progress you can actually prove.
+            Your plan gets harder every week — your data stays yours.
           </p>
           <div class="hero-actions">
             <a class="button button--lime" href="docs/">Read the docs <span aria-hidden="true">→</span></a>
@@ -66,9 +68,10 @@
             <div><dt>60</dt><dd>exercises</dd></div>
             <div><dt>41</dt><dd>live animations</dd></div>
             <div><dt>6</dt><dd>time regions</dd></div>
+            <div><dt>11</dt><dd>health metrics</dd></div>
             <div><dt>0</dt><dd>video assets</dd></div>
           </dl>
-          <p class="build-line">SwiftUI · Bun · TypeScript · SQLite · Docusaurus</p>
+          <p class="build-line">SwiftUI · MapKit · Bun · TypeScript · SQLite · Docusaurus</p>
         </div>
 
         <div class="hero-phone-wrap" data-reveal>
@@ -81,6 +84,9 @@
                 <figure class="slide is-active" data-caption="Your day, grouped by energy">
                   <img src="assets/screenshots/today.jpg" width="900" height="1956" alt="Fitr Today screen with week strip and six time-region task groups" fetchpriority="high" />
                 </figure>
+                <figure class="slide" data-caption="Movement, mapped">
+                  <img src="assets/screenshots/routes.jpg" width="900" height="1956" alt="Fitr Routes view with a GPS map, route history and opt-in recording controls" loading="lazy" />
+                </figure>
                 <figure class="slide" data-caption="Proof, not vibes">
                   <img src="assets/screenshots/progress.jpg" width="900" height="1956" alt="Fitr progress dashboard with consistency ring and training-load chart" loading="lazy" />
                 </figure>
@@ -90,15 +96,20 @@
                 <figure class="slide" data-caption="Every rep, illustrated">
                   <img src="assets/screenshots/player.jpg" width="900" height="1956" alt="Fitr exercise player with an animated squat figure and logging controls" loading="lazy" />
                 </figure>
+                <figure class="slide" data-caption="Your system, one drawer away">
+                  <img src="assets/screenshots/you.jpg" width="900" height="1956" alt="Fitr You menu drawer with profile, training, connection, program and about sections" loading="lazy" />
+                </figure>
               </div>
             </div>
             <div class="carousel-controls">
               <button class="carousel-btn" data-carousel-prev aria-label="Previous screenshot">←</button>
               <div class="carousel-dots" role="tablist" aria-label="Choose screenshot">
                 <button class="dot is-active" data-carousel-dot="0" role="tab" aria-selected="true" aria-label="Today"></button>
-                <button class="dot" data-carousel-dot="1" role="tab" aria-selected="false" aria-label="Progress"></button>
-                <button class="dot" data-carousel-dot="2" role="tab" aria-selected="false" aria-label="Catalogue"></button>
-                <button class="dot" data-carousel-dot="3" role="tab" aria-selected="false" aria-label="Player"></button>
+                <button class="dot" data-carousel-dot="1" role="tab" aria-selected="false" aria-label="Routes"></button>
+                <button class="dot" data-carousel-dot="2" role="tab" aria-selected="false" aria-label="Progress"></button>
+                <button class="dot" data-carousel-dot="3" role="tab" aria-selected="false" aria-label="Catalogue"></button>
+                <button class="dot" data-carousel-dot="4" role="tab" aria-selected="false" aria-label="Player"></button>
+                <button class="dot" data-carousel-dot="5" role="tab" aria-selected="false" aria-label="You"></button>
               </div>
               <button class="carousel-btn" data-carousel-next aria-label="Next screenshot">→</button>
             </div>
@@ -118,7 +129,7 @@
 
     <section class="marquee" aria-label="Principles">
       <div class="marquee-track">
-        <span>Self-hosted</span><span>•</span><span>No feed</span><span>•</span><span>No ads</span><span>•</span><span>No video assets</span><span>•</span><span>Offline catalogue</span><span>•</span><span>Weekly overload</span><span>•</span><span>Recovery included</span><span>•</span><span>Your data, your SQLite</span><span>•</span>
+        <span>Self-hosted</span><span>•</span><span>No feed</span><span>•</span><span>No ads</span><span>•</span><span>Apple Health</span><span>•</span><span>GPS routes</span><span>•</span><span>On-device location</span><span>•</span><span>No video assets</span><span>•</span><span>Offline catalogue</span><span>•</span><span>Weekly overload</span><span>•</span><span>Recovery included</span><span>•</span><span>Your data, your SQLite</span><span>•</span>
       </div>
     </section>
 
@@ -199,7 +210,7 @@
         <div class="section-heading" data-reveal>
           <div class="eyebrow"><span class="pulse"></span> THE SYSTEM</div>
           <h2>Built for the work<br />between the highlights.</h2>
-          <p>No feed to scroll, no achievements to farm. Six surfaces that make the next right action obvious.</p>
+          <p>No feed to scroll, no achievements to farm. Eight surfaces that make the next right action obvious.</p>
         </div>
 
         <div class="feature-grid">
@@ -245,6 +256,20 @@
             <h3>Your data, your file</h3>
             <p>A Bun API and a SQLite database you run yourself. No account, no third-party analytics, no lock-in. Back up one file.</p>
           </article>
+          <article class="feature" data-reveal>
+            <div class="feature-icon icon--coral">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.3-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.7-7 10-7 10z"/><path d="M8 11.5h2l1-2.5 1.5 5 1-2.5H16"/></svg>
+            </div>
+            <h3>Body signal, not noise</h3>
+            <p>Apple Health arrives in one honest view: rings, eleven metrics, trends, workouts, sources and an explicit Fitr-authored audit.</p>
+          </article>
+          <article class="feature" data-reveal>
+            <div class="feature-icon icon--mint">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h10M4 17h16"/><circle cx="18" cy="12" r="1.6"/></svg>
+            </div>
+            <h3>A menu for your system</h3>
+            <p>Profile, training rhythm, connection, program and about live in a single You drawer. The whole system stays one gesture away.</p>
+          </article>
         </div>
       </div>
     </section>
@@ -279,6 +304,48 @@
             <li>Every record traceable to a date and prescription</li>
           </ul>
           <a class="text-link" href="docs/product/progression">Read the progression math <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="health">
+      <div class="shell split health-split">
+        <div class="section-copy" data-reveal>
+          <div class="eyebrow"><span class="pulse"></span> APPLE HEALTH + ROUTES</div>
+          <h2>Your body,<br />in the same picture.</h2>
+          <p>
+            Training does not happen in a vacuum. Fitr reads Apple Health on the iPhone and brings steps,
+            sleep, heart, HRV, workouts and contributing apps next to the plan — without sending health
+            samples to your server.
+          </p>
+          <ul class="check-list">
+            <li>Overview, Trends, Workouts, Routes and Sources in one Health tab</li>
+            <li>Eleven metrics with 1D/7D/30D/90D/1Y ranges and period-over-period deltas</li>
+            <li>GPS workout routes imported from Apple Watch, Strava, Garmin and similar apps</li>
+            <li>Opt-in day-long movement recording, stored only on the device and pruned after 400 days</li>
+            <li>Optional write-back of completed Fitr sessions as idempotent Health workouts</li>
+          </ul>
+          <a class="text-link" href="docs/product/features">Explore the Health integration <span aria-hidden="true">→</span></a>
+        </div>
+
+        <div class="health-visual" data-reveal>
+          <div class="phone phone--health">
+            <div class="phone-frame">
+              <img src="assets/screenshots/routes.jpg" width="900" height="1956" alt="Fitr Routes view with a GPS map of recorded movement and Apple Health workout routes" loading="lazy" />
+            </div>
+          </div>
+          <div class="health-chip health-chip--one" aria-hidden="true">
+            <span class="chip-dot chip-dot--lime"></span>
+            <div><strong>8,420 steps</strong><small>today · Apple Health</small></div>
+          </div>
+          <div class="health-chip health-chip--two" aria-hidden="true">
+            <span class="chip-dot chip-dot--coral"></span>
+            <div><strong>1.2 km route</strong><small>on-device · never uploaded</small></div>
+          </div>
+          <div class="health-chip health-chip--three" aria-hidden="true">
+            <span class="chip-dot chip-dot--sky"></span>
+            <div><strong>7 h 12 m sleep</strong><small>last night</small></div>
+          </div>
         </div>
       </div>
     </section>
@@ -381,8 +448,16 @@
             <p>Each movement is a hand-keyframed 14-joint skeleton drawn live with SwiftUI Canvas. That is why there are no video assets, why the illustrations stay sharp at any size, and why they can take on the color of their topic.</p>
           </details>
           <details>
+            <summary>What does Fitr read from Apple Health?</summary>
+            <p>Steps, active energy, exercise minutes, stand hours, distance, flights, sleep, resting and live heart rate, HRV, mindful minutes, weight, workouts and contributing sources. If a workout has a GPS route, Fitr imports the route too. Free-form health records and third-party APIs are deliberately out of scope.</p>
+          </details>
+          <details>
+            <summary>Does Fitr track my location all day?</summary>
+            <p>Only if you turn it on. iOS has no system-wide location history, and HealthKit only stores routes attached to workouts. Fitr imports those existing routes and offers an explicit opt-in recorder for continuous local trails. Points stay on the iPhone, never reach your Fitr server, and are pruned after 400 days.</p>
+          </details>
+          <details>
             <summary>Is my data private?</summary>
-            <p>It stays in your SQLite database on your machine. There is no analytics SDK, no account, and no third-party service. The current API is single-user and trusts its local network, so put it behind TLS and authentication before exposing it publicly.</p>
+            <p>Plans and training history stay in your SQLite database on your machine. Apple Health samples and GPS points stay on the iPhone. There is no analytics SDK, no account, and no third-party service. The current API is single-user and trusts its local network, so put it behind TLS and authentication before exposing it publicly.</p>
           </details>
           <details>
             <summary>Can I customise the catalogue and the rules?</summary>
@@ -413,12 +488,13 @@
       <div class="footer-brand">
         <a class="brand" href="#top"><img src="assets/logo.svg" width="26" height="26" alt="" /><span>FITR</span></a>
         <p>Train on your rhythm.<br />A self-hosted fitness operating system.</p>
-        <span class="footer-status"><span class="pulse"></span> v0.1.0 · built and documented</span>
+        <span class="footer-status"><span class="pulse"></span> Health, routes and proof · built and documented</span>
       </div>
       <div class="footer-col">
         <h3>Product</h3>
         <a href="docs/product/vision">Vision</a>
         <a href="docs/product/features">Features</a>
+        <a href="#health">Health &amp; routes</a>
         <a href="docs/product/progression">Progression</a>
         <a href="docs/product/design">Design</a>
       </div>
@@ -439,7 +515,7 @@
     </div>
     <div class="shell footer-bottom">
       <span>© <span id="year">2026</span> Fitr. Private project.</span>
-      <span>Made with SwiftUI · Bun · SQLite · Docusaurus</span>
+      <span>Made with SwiftUI · MapKit · Bun · SQLite · Docusaurus</span>
     </div>
   </footer>
 </body>

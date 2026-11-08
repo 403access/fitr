@@ -94,5 +94,5 @@ For a personal deployment, success is behavioural and measurable:
 
 The roadmap moves from a deterministic coach to an adaptive one, without giving up
 auditability: richer autoregulation, mesocycles with planned deloads, wearable-informed
-readiness, Apple Health export, and eventually multi-user sync — while keeping the
-single-user, self-hosted path first-class.
+readiness using the Health data Fitr already reads, richer route analysis, and eventually
+multi-user sync — while keeping the single-user, self-hosted path first-class.

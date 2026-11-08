@@ -19,6 +19,7 @@ There is no message bus, no container orchestration and no third-party backend.
 │    ├── BootstrapCache     ── Application Support JSON               │
 │    ├── CatalogStore       ── bundled catalog.json                   │
 │    ├── HealthStore        ── HealthKit (on-device only)             │
+│    ├── RouteRecorder      ── Core Location + local route archive    │
 │    └── Views / Canvas animation engine                              │
 └─────────────────────────────────────────────────────────────────────┘
                                   │
@@ -35,10 +36,12 @@ There is no message bus, no container orchestration and no third-party backend.
 └─────────────────────────────────────────────────────────────────────┘
 
 On-device only:
-┌────────────────┐      ┌──────────────────┐
-│ HealthKit      │◀────▶│ HealthStore      │
-│ Apple Health   │      │ read/write       │
-└────────────────┘      └──────────────────┘
+┌────────────────┐      ┌──────────────────┐      ┌──────────────────┐
+│ HealthKit      │◀────▶│ HealthStore      │◀────▶│ RouteRecorder    │
+│ Apple Health   │      │ read/write       │      │ Core Location    │
+└────────────────┘      └──────────────────┘      └──────────────────┘
+                                                          │
+                                                  routes.json (local)
 
 Static delivery:
 ┌───────────────┐      ┌────────────────────┐      ┌──────────────────┐
@@ -56,6 +59,8 @@ Static delivery:
 - Caches the last bootstrap for instant launch and offline reads.
 - Bundles the catalogue snapshot so Explore and animations work without a server.
 - Reads and writes HealthKit data locally; samples never pass through the API.
+- Imports workout GPS routes and, when opted in, records a local movement trail with Core
+  Location. Route points stay in the app's archive and never reach the API.
 - Does **not** compute the plan or authoritative progress. Those live on the server.
 
 ### Bun API
@@ -129,6 +134,7 @@ GET /api/bootstrap?date=2026-11-05
 | Bundled catalogue | Offline-first browsing and instant launch | Regenerate on catalogue changes |
 | Server-authoritative plans | Consistent progression across devices | Requires connectivity to log |
 | HealthKit on-device only | Health data is sensitive and already synced by Apple | No server-side readiness model yet |
+| Local GPS archive | iOS has no all-day location history; HealthKit exposes per-workout routes only | Per-device data, extra battery when enabled |
 | Single-user header | Fast MVP without auth complexity | Not multi-tenant yet |
 
 ## Data flow boundaries
@@ -141,8 +147,9 @@ GET /api/bootstrap?date=2026-11-05
   computed from tasks at read time. At personal scale (tens of thousands of rows) this is fast.
 - **Exercise identity is stable.** IDs are `ex-<slug>` and slugs are the public contract used by
   the app and docs.
-- **Health data does not cross the API boundary.** The iPhone reads and writes HealthKit
-  locally; only training plans, tasks and progress are server-authoritative.
+- **Health and location data do not cross the API boundary.** The iPhone reads and writes
+  HealthKit locally and archives recorded routes on-device; only training plans, tasks and
+  progress are server-authoritative.
 
 ## Security and operations
 

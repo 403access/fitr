@@ -53,6 +53,11 @@ The marketing site and docs use the same rounded heading family with a system bo
 - 26–30 pt corner radii for primary cards, 14–18 pt for controls.
 - A floating capsule tab bar with a lime selected pill; a bottom fade keeps content legible.
 - Cards use a single surface tone with subtle inner borders and occasional topic-tinted glows.
+- The **You** screen opens a section drawer over a dimmed, scaled-down surface instead of
+  growing into one long settings page. A scrim and swipe gesture close it.
+- **Health** uses the same language but adds nested activity rings, range pills, tabs and a
+  MapKit canvas. Routes inherit the workout tint so imported and locally recorded trails remain
+  distinguishable without a legend-heavy interface.
 - Every screen starts with a small uppercase eyebrow, a heavy title and one sentence of context.
 
 ## Motion principles

@@ -54,6 +54,7 @@ cd apps/ios && xcodegen generate && xcodebuild … test
 - [x] Brand palette, typography, cards, pills, rings and buttons.
 - [x] Four-step onboarding with server connection test.
 - [x] Floating tab bar, toast system and offline/error states.
+- [x] Section drawer on the You tab for profile, training, connection, program and about.
 - [x] API client actor, observable store, settings and caches.
 - [x] Bundled catalogue loading.
 
@@ -104,9 +105,9 @@ cd apps/ios && xcodegen generate && xcodebuild … test
 ## Phase 7 — Marketing website ✅
 
 - [x] Responsive dark landing page with real simulator screenshots.
-- [x] Feature story, day timeline, progress proof, self-hosting section and FAQ.
+- [x] Feature story, day timeline, progress proof, Apple Health and routes, self-hosting and FAQ.
 - [x] Accessible navigation, reduced-motion support and no tracking.
-- [x] Screenshot carousel with keyboard and touch controls.
+- [x] Screenshot carousel with keyboard and touch controls, including Health and the You drawer.
 
 **Commit:** `2ae4103` — feat(web): add marketing site with real app screenshots
 

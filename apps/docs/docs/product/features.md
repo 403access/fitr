@@ -176,6 +176,8 @@ idempotent per calendar day and can run automatically when a training day is com
 - [x] A completed day can be written to Health once, with duplicate protection.
 - [x] Health and location data stay on-device and are not uploaded to the API.
 
+<img className="docs-phone-frame" src={useBaseUrl('/img/screenshots/routes.jpg')} alt="Fitr Routes view with a GPS map of imported and locally recorded movement" />
+
 ## 5. Exercise visualization
 
 There are no video files and no sprite sheets. Each exercise is drawn live with SwiftUI
@@ -215,17 +217,19 @@ generator to add load or reps in the following week.
 
 ## 7. Profile, goals and equipment
 
-The You screen controls the inputs to plan generation:
+The You screen controls the inputs to plan generation. A slide-out drawer keeps the five
+surfaces one gesture away instead of stacking every setting on one long page:
 
-- name, goal (balanced, strength, endurance, mobility, recovery), experience;
-- training days per week (2–7) and session length (15–90 minutes);
-- available equipment;
-- server URL with connection test and reconnect;
-- current program phase, week index and multipliers;
-- links to documentation and the marketing site.
+- **Profile** — name, goal (balanced, strength, endurance, mobility, recovery), experience;
+- **Training** — training days per week (2–7), session length (15–90 minutes) and equipment;
+- **Connection** — server URL, live connection test and reconnect;
+- **Program** — current phase, week index and multipliers;
+- **About** — documentation, website and version links.
 
 Settings changes apply to **next week's** plan so the current progression stays honest. The
 profile is validated server-side (days 1–7, session 10–120 minutes, known enum values).
+
+<img className="docs-phone-frame" src={useBaseUrl('/img/screenshots/you.jpg')} alt="Fitr You drawer with profile, training, connection, program and about sections" />
 
 ## 8. Offline behaviour and recovery
 
@@ -251,6 +255,7 @@ profile is validated server-side (days 1–7, session 10–120 minutes, known en
 - Bodyweight volume is not normalised by body mass.
 - Deload weeks are not automatic; this is intentional for v0.1 but planned as a setting.
 - App Store distribution, push notifications and an Apple Watch companion are not implemented.
-- Health treats Apple Health as the source of truth for body data; Fitr only writes completed
-  sessions back as workouts.
+- Health treats Apple Health as the source of truth for body data and workout routes; Fitr only
+  writes completed sessions back as workouts. All-day movement is a local, opt-in trail because
+  iOS exposes no system-wide location history.
 - Clinical health records and direct third-party APIs are not used; everything arrives via HealthKit.

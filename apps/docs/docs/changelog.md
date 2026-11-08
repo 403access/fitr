@@ -24,7 +24,7 @@ and the project follows [Semantic Versioning](https://semver.org).
 - One-tap and optional automatic export of completed Fitr days as idempotent Health workouts.
 - Body-today strip on the Today screen.
 - New Health tab with rings, metrics, workouts, sources and privacy notes.
-- Health views for Overview, Trends, Workouts and Sources.
+- Health views for Overview, Trends, Workouts, Routes and Sources.
 - Range filters for 1D/7D/30D/90D/1Y and metric filters across eleven Health metrics.
 - Daily trend charts, averages, best/latest values and workout-mix visualisation.
 - Workout filters by activity type and source app, with count/minutes/energy summaries.
@@ -36,6 +36,18 @@ and the project follows [Semantic Versioning](https://semver.org).
 - Source breakdown and a Fitr-authored data audit confirming Fitr has not modified Health.
 - Unit tests for overlapping sleep intervals, Health session energy mapping and route metrics.
 - HealthKit setup, location permissions, privacy and capability documentation.
+
+#### iOS
+
+- A section drawer on the You tab groups Profile, Training, Connection, Program and About
+  behind one header gesture, with a scrim, close drag and modal accessibility traits.
+
+#### Website and docs
+
+- Marketing site refreshed with the Health tab, GPS routes, the You drawer, new simulator
+  screenshots and FAQ answers about HealthKit and location privacy.
+- Docs now cover route import, local GPS recording, location permissions, the You drawer and
+  the updated architecture.
 
 ## [0.1.0] — 2026-11-08
 

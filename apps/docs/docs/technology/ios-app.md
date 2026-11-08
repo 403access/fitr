@@ -3,6 +3,8 @@ sidebar_position: 4
 title: iOS app
 ---
 
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 # iOS app
 
 The client is a SwiftUI application targeting iOS 18+, built with XcodeGen from a single
@@ -48,7 +50,7 @@ Fitr/
     Player/                   exercise logging sheet and timer
     Catalogue/                filters, grid, detail sheet
     Progress/                 summary, chart, calendar, PRs, muscles
-    Health/                   permission flow, rings, metrics, chart, workouts, sources
+    Health/                   permission flow, rings, metrics, trends, workouts, routes, sources
     Profile/                  settings, connection, program, about
   Animation/
     BodyPose.swift            14-joint skeleton and pose library
@@ -210,8 +212,12 @@ month heatmap, proof-of-progress rows, PRs, muscle balance and streak.
 
 ### You
 
-Identity, focus, experience, weekly rhythm sliders, equipment, connection, program summary and
-links. Profile edits are validated server-side and affect future weeks.
+A section drawer opens from the header over a dimmed, slightly scaled-down content surface. It
+groups **Profile**, **Training**, **Connection**, **Program** and **About** with a swipe-to-close
+gesture, a scrim tap target and modal accessibility traits. Profile edits are validated
+server-side and affect future weeks.
+
+<img className="docs-phone-frame" src={useBaseUrl('/img/screenshots/you.jpg')} alt="Fitr You drawer with the five settings sections" />
 
 ### Onboarding
 
