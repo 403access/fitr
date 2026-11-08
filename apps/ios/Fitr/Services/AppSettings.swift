@@ -29,6 +29,13 @@ final class AppSettings {
         didSet { defaults.set(healthAutoExport, forKey: Keys.healthAutoExport) }
     }
 
+    /// Record a local GPS trail so Fitr can draw movement across a day, week or
+    /// range. HealthKit only stores routes for workouts, so day-long history
+    /// needs the app's own recorder. Nothing is uploaded.
+    var recordGPSHistory: Bool {
+        didSet { defaults.set(recordGPSHistory, forKey: Keys.recordGPSHistory) }
+    }
+
     private(set) var exportedHealthSessions: Set<String> {
         didSet { defaults.set(Array(exportedHealthSessions).sorted(), forKey: Keys.exportedHealthSessions) }
     }
@@ -40,6 +47,7 @@ final class AppSettings {
         usesMetric = defaults.object(forKey: Keys.usesMetric) as? Bool ?? true
         hasRequestedHealthAccess = defaults.bool(forKey: Keys.hasRequestedHealthAccess)
         healthAutoExport = defaults.bool(forKey: Keys.healthAutoExport)
+        recordGPSHistory = defaults.bool(forKey: Keys.recordGPSHistory)
         exportedHealthSessions = Set(defaults.stringArray(forKey: Keys.exportedHealthSessions) ?? [])
     }
 
@@ -73,6 +81,7 @@ final class AppSettings {
         static let usesMetric = "fitr.usesMetric"
         static let hasRequestedHealthAccess = "fitr.health.hasRequestedAccess"
         static let healthAutoExport = "fitr.health.autoExport"
+        static let recordGPSHistory = "fitr.health.recordGPSHistory"
         static let exportedHealthSessions = "fitr.health.exportedSessions"
     }
 }

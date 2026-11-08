@@ -1,3 +1,4 @@
+import CoreLocation
 import Foundation
 
 // MARK: - Health snapshot
@@ -120,6 +121,143 @@ struct HealthSource: Identifiable, Sendable {
     let bundleIdentifier: String?
 
     var id: String { "\(bundleIdentifier ?? "health")-\(name)" }
+}
+
+// MARK: - Routes
+
+/// One GPS sample. Stored as primitives so a route is Codable, cheap to persist
+/// locally and independent of any Core Location objects in the view layer.
+struct RoutePoint: Codable, Hashable, Sendable {
+    var latitude: Double
+    var longitude: Double
+    var timestamp: Date
+    var altitude: Double?
+    var speed: Double?
+    var horizontalAccuracy: Double?
+
+    init(
+        latitude: Double,
+        longitude: Double,
+        timestamp: Date,
+        altitude: Double? = nil,
+        speed: Double? = nil,
+        horizontalAccuracy: Double? = nil
+    ) {
+        self.latitude = latitude
+        self.longitude = longitude
+        self.timestamp = timestamp
+        self.altitude = altitude
+        self.speed = speed
+        self.horizontalAccuracy = horizontalAccuracy
+    }
+
+    init(location: CLLocation) {
+        self.init(
+            latitude: location.coordinate.latitude,
+            longitude: location.coordinate.longitude,
+            timestamp: location.timestamp,
+            altitude: location.altitude,
+            speed: location.speed >= 0 ? location.speed : nil,
+            horizontalAccuracy: location.horizontalAccuracy
+        )
+    }
+
+    var coordinate: CLLocationCoordinate2D {
+        CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    }
+}
+
+enum HealthRouteSource: String, Sendable {
+    /// A workout route imported from Apple Health (Apple Watch, Strava, Garmin…).
+    case healthKit
+    /// A continuous trail recorded by Fitr on this iPhone.
+    case device
+}
+
+/// A polyline of GPS samples that belongs to one workout or one locally
+/// recorded movement segment. Kept separate from `HealthWorkout` because a
+/// workout can exist without a route and a local segment has no workout at all.
+struct HealthRoute: Identifiable, Sendable {
+    let id: String
+    let workoutID: UUID?
+    let activityName: String
+    let icon: String
+    let category: HealthWorkoutCategory
+    let start: Date
+    let end: Date
+    let points: [RoutePoint]
+    let source: HealthRouteSource
+    let sourceName: String
+    let distanceMeters: Double
+
+    init(
+        id: String,
+        workoutID: UUID?,
+        activityName: String,
+        icon: String,
+        category: HealthWorkoutCategory,
+        start: Date,
+        end: Date,
+        points: [RoutePoint],
+        source: HealthRouteSource,
+        sourceName: String,
+        distanceMeters: Double? = nil
+    ) {
+        self.id = id
+        self.workoutID = workoutID
+        self.activityName = activityName
+        self.icon = icon
+        self.category = category
+        self.start = start
+        self.end = end
+        self.points = points
+        self.source = source
+        self.sourceName = sourceName
+        self.distanceMeters = distanceMeters ?? RouteMetrics.distance(points)
+    }
+
+    var coordinates: [CLLocationCoordinate2D] { points.map(\.coordinate) }
+    var durationMinutes: Double { max(end.timeIntervalSince(start), 0) / 60 }
+    var day: Date { FitrDate.calendar.startOfDay(for: start) }
+    var isMeaningful: Bool { points.count >= 2 && distanceMeters >= 25 }
+}
+
+/// A movement segment recorded by `RouteRecorder`, archived as JSON on the
+/// device. One walk, run or commute is one segment; long pauses split a day.
+struct RecordedRoute: Codable, Identifiable, Sendable {
+    var id: UUID
+    var start: Date
+    var end: Date
+    var points: [RoutePoint]
+
+    var healthRoute: HealthRoute {
+        HealthRoute(
+            id: "device-\(id.uuidString)",
+            workoutID: nil,
+            activityName: "Movement",
+            icon: "location.fill",
+            category: .other,
+            start: start,
+            end: end,
+            points: points,
+            source: .device,
+            sourceName: "This iPhone"
+        )
+    }
+}
+
+enum RouteMetrics {
+    static func distance(_ points: [RoutePoint]) -> Double {
+        guard points.count > 1 else { return 0 }
+        var total: Double = 0
+        var previous = CLLocation(latitude: points[0].latitude, longitude: points[0].longitude)
+        for point in points.dropFirst() {
+            let next = CLLocation(latitude: point.latitude, longitude: point.longitude)
+            total += next.distance(from: previous)
+            previous = next
+        }
+        return total
+    }
 }
 
 // MARK: - Ranges, metrics and series

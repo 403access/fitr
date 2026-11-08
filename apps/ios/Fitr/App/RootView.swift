@@ -3,6 +3,7 @@ import SwiftUI
 struct RootView: View {
     @Environment(AppStore.self) private var store
     @Environment(AppSettings.self) private var settings
+    @Environment(\.scenePhase) private var scenePhase
     @State private var tab: AppTab
     @State private var profileDrawerOpen = false
 
@@ -33,7 +34,20 @@ struct RootView: View {
             }
         }
         .animation(.easeInOut(duration: 0.35), value: settings.hasOnboarded)
-        .task { await store.start() }
+        .task {
+            store.routeRecorder.resumeIfNeeded()
+            await store.start()
+        }
+        .onChange(of: scenePhase) { _, phase in
+            switch phase {
+            case .active:
+                store.routeRecorder.resumeIfNeeded()
+            case .inactive, .background:
+                store.routeRecorder.persistNow()
+            @unknown default:
+                break
+            }
+        }
     }
 
     private var main: some View {

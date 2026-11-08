@@ -31,11 +31,13 @@ apps/
   Autoregulation adds 2.5 kg or 2 reps after a completed exercise at average effort ≤ 7.
 - **Tracker** — day, week, month and year views; adherence, minutes, volume, sessions, streak,
   calendar heatmap, muscle balance, e1RM/rep/hold records and period-over-period improvement.
-- **Health** — native HealthKit integration with Overview, Trends, Workouts and Sources views:
-  steps, energy, exercise, sleep, heart rate, HRV, weight, workouts and contributing apps from
-  Apple Health, filtered by range, metric, activity type and source. Optional write-back of
-  completed Fitr sessions as workouts, with an explicit Fitr-authored audit. Health data stays
-  on the device.
+- **Health** — native HealthKit integration with Overview, Trends, Workouts, Routes and Sources
+  views: steps, energy, exercise, sleep, heart rate, HRV, weight, workouts and contributing apps
+  from Apple Health, filtered by range, metric, activity type and source. GPS routes from
+  Apple Watch, Strava, Garmin and other workout apps are imported and drawn on a map; opt-in
+  on-device recording adds day-long movement history from now on. Optional write-back of
+  completed Fitr sessions as workouts, with an explicit Fitr-authored audit. Health and
+  location data stay on the device.
 - **Motion** — 41 hand-keyframed skeleton sequences rendered live with SwiftUI Canvas. No video,
   GIF or sprite assets; crisp at any size and tinted by topic.
 - **Self-hosted** — one Bun process, one SQLite file, no account or third-party analytics.
@@ -66,7 +68,9 @@ physical iPhone use your Mac's LAN IP (`ipconfig getifaddr en0`).
 Open **Health** in the tab bar to connect Apple Health. The app reads activity, sleep, heart and
 workout data on-device and can save completed Fitr sessions back as workouts. Add the HealthKit
 capability to your signing profile when running on a physical iPhone; the simulator works with
-the checked-in entitlement.
+the checked-in entitlement. **Routes** imports workout GPS from Apple Health; enable recording
+there to build a continuous local trail (location “Always” and the background location mode are
+only needed for all-day coverage).
 
 ## Requirements
 

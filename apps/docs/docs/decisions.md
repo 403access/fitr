@@ -143,3 +143,23 @@ tasks and training progress. Write-back is limited to completed sessions as work
 **Consequences.** Strong privacy and no new server storage or migration. Cross-device health
 history is not available in Fitr itself, and readiness-based coaching needs the phone to read
 Health first. Clinical records and direct third-party APIs are deliberately out of scope.
+
+## ADR-011 — Import workout GPS; record day-long trails locally
+
+**Status:** accepted (v0.2)
+
+**Context.** A movement map should answer “where did I go today / this week?”. iOS does not
+provide a system-wide location history, and HealthKit exposes GPS only as a route attached to a
+workout. Relying on HealthKit alone would leave the map empty for users who do not record
+outdoor workouts.
+
+**Decision.** Do both: import `HKWorkoutRoute` samples for workouts in the selected range, and
+offer an explicit opt-in `CLLocationManager` recorder that builds continuous local trails.
+The recorder samples roughly every 30 metres, splits after 15-minute pauses, stores JSON in
+Application Support and is pruned after 400 days. Neither path uploads points to the Fitr API.
+
+**Consequences.** Existing Apple Watch, Strava, Garmin and similar workout routes appear
+immediately with no new recording. Day-long history requires the user to enable location,
+including “Always” for background coverage, and consumes more battery. The local archive is
+per-device and is not part of the server backup; a future optional HealthKit write-back could
+make Fitr-recorded routes visible to other apps, but is not required for the map.

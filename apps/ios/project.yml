@@ -51,6 +51,10 @@ targets:
         NSLocalNetworkUsageDescription: Fitr connects to your self-hosted training server on the local network.
         NSHealthShareUsageDescription: Fitr reads steps, workouts, sleep, heart rate, HRV, energy and body weight from Apple Health so your training and recovery live in one place.
         NSHealthUpdateUsageDescription: Fitr saves completed training sessions as workouts in Apple Health so your rings and other fitness apps see your work.
+        NSLocationWhenInUseUsageDescription: Fitr records the route of your walks, runs and rides so your movement appears on your own private map. Location stays on this iPhone.
+        NSLocationAlwaysAndWhenInUseUsageDescription: Fitr can keep recording your movement in the background when you enable route history, so a day's travel is not cut short. Location stays on this iPhone.
+        UIBackgroundModes:
+          - location
         UIApplicationSceneManifest:
           UIApplicationSupportsMultipleScenes: false
     entitlements:

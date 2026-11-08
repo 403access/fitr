@@ -33,11 +33,19 @@
 	<string>Fitr saves completed training sessions as workouts in Apple Health so your rings and other fitness apps see your work.</string>
 	<key>NSLocalNetworkUsageDescription</key>
 	<string>Fitr connects to your self-hosted training server on the local network.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Fitr can keep recording your movement in the background when you enable route history, so a day's travel is not cut short. Location stays on this iPhone.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Fitr records the route of your walks, runs and rides so your movement appears on your own private map. Location stays on this iPhone.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
 		<false/>
 	</dict>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+	</array>
 	<key>UILaunchScreen</key>
 	<dict>
 		<key>UIColorName</key>

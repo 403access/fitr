@@ -130,6 +130,9 @@ cd apps/ios && xcodegen generate && xcodebuild … test
 - [x] Overview, Trends, Workouts and Sources views.
 - [x] Range filters (1D/7D/30D/90D/1Y), metric filters and workout type/source filters.
 - [x] Trend charts, summaries, workout mix and Fitr-authored audit.
+- [x] GPS route import from Apple Health workouts, rendered by range on a MapKit map.
+- [x] Opt-in Core Location trail recording for continuous day-long movement history.
+- [x] Route map, range totals and day-grouped route list with on-device privacy.
 - [x] Export completed Fitr sessions as idempotent Health workouts.
 - [x] Opt-in automatic export when a training day is complete.
 - [x] Body-today strip on the Today screen.

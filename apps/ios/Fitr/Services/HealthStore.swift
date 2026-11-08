@@ -1,3 +1,4 @@
+import CoreLocation
 import Foundation
 import HealthKit
 import Observation
@@ -14,13 +15,17 @@ final class HealthStore {
 
     private let healthStore = HKHealthStore()
     private let calendar: Calendar
+    private let routeRecorder: RouteRecorder
 
     private(set) var snapshot: HealthSnapshot?
     private(set) var analysis: HealthAnalysis?
     private(set) var analysisRange: HealthRange = .month
+    private(set) var routeHistory: [HealthRoute] = []
+    private(set) var routesRange: HealthRange = .week
     private(set) var isAvailable = HKHealthStore.isHealthDataAvailable()
     private(set) var isLoading = false
     private(set) var isLoadingAnalysis = false
+    private(set) var isLoadingRoutes = false
     private(set) var isExporting = false
     private(set) var lastRefresh: Date?
     private(set) var lastExportDate: String?
@@ -29,9 +34,15 @@ final class HealthStore {
     var analysisError: String?
 
     private var analysisCache: [HealthRange: HealthAnalysis] = [:]
+    private var importedRouteCache: [HealthRange: [HealthRoute]] = [:]
 
-    init(settings: AppSettings, calendar: Calendar = FitrDate.calendar) {
+    init(
+        settings: AppSettings,
+        routeRecorder: RouteRecorder,
+        calendar: Calendar = FitrDate.calendar
+    ) {
         self.settings = settings
+        self.routeRecorder = routeRecorder
         self.calendar = calendar
     }
 
@@ -171,6 +182,7 @@ final class HealthStore {
             generatedAt: now
         )
         analysisCache.removeAll()
+        importedRouteCache.removeAll()
         lastRefresh = now
     }
 
@@ -285,6 +297,160 @@ final class HealthStore {
         analysisError = nil
     }
 
+    // MARK: - Routes
+
+    /// Loads GPS history for the selected range.
+    ///
+    /// There is no system-wide, all-day location history on iOS. HealthKit
+    /// exposes per-workout routes only, so this merges:
+    /// 1. routes attached to workouts in Apple Health (Apple Watch, Strava…),
+    /// 2. movement recorded locally by `RouteRecorder` when the user opts in.
+    func loadRoutes(range: HealthRange, force: Bool = false) async {
+        routesRange = range
+        guard isAvailable else {
+            routeHistory = []
+            return
+        }
+
+        isLoadingRoutes = true
+        defer { isLoadingRoutes = false }
+
+        let now = Date()
+        let today = calendar.startOfDay(for: now)
+        guard let start = calendar.date(byAdding: .day, value: -(range.days - 1), to: today) else {
+            return
+        }
+
+        // HealthKit routes are expensive to import, so cache them per range.
+        // Locally recorded points are merged fresh every time so a new walk
+        // shows up as soon as the user returns to this view.
+        let imported: [HealthRoute]
+        if isConnected {
+            if !force, let cached = importedRouteCache[range] {
+                imported = cached
+            } else {
+                imported = await healthRoutes(from: start, to: now, limit: routeLimit(for: range))
+                importedRouteCache[range] = imported
+            }
+        } else {
+            imported = []
+        }
+        let local = routeRecorder.routes(from: start, to: now)
+
+        routeHistory = (imported + local)
+            .filter(\.isMeaningful)
+            .sorted { $0.start > $1.start }
+    }
+
+    /// Re-merges the on-device trail without re-importing HealthKit routes.
+    /// Used while a recording is active so the map grows without heavy queries.
+    func refreshLocalRoutes(range: HealthRange) {
+        guard routesRange == range else { return }
+        let now = Date()
+        let today = calendar.startOfDay(for: now)
+        guard let start = calendar.date(byAdding: .day, value: -(range.days - 1), to: today) else {
+            return
+        }
+        let imported = importedRouteCache[range] ?? []
+        let local = routeRecorder.routes(from: start, to: now)
+        routeHistory = (imported + local)
+            .filter(\.isMeaningful)
+            .sorted { $0.start > $1.start }
+    }
+
+    private func routeLimit(for range: HealthRange) -> Int {
+        switch range {
+        case .day: return 12
+        case .week: return 50
+        case .month: return 120
+        case .quarter: return 200
+        case .year: return 300
+        }
+    }
+
+    private func healthRoutes(from start: Date, to end: Date, limit: Int) async -> [HealthRoute] {
+        let workouts = await routeWorkouts(from: start, to: end, limit: limit)
+        guard !workouts.isEmpty else { return [] }
+
+        var result: [HealthRoute] = []
+        for workout in workouts {
+            let samples = await routeSamples(for: workout)
+            guard !samples.isEmpty else { continue }
+
+            var points: [RoutePoint] = []
+            for sample in samples {
+                let locations = await routeLocations(for: sample)
+                points.append(contentsOf: locations.map(RoutePoint.init(location:)))
+            }
+            guard points.count >= 2 else { continue }
+            points.sort { $0.timestamp < $1.timestamp }
+
+            let descriptor = HealthStore.activityDescriptor(for: workout.workoutActivityType)
+            result.append(
+                HealthRoute(
+                    id: "health-\(workout.uuid.uuidString)",
+                    workoutID: workout.uuid,
+                    activityName: descriptor.name,
+                    icon: descriptor.icon,
+                    category: descriptor.category,
+                    start: workout.startDate,
+                    end: workout.endDate,
+                    points: points,
+                    source: .healthKit,
+                    sourceName: workout.sourceRevision.source.name
+                )
+            )
+        }
+        return result
+    }
+
+    private func routeWorkouts(from start: Date, to end: Date, limit: Int) async -> [HKWorkout] {
+        let predicate = HKQuery.predicateForSamples(withStart: start, end: end, options: .strictStartDate)
+        return await withCheckedContinuation { (continuation: CheckedContinuation<[HKWorkout], Never>) in
+            let query = HKSampleQuery(
+                sampleType: HKObjectType.workoutType(),
+                predicate: predicate,
+                limit: limit,
+                sortDescriptors: [NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)]
+            ) { _, samples, _ in
+                continuation.resume(returning: (samples as? [HKWorkout]) ?? [])
+            }
+            healthStore.execute(query)
+        }
+    }
+
+    private func routeSamples(for workout: HKWorkout) async -> [HKWorkoutRoute] {
+        let predicate = HKQuery.predicateForObjects(from: workout)
+        return await withCheckedContinuation { (continuation: CheckedContinuation<[HKWorkoutRoute], Never>) in
+            let query = HKSampleQuery(
+                sampleType: HKSeriesType.workoutRoute(),
+                predicate: predicate,
+                limit: HKObjectQueryNoLimit,
+                sortDescriptors: nil
+            ) { _, samples, _ in
+                continuation.resume(returning: (samples as? [HKWorkoutRoute]) ?? [])
+            }
+            healthStore.execute(query)
+        }
+    }
+
+    private func routeLocations(for route: HKWorkoutRoute) async -> [CLLocation] {
+        await withCheckedContinuation { (continuation: CheckedContinuation<[CLLocation], Never>) in
+            var collected: [CLLocation] = []
+            var resumed = false
+            let query = HKWorkoutRouteQuery(route: route) { _, locations, done, error in
+                if let locations {
+                    collected.append(contentsOf: locations)
+                }
+                if (done || error != nil) && !resumed {
+                    resumed = true
+                    continuation.resume(returning: collected)
+                }
+            }
+            healthStore.execute(query)
+        }
+    }
+
     // MARK: - Export
 
     /// Writes one completed Fitr day to Health as a workout. The workout is
@@ -364,7 +530,7 @@ final class HealthStore {
     // MARK: - HealthKit reads
 
     private var readTypes: Set<HKObjectType> {
-        var types: Set<HKObjectType> = [HKObjectType.workoutType()]
+        var types: Set<HKObjectType> = [HKObjectType.workoutType(), HKSeriesType.workoutRoute()]
         let quantityIDs: [HKQuantityTypeIdentifier] = [
             .stepCount,
             .activeEnergyBurned,

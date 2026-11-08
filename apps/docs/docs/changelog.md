@@ -28,9 +28,14 @@ and the project follows [Semantic Versioning](https://semver.org).
 - Range filters for 1D/7D/30D/90D/1Y and metric filters across eleven Health metrics.
 - Daily trend charts, averages, best/latest values and workout-mix visualisation.
 - Workout filters by activity type and source app, with count/minutes/energy summaries.
+- Routes view with an interactive MapKit map of GPS routes from Apple Health workouts,
+  range totals and a day-grouped route list.
+- Opt-in Core Location recording for continuous day-long movement history, stored only on the
+  device and pruned after 400 days. iOS has no system-wide location history, so workout routes
+  are imported and all-day trails are recorded locally.
 - Source breakdown and a Fitr-authored data audit confirming Fitr has not modified Health.
-- Unit tests for overlapping sleep intervals and Health session energy mapping.
-- HealthKit setup, privacy and capability documentation.
+- Unit tests for overlapping sleep intervals, Health session energy mapping and route metrics.
+- HealthKit setup, location permissions, privacy and capability documentation.
 
 ## [0.1.0] — 2026-11-08
 

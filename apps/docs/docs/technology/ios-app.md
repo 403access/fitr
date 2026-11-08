@@ -39,7 +39,8 @@ Fitr/
     APIClient.swift           actor-based URLSession client
     AppStore.swift            @MainActor @Observable app state
     AppSettings.swift         UserDefaults-backed settings
-    HealthStore.swift         HealthKit reads, permissions and workout export
+    HealthStore.swift         HealthKit reads, workout routes, permissions and export
+    RouteRecorder.swift       opt-in Core Location trail and local route archive
     LocalStore.swift          bootstrap cache + bundled catalogue
     FitrDate.swift            calendar, formatting, deltas
   Features/
@@ -136,6 +137,16 @@ objects or query results.
 - **Analysis** — `loadAnalysis(range:)` builds a multi-metric daily series for 1D/7D/30D/90D/1Y,
   caches each range, and powers the Trends, Workouts and Sources views without re-querying on
   every tab switch.
+- **Routes** — iOS does not expose a system-wide location history. `loadRoutes(range:)` reads
+  `HKWorkoutRoute` samples for workouts in the range with `HKWorkoutRouteQuery`, merges them
+  with trails from `RouteRecorder`, and caches the imported HealthKit portion per range.
+  HealthKit route import is limited to the most recent 12–300 workouts depending on the range.
+- **Local recording** — `RouteRecorder` is an `@MainActor @Observable`
+  `CLLocationManagerDelegate`. When the user opts in, it samples roughly every 30 metres,
+  splits trails after a 15-minute pause, and writes `routes.json` to Application Support.
+  Location “Always”, `NSLocationAlwaysAndWhenInUseUsageDescription` and the `location`
+  background mode are required for all-day coverage. Trails are pruned after 400 days and
+  never uploaded.
 - **Sleep** — category samples from multiple apps are merged by interval before summing, so
   overlapping records are never double counted. Sleep is attributed to the wake-up day.
 - **Write** — a completed day is saved with `HKWorkoutBuilder` as a single workout, with a
@@ -143,11 +154,13 @@ objects or query results.
   are stored in `UserDefaults` to keep the operation idempotent.
 - **Audit** — the Sources view reports Fitr-authored workouts in the selected range. Reading
   Health never writes; only the explicit export path does.
-- **Privacy** — samples stay on the device. Only the permissions and exported-date markers are
-  persisted locally; nothing health-related is sent to the Bun API.
+- **Privacy** — samples and GPS points stay on the device. Permissions, exported-date markers
+  and the route archive are persisted locally; nothing health- or location-related is sent to
+  the Bun API.
 
-The entitlement lives in `Fitr/Fitr.entitlements` and is referenced by `project.yml`. The two
-usage strings are generated into `Info.plist`.
+The HealthKit entitlement lives in `Fitr/Fitr.entitlements` and is referenced by `project.yml`.
+Health read/write, location when-in-use and location-always usage strings are generated into
+`Info.plist`; the `location` background mode is declared there too.
 
 ## Screens
 
@@ -163,7 +176,7 @@ usage strings are generated into `Info.plist`.
 
 ### Health
 
-A dedicated tab with four views:
+A dedicated tab with five views:
 
 - **Overview** — connection state, nested move/exercise/stand rings, today's metric grid,
   seven-day steps, recent workouts, source chips and export card.
@@ -172,6 +185,8 @@ A dedicated tab with four views:
   donut.
 - **Workouts** — range, activity-type and source filters; count/minutes/energy summary;
   workout-minutes chart; session list.
+- **Routes** — imported workout GPS on an interactive map, range totals, a day-grouped route
+  list and the opt-in local recorder. Explains the HealthKit limitation and never uploads.
 - **Sources** — source rows with workout counts, a "What Fitr reads" grid and a Fitr-authored
   data audit.
 - **Export** — manual or automatic write-back of a completed Fitr day as one workout.
@@ -233,7 +248,7 @@ For repeatable marketing screenshots, debug builds read environment variables:
 | Variable | Effect |
 | --- | --- |
 | `FITR_TAB=today\|catalogue\|progress\|health\|profile` | Selects the initial tab |
-| `FITR_HEALTH_SECTION=overview\|trends\|workouts\|sources` | Selects the initial Health section |
+| `FITR_HEALTH_SECTION=overview\|trends\|workouts\|routes\|sources` | Selects the initial Health section |
 | `FITR_PLAYER=1` | Opens the first pending morning task |
 | `FITR_EXERCISE=1` | Opens the barbell back squat detail |
 
@@ -255,6 +270,7 @@ These hooks are wrapped in `#if DEBUG` and have no effect in release builds.
 - merging overlapping sleep intervals without double counting;
 - Health session MET mapping by exercise topic;
 - Health trend summaries and workout/category/source filters;
+- GPS route distance, duration and local-route mapping;
 - every animation key has at least two poses and actual joint movement.
 
 ```bash

@@ -140,12 +140,20 @@ Watch, Apple Fitness, the Health app and any third-party training app that write
 - **Workouts** — the last range of workouts from every source, filtered by activity type
   (strength, cardio, yoga, mobility, recovery, other) and source app. Includes workout count,
   minutes, energy, a workout-minutes chart and session rows.
+- **Routes** — a map of GPS routes for the selected range, with distance, active time and a
+  day-grouped route list. Routes attached to Apple Health workouts are imported automatically
+  from Apple Watch, Strava, Garmin and similar apps. Because iOS has no system-wide location
+  history, Fitr also offers an opt-in on-device recorder that builds continuous day-long
+  movement history from now on. Recorded trails never leave the iPhone and are pruned after
+  400 days.
 - **Sources** — the apps and devices contributing data, what Fitr reads, and an explicit
   **Fitr-authored data** audit showing whether Fitr has ever written a workout into Health.
 - **Today** — the same data is summarized in the Body-today strip on the Today screen.
 
-Data is normalized into a local snapshot. The app does not send Health samples to the Fitr
-server, and the bundle never requests clinical health records.
+Data is normalized into a local snapshot. The app does not send Health samples or GPS points to
+the Fitr server, and the bundle never requests clinical health records. Workout routes are read
+through `HKWorkoutRouteQuery`; continuous movement is recorded with Core Location only after an
+explicit opt-in and stays in the app's local archive.
 
 ### Write
 
@@ -163,8 +171,10 @@ idempotent per calendar day and can run automatically when a training day is com
 - [x] Trends can be filtered by 1D/7D/30D/90D/1Y and by any supported metric.
 - [x] Workouts can be filtered by activity type and source app.
 - [x] Sources exposes the Fitr-authored audit so write-back is verifiable.
+- [x] Workout GPS routes are imported and rendered for 1D/7D/30D/90D/1Y.
+- [x] Opt-in local recording builds continuous movement history without leaving the device.
 - [x] A completed day can be written to Health once, with duplicate protection.
-- [x] Health data stays on-device and is not uploaded to the API.
+- [x] Health and location data stay on-device and are not uploaded to the API.
 
 ## 5. Exercise visualization
 

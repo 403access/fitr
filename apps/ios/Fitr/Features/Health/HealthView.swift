@@ -53,6 +53,8 @@ struct HealthView: View {
                         workoutsExplorer
                     case .sources:
                         sourcesExplorer
+                    case .routes:
+                        HealthRoutesSection(range: $range)
                     }
                 }
 
@@ -65,24 +67,36 @@ struct HealthView: View {
         .scrollIndicators(.hidden)
         .refreshable {
             await health.refreshIfConnected()
-            if section != .overview {
+            if section == .routes {
+                await health.loadRoutes(range: range, force: true)
+            } else if section != .overview {
                 await health.loadAnalysis(range: range, force: true)
             }
         }
         .task {
             await health.refreshIfConnected()
-            if section != .overview {
+            if section == .routes {
+                await health.loadRoutes(range: range)
+            } else if section != .overview {
                 await health.loadAnalysis(range: range)
             }
         }
         .onChange(of: section) { _, newValue in
             guard newValue != .overview, health.hasRequestedAccess else { return }
-            Task { await health.loadAnalysis(range: range) }
+            if newValue == .routes {
+                Task { await health.loadRoutes(range: range) }
+            } else {
+                Task { await health.loadAnalysis(range: range) }
+            }
         }
         .onChange(of: range) { _, newValue in
             workoutSource = nil
             guard section != .overview, health.hasRequestedAccess else { return }
-            Task { await health.loadAnalysis(range: newValue) }
+            if section == .routes {
+                Task { await health.loadRoutes(range: newValue) }
+            } else {
+                Task { await health.loadAnalysis(range: newValue) }
+            }
         }
         .onChange(of: scenePhase) { _, phase in
             guard phase == .active else { return }
@@ -153,6 +167,7 @@ struct HealthView: View {
         case overview
         case trends
         case workouts
+        case routes
         case sources
 
         var id: String { rawValue }
@@ -162,6 +177,7 @@ struct HealthView: View {
             case .overview: return "Overview"
             case .trends: return "Trends"
             case .workouts: return "Workouts"
+            case .routes: return "Routes"
             case .sources: return "Sources"
             }
         }
@@ -175,8 +191,10 @@ struct HealthView: View {
                     withAnimation(.snappy(duration: 0.2)) { section = item }
                 } label: {
                     Text(item.title)
-                        .font(Theme.font(11, .bold))
+                        .font(Theme.font(10, .bold))
                         .foregroundStyle(section == item ? Theme.ink : Theme.textSecondary)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.75)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 9)
                         .background {

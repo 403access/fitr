@@ -7,6 +7,7 @@ import SwiftUI
 final class AppStore {
     let settings: AppSettings
     let health: HealthStore
+    let routeRecorder: RouteRecorder
 
     private(set) var api: APIClient
     private(set) var bootstrap: Bootstrap?
@@ -31,7 +32,9 @@ final class AppStore {
 
     init(settings: AppSettings = AppSettings()) {
         self.settings = settings
-        self.health = HealthStore(settings: settings)
+        let recorder = RouteRecorder(settings: settings)
+        self.routeRecorder = recorder
+        self.health = HealthStore(settings: settings, routeRecorder: recorder)
         let url = settings.serverURL ?? URL(string: AppSettings.defaultServerURL)!
         api = APIClient(baseURL: url)
         catalog = CatalogStore.load()

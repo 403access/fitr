@@ -97,6 +97,47 @@ final class FitrTests: XCTestCase {
         XCTAssertEqual(HealthSessionKind(topicID: nil).estimatedMET, 4.0)
     }
 
+    func testRouteMetricsAndRecordedRouteMapping() {
+        let start = FitrDate.date("2026-11-08")
+        let points = [
+            RoutePoint(latitude: 47.4979, longitude: 19.0402, timestamp: start),
+            RoutePoint(
+                latitude: 47.4989,
+                longitude: 19.0402,
+                timestamp: start.addingTimeInterval(60)
+            ),
+        ]
+
+        XCTAssertEqual(RouteMetrics.distance([]), 0)
+        XCTAssertEqual(RouteMetrics.distance([points[0]]), 0)
+
+        let route = HealthRoute(
+            id: "route-1",
+            workoutID: nil,
+            activityName: "Run",
+            icon: "figure.run",
+            category: .cardio,
+            start: start,
+            end: start.addingTimeInterval(60),
+            points: points,
+            source: .healthKit,
+            sourceName: "Apple Watch"
+        )
+        XCTAssertGreaterThan(route.distanceMeters, 100)
+        XCTAssertEqual(route.durationMinutes, 1, accuracy: 0.01)
+        XCTAssertTrue(route.isMeaningful)
+
+        let recorded = RecordedRoute(
+            id: UUID(),
+            start: start,
+            end: start.addingTimeInterval(60),
+            points: points
+        )
+        XCTAssertEqual(recorded.healthRoute.source, .device)
+        XCTAssertEqual(recorded.healthRoute.activityName, "Movement")
+        XCTAssertEqual(recorded.healthRoute.sourceName, "This iPhone")
+    }
+
     func testHealthAnalysisSummariesAndFilters() {
         XCTAssertEqual(HealthRange.day.days, 1)
         XCTAssertEqual(HealthRange.week.days, 7)
