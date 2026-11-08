@@ -31,7 +31,7 @@ cd apps/ios && xcodegen generate && xcodebuild … test
 - [x] Define the domain language: topics, types, regions, muscles, exercises, time regions.
 - [x] Document the working agreement, product pillars and architecture direction.
 
-**Commit:** `chore: initialize Fitr monorepo`
+**Commit:** repository initialisation (local)
 
 ## Phase 1 — Server and catalogue ✅
 
@@ -44,7 +44,7 @@ cd apps/ios && xcodegen generate && xcodebuild … test
 - [x] Demo history seeding and database reset workflow.
 - [x] Tests for catalogue, plans, completion, progress and profile.
 
-**Commit:** `feat(server): Bun API with SQLite catalogue, adaptive plans and progress engine`
+**Commit:** `1abc85f` — feat(server): Bun API with SQLite catalogue, adaptive plans and progress engine
 
 **Verified by:** 11 passing server tests; curl smoke test of bootstrap and progress.
 
@@ -57,7 +57,7 @@ cd apps/ios && xcodegen generate && xcodebuild … test
 - [x] API client actor, observable store, settings and caches.
 - [x] Bundled catalogue loading.
 
-**Commit:** included in `feat(ios): SwiftUI app with animated figure engine, daily rhythm, catalogue and progress tracker`
+**Commit:** included in `0114335` — feat(ios): SwiftUI app with animated figure engine, daily rhythm, catalogue and progress tracker
 
 ## Phase 3 — Motion engine ✅
 
@@ -68,7 +68,7 @@ cd apps/ios && xcodegen generate && xcodebuild … test
 - [x] Topic tinting and arbitrary-size rendering.
 - [x] Structural tests for every animation key.
 
-**Commit:** included in the iOS feature commit.
+**Commit:** included in `0114335`.
 
 ## Phase 4 — Daily rhythm and catalogue UI ✅
 
@@ -79,7 +79,7 @@ cd apps/ios && xcodegen generate && xcodebuild … test
 - [x] Catalogue search, topic chips and faceted filter sheet.
 - [x] Exercise detail with instructions, cues, benefits, muscles and equipment.
 
-**Commit:** included in the iOS feature commit.
+**Commit:** included in `0114335`.
 
 ## Phase 5 — Progress UI ✅
 
@@ -89,7 +89,7 @@ cd apps/ios && xcodegen generate && xcodebuild … test
 - [x] Improvement rows, personal records and muscle balance.
 - [x] Streak card and period-over-period deltas.
 
-**Commit:** included in the iOS feature commit.
+**Commit:** included in `0114335`.
 
 ## Phase 6 — Documentation ✅
 
@@ -99,7 +99,7 @@ cd apps/ios && xcodegen generate && xcodebuild … test
 - [x] Deployment guide for GitHub Pages and the API server.
 - [x] This roadmap, decision log and changelog.
 
-**Commit:** `docs: add Docusaurus product, technology and roadmap documentation`
+**Commit:** `d3014b3` — docs: add Docusaurus product, technology and roadmap documentation
 
 ## Phase 7 — Marketing website ✅
 
@@ -108,7 +108,7 @@ cd apps/ios && xcodegen generate && xcodebuild … test
 - [x] Accessible navigation, reduced-motion support and no tracking.
 - [x] Screenshot carousel with keyboard and touch controls.
 
-**Commit:** `feat(web): add marketing site with real app screenshots`
+**Commit:** `2ae4103` — feat(web): add marketing site with real app screenshots
 
 ## Phase 8 — CI and deployment ✅
 
@@ -118,7 +118,7 @@ cd apps/ios && xcodegen generate && xcodebuild … test
 - [x] Combined GitHub Pages deployment of marketing site and docs.
 - [x] Deployment documentation and release checklist.
 
-**Commit:** `ci: add tests and deploy docs plus marketing site to GitHub Pages`
+**Commit:** `abe6d28` — ci: test server, iOS and docs, then deploy both sites to GitHub Pages
 
 ## Phase 9 — Next: production hardening ⏳
 
@@ -173,9 +173,9 @@ cd apps/ios && xcodegen generate && xcodebuild … test
 | --- | --- |
 | `1abc85f` | Server, catalogue, plans, progress engine and tests |
 | `0114335` | SwiftUI app, animations, daily rhythm, catalogue and tracker |
-| _next_ | Documentation site |
-| _next_ | Marketing website |
-| _next_ | CI and GitHub Pages deployment |
+| `d3014b3` | Docusaurus product, technology and roadmap documentation |
+| `2ae4103` | Marketing website with real simulator screenshots |
+| `abe6d28` | CI for server, iOS and docs plus combined GitHub Pages deployment |
 
 This table is updated as each phase lands. The git history is the authoritative log; this page
 is the human-readable plan behind it.

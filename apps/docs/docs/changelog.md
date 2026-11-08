@@ -87,9 +87,9 @@ site.
 | --- | --- |
 | `1abc85f` | Server, catalogue, adaptive plans and progress engine |
 | `0114335` | iOS app, animation engine, daily rhythm and tracker |
-| _pending_ | Documentation site |
-| _pending_ | Marketing website |
-| _pending_ | CI and GitHub Pages deployment |
+| `d3014b3` | Docusaurus product, technology and roadmap documentation |
+| `2ae4103` | Marketing website with real simulator screenshots |
+| `abe6d28` | CI and combined GitHub Pages deployment |
 
 ## Unreleased
 
