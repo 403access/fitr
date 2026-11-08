@@ -1,67 +1,151 @@
 # Fitr
 
-**Train on your rhythm.** Fitr is a personal fitness operating system: a curated exercise
-catalogue, a day plan that adapts to your energy across six time regions, and progress
-tracking that proves you are getting better — week after week.
+**Train on your rhythm.** A self-hosted fitness operating system: a catalogue of 60 exercises
+with hand-authored vector animations, a daily plan across six time regions, and a progress
+tracker that proves improvement week over week.
 
-```
+<p align="center">
+  <img src="apps/web/assets/screenshots/today.jpg" width="220" alt="Today plan" />
+  <img src="apps/web/assets/screenshots/catalogue.jpg" width="220" alt="Exercise catalogue" />
+  <img src="apps/web/assets/screenshots/player.jpg" width="220" alt="Exercise player" />
+  <img src="apps/web/assets/screenshots/progress.jpg" width="220" alt="Progress tracker" />
+</p>
+
+```text
 apps/
-  ios/      SwiftUI app (iOS 18+)
-  server/   Bun + TypeScript API, SQLite storage
-  docs/     Docusaurus product, technology and roadmap documentation
-  web/      Marketing website (deployed with the docs on GitHub Pages)
+  ios/       SwiftUI app (iOS 18+), Canvas animation engine, unit tests
+  server/    Bun + TypeScript API, SQLite schema, plan/progress domain, tests
+  docs/      Docusaurus product, technology, roadmap and deployment documentation
+  web/       Marketing site with real simulator screenshots
 ```
+
+## Highlights
+
+- **Catalogue** — 60 exercises across strength, calisthenics, yoga, mobility, cardio and
+  recovery, classified by topic, type, 15 body regions, 29 muscles (primary and auxiliary),
+  difficulty, equipment and coaching content. Filter by any dimension.
+- **Today** — six time regions (after wake, morning, midday, afternoon, evening, before sleep),
+  with rest days designed as recovery. The plan is generated from your goal, experience,
+  equipment, training days and session length.
+- **Progression** — volume rises 6% and intensity 4% per week, capped at +80% / +50%.
+  Autoregulation adds 2.5 kg or 2 reps after a completed exercise at average effort ≤ 7.
+- **Tracker** — day, week, month and year views; adherence, minutes, volume, sessions, streak,
+  calendar heatmap, muscle balance, e1RM/rep/hold records and period-over-period improvement.
+- **Motion** — 41 hand-keyframed skeleton sequences rendered live with SwiftUI Canvas. No video,
+  GIF or sprite assets; crisp at any size and tinted by topic.
+- **Self-hosted** — one Bun process, one SQLite file, no account or third-party analytics.
+- **Offline catalogue** — the catalogue ships in the app; the last plan is cached on device.
 
 ## Quick start
 
 ```bash
-# 1. API + database (seeds ~50 exercises on first run)
+# API + SQLite (seeds 60 exercises and demo history on first run)
 bun install
-bun run dev:server          # http://localhost:8787
+bun run dev:server            # http://localhost:8787
 
-# 2. iOS app
+# iOS app
 cd apps/ios
 xcodegen generate
-open Fitr.xcodeproj         # run on any iPhone simulator
+open Fitr.xcodeproj           # run on any iPhone simulator
 
-# 3. Documentation
-bun run dev:docs            # http://localhost:3000/fitr/
+# Documentation
+bun run dev:docs              # http://localhost:3000/fitr/docs/
 
-# 4. Marketing site (static)
-cd apps/web && bun run serve
+# Marketing site (plain static files)
+cd apps/web && python3 -m http.server 8080
 ```
 
-The iOS app defaults to `http://localhost:8787`. Change the server URL at any time in
-**You → Connection** — including on a physical device, where you should use your Mac's
-LAN IP.
+The iOS app defaults to `http://localhost:8787`. Change it in **You → Connection** — on a
+physical iPhone use your Mac's LAN IP (`ipconfig getifaddr en0`).
 
-## What is implemented
+## Requirements
 
-- **Catalogue** of exercises with topic, type, body region, primary and auxiliary muscles,
-  difficulty, equipment, coaching cues, breathing and a hand-authored vector animation
-  for every exercise.
-- **Today plan** grouped by time region: wake, morning, midday, afternoon, evening and
-  before sleep. Each week is generated from your goal and your previous performance.
-- **Progressive overload**: volume and load targets rise week over week, with automatic
-  load bumps when you finish all prescribed reps at a sustainable effort.
-- **Tracker** with day, week, month and year views; calendar heatmap, adherence, volume,
-  time, muscle balance, streaks, personal records and improvement deltas against the
-  previous period.
-- **Beautiful motion** — no video assets, just a Canvas-rendered body figure with eased
-  keyframe poses, gradients and motion trails. Works offline and at any size.
-- Bun API with SQLite, deterministic plan generation, tests and OpenAPI-ish documentation.
+- macOS with Xcode 16+ (tested with Xcode 27.2 / iOS 18+ target)
+- [XcodeGen](https://github.com/yonaskolb/XcodeGen) (`brew install xcodegen`)
+- Bun 1.2+
+- Node 20+ only for Docusaurus (Bun runs the build too)
+
+## Commands
+
+| Command | What it does |
+| --- | --- |
+| `bun run dev:server` | Start the API with file watching |
+| `bun run test` | Server test suite (11 tests) |
+| `bun run db:reset` | Delete the database; reseeds on next start |
+| `bun run export:catalog` | Regenerate the iOS bundled catalogue |
+| `bun run dev:docs` | Docusaurus dev server |
+| `bun run --cwd apps/docs build` | Production docs build |
+| `cd apps/ios && xcodegen generate` | Regenerate the Xcode project |
 
 ## Documentation
 
-- Live docs (after GitHub Pages deploy): `https://<owner>.github.io/fitr/docs/`
-- Live site: `https://<owner>.github.io/fitr/`
-- Source: [`apps/docs`](apps/docs), [`apps/web`](apps/web)
+The documentation covers product, engineering and the decision log:
+
+- **Product** — vision, features, progression model, design and motion.
+- **Technology** — architecture, data model, API reference, iOS internals, animation engine,
+  development and deployment.
+- **Roadmap** — phased tasks with commit trail and upcoming work.
+- **Decisions** — architecture decision records.
+- **Changelog** — what shipped in each version.
+
+When deployed via GitHub Pages:
+
+- Marketing site: `https://<owner>.github.io/fitr/`
+- Documentation: `https://<owner>.github.io/fitr/docs/`
+
+Source: [`apps/docs`](apps/docs) and [`apps/web`](apps/web).
 
 ## Deployment
 
-Both the marketing site and docs deploy together through GitHub Pages:
-`.github/workflows/deploy-pages.yml` builds Docusaurus into `/docs` and publishes the
-static marketing site at the root.
+Both the marketing site and docs are built and published by
+[`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml) as a single GitHub
+Pages artifact:
+
+- `apps/web` → `/`
+- `apps/docs/build` → `/docs/`
+
+### One-time GitHub setup
+
+1. Create a repository and push this project.
+2. Open **Settings → Pages → Build and deployment** and set **Source** to **GitHub Actions**.
+3. Push to `main`. The workflow derives the owner and repository from `GITHUB_REPOSITORY`, so
+   Docusaurus uses the correct base URL automatically.
+4. Update `apps/ios/Fitr/App/AppConfig.swift` with your GitHub owner so in-app documentation
+   links point to the deployed site.
+
+No secrets are required. See [Deployment](apps/docs/docs/technology/deployment.md) for custom
+domains, server hosting, TLS and the production checklist.
+
+## Testing
+
+```bash
+# Server (in-memory SQLite per test)
+cd apps/server && NODE_ENV=test bun test
+
+# TypeScript
+cd apps/server && bun run typecheck
+
+# iOS unit tests
+cd apps/ios
+xcodegen generate
+xcodebuild -project Fitr.xcodeproj -scheme Fitr -sdk iphonesimulator \
+  -destination 'platform=iOS Simulator,name=iPhone 16 Pro,OS=18.5' \
+  test CODE_SIGNING_ALLOWED=NO
+```
+
+CI runs all three on every push via [`.github/workflows/ci.yml`](.github/workflows/ci.yml).
+
+## Demo data
+
+The server seeds three completed weeks plus the current week up to yesterday, so charts,
+streaks and records have a realistic baseline on first run. `bun run db:reset` starts from a
+clean database.
+
+## Production notes
+
+The current API is single-user (`x-user-id`, default `me`) and intended for localhost or a
+trusted LAN. Before exposing it to the internet, add authentication, TLS, restricted CORS,
+rate limiting and database backups. The roadmap tracks this as the production-hardening phase.
 
 ## License
 
