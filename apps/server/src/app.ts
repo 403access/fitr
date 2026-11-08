@@ -23,7 +23,7 @@ import {
 } from './domain/plans.ts';
 import { exerciseProgress, progressSummary, type Period } from './domain/progress.ts';
 import { getUser, ensureUser, updateUser } from './domain/users.ts';
-import { isValidDate, startOfWeek } from './lib/time.ts';
+import { isValidDate, startOfWeek, todayString } from './lib/time.ts';
 
 type Env = { Variables: { userId: string } };
 
@@ -143,7 +143,7 @@ export function createApp(db: Database) {
     if (date && !isValidDate(date)) return c.json(errorBody('invalid_date', 'Use YYYY-MM-DD.'), 400);
     const userId = c.get('userId');
     const user = getUser(db, userId) ?? ensureUser(db, userId);
-    const target = date ?? new Date().toISOString().slice(0, 10);
+    const target = date ?? todayString();
     const weekStart = startOfWeek(target);
     ensurePlan(db, user, weekStart);
     const tasks = tasksForDate(db, userId, target, {
@@ -192,7 +192,7 @@ export function createApp(db: Database) {
     if (date && !isValidDate(date)) return c.json(errorBody('invalid_date', 'Use YYYY-MM-DD.'), 400);
     const userId = c.get('userId');
     const user = getUser(db, userId) ?? ensureUser(db, userId);
-    const weekStart = startOfWeek(date ?? new Date().toISOString().slice(0, 10));
+    const weekStart = startOfWeek(date ?? todayString());
     const plan = ensurePlan(db, user, weekStart);
     return c.json(serializePlan(db, plan));
   });
@@ -208,12 +208,12 @@ export function createApp(db: Database) {
   app.get('/api/progress', (c) => {
     const period = periodSchema.safeParse(c.req.query('period') ?? 'week');
     if (!period.success) return c.json(errorBody('invalid_period', 'Use day, week, month or year.'), 400);
-    const anchor = c.req.query('anchor') ?? new Date().toISOString().slice(0, 10);
+    const anchor = c.req.query('anchor') ?? todayString();
     if (!isValidDate(anchor)) return c.json(errorBody('invalid_date', 'Use YYYY-MM-DD.'), 400);
     const userId = c.get('userId');
     const user = getUser(db, userId) ?? ensureUser(db, userId);
     const weekStart = startOfWeek(anchor);
-    if (weekStart >= startOfWeek(new Date().toISOString().slice(0, 10))) {
+    if (weekStart >= startOfWeek(todayString())) {
       ensurePlan(db, user, weekStart);
     }
     return c.json(progressSummary(db, userId, period.data as Period, anchor));

@@ -1,7 +1,7 @@
 import type { Database } from 'bun:sqlite';
 import { getExerciseById, type ExerciseDTO } from './catalogue.ts';
 import type { UserDTO } from './users.ts';
-import { addDays, isoNow, startOfWeek, weekDates, weekIndexFor } from '../lib/time.ts';
+import { addDays, isoNow, startOfWeek, todayString, weekDates, weekIndexFor } from '../lib/time.ts';
 import { timeRegions, type TimeRegionId } from '../db/seed-data.ts';
 
 export type PlanRow = {
@@ -524,7 +524,7 @@ function createPlanRecord(
   return plan;
 }
 
-export function ensurePlan(db: Database, user: UserDTO, weekStart = startOfWeek(new Date().toISOString().slice(0, 10))): PlanRow {
+export function ensurePlan(db: Database, user: UserDTO, weekStart = startOfWeek(todayString())): PlanRow {
   const existing = getPlanRow(db, user.id, weekStart);
   if (existing) return existing;
   const index = weekIndexFor(user.programStart, weekStart);

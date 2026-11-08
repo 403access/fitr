@@ -8,7 +8,7 @@ import {
 } from './seed-data.ts';
 import { ensureUser, getUser } from '../domain/users.ts';
 import { completeTask, ensurePlan, skipTask } from '../domain/plans.ts';
-import { addDays, isoNow, startOfWeek } from '../lib/time.ts';
+import { addDays, isoNow, startOfWeek, todayString } from '../lib/time.ts';
 
 const TOPIC_IDS = new Set(topics.map((topic) => topic.id));
 const TYPE_IDS = new Set(exerciseTypes.map((type) => type.id));
@@ -117,9 +117,9 @@ const COMPLETION_HOUR: Record<string, string> = {
  * baselines on a fresh install. `bun run db:reset` starts from scratch again.
  */
 function seedHistory(db: Database, userId: string): void {
-  const currentWeek = startOfWeek(new Date().toISOString().slice(0, 10));
+  const currentWeek = startOfWeek(todayString());
   const startWeek = addDays(currentWeek, -21);
-  const today = new Date().toISOString().slice(0, 10);
+  const today = todayString();
   const user = getUser(db, userId);
   if (!user) return;
 
@@ -165,7 +165,7 @@ export function seedDatabase(db: Database): void {
 
   seedCatalogue(db);
   const user = ensureUser(db, 'me');
-  const currentWeek = startOfWeek(new Date().toISOString().slice(0, 10));
+  const currentWeek = startOfWeek(todayString());
   const programStart = addDays(currentWeek, -21);
   db.run('UPDATE users SET program_start = ? WHERE id = ?', [programStart, user.id]);
   seedHistory(db, user.id);

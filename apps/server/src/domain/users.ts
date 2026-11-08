@@ -1,4 +1,5 @@
 import type { Database } from 'bun:sqlite';
+import { addDays, todayString } from '../lib/time.ts';
 
 export type Goal = 'balanced' | 'strength' | 'endurance' | 'mobility' | 'recovery';
 export type Experience = 'beginner' | 'intermediate' | 'advanced';
@@ -47,9 +48,7 @@ export function getUser(db: Database, id: string): UserDTO | null {
 export function ensureUser(db: Database, id = 'me'): UserDTO {
   const existing = getUser(db, id);
   if (existing) return existing;
-  const start = new Date();
-  start.setDate(start.getDate() - 21);
-  const date = start.toISOString().slice(0, 10);
+  const date = addDays(todayString(), -21);
   db.run(
     `INSERT INTO users (id, name, goal, experience, days_per_week, session_minutes, equipment, program_start, created_at)
      VALUES (?, 'Alex', 'balanced', 'intermediate', 5, 45, '[]', ?, ?)`,
